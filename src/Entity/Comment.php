@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Symfony package.
@@ -11,6 +11,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -74,11 +75,11 @@ class Comment
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $author;
+    private $user;
 
     public function __construct()
     {
-        $this->publishedAt = new \DateTime();
+        $this->publishedAt = new DateTime();
     }
 
     /**
@@ -86,9 +87,9 @@ class Comment
      */
     public function isLegitComment(): bool
     {
-        $containsInvalidCharacters = false !== mb_strpos($this->content, '@');
+        $containsInvalidCharacters = mb_strpos($this->content, '@') !== false;
 
-        return !$containsInvalidCharacters;
+        return ! $containsInvalidCharacters;
     }
 
     public function getId(): int
@@ -106,24 +107,24 @@ class Comment
         $this->content = $content;
     }
 
-    public function getPublishedAt(): \DateTime
+    public function getPublishedAt(): DateTime
     {
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTime $publishedAt): void
+    public function setPublishedAt(DateTime $publishedAt): void
     {
         $this->publishedAt = $publishedAt;
     }
 
     public function getAuthor(): User
     {
-        return $this->author;
+        return $this->user;
     }
 
-    public function setAuthor(User $author): void
+    public function setAuthor(User $user): void
     {
-        $this->author = $author;
+        $this->user = $user;
     }
 
     public function getPost(): ?Post
