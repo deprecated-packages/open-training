@@ -1,4 +1,3 @@
 parameters:
     ignoreErrors:
-        # object false positive
-        - '#Property OpenLecture\\Provision\\Tests\\ProvisionResolverTest::\$provisionResolver \(OpenLecture\\Provision\\ProvisionResolver\) does not accept object#'
+

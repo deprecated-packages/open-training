@@ -2,6 +2,7 @@
 
 namespace OpenLecture\Provision;
 
+use OpenLecture\Provision\Data\PartnerData;
 use OpenLecture\Provision\Data\ProvisionData;
 
 final class ProvisionResolver
@@ -22,23 +23,21 @@ final class ProvisionResolver
         }
 
         foreach ($provisionData->getPartnerDatas() as $partnerData) {
-            $partnerProfit = $this->resolvePartnerProfit(
-                $profit,
-                $partnerData->getExpenses(),
-                $partnerData->getProvisionRate()
-            );
+            $partnerProfit = $this->resolvePartnerProfit($profit, $partnerData);
             $partnerData->changeProfit($partnerProfit);
         }
     }
 
-    private function resolvePartnerProfit(int $profit, int $expenses, float $provisionRate): int
+    private function resolvePartnerProfit(int $profit, PartnerData $partnerData): int
     {
-        $result = $profit * $provisionRate;
+        $result = $profit * $partnerData->getProvisionRate();
 
         // to cover his or her taxes payment from original income
-        $result *= (1 - self::TAX_BALANCER_LECTOR);
+        if ($partnerData->isOfficialInvoicer() === false) {
+            $result *= (1 - self::TAX_BALANCER_LECTOR);
+        }
 
         // cover his or her expenses
-        return (int) $result + $expenses;
+        return (int) $result + $partnerData->getExpenses();
     }
 }

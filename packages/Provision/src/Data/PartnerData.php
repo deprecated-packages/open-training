@@ -24,11 +24,17 @@ final class PartnerData
      */
     private $profit;
 
-    public function __construct(string $name, float $provisionRate, int $expenses)
+    /**
+     * @var bool
+     */
+    private $isOfficialInvoicer;
+
+    public function __construct(string $name, float $provisionRate, int $expenses, bool $isOfficialInvoicer = false)
     {
         $this->expenses = $expenses;
         $this->name = $name;
         $this->provisionRate = $provisionRate;
+        $this->isOfficialInvoicer = $isOfficialInvoicer;
     }
 
     public function getName(): string
@@ -54,5 +60,10 @@ final class PartnerData
     public function getProfit(): ?int
     {
         return $this->profit;
+    }
+
+    public function isOfficialInvoicer(): bool
+    {
+        return $this->isOfficialInvoicer;
     }
 }
