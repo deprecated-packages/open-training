@@ -4,6 +4,7 @@ namespace App\Form;
 
 use OpenLecture\Provision\Data\ProvisionData;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,17 +32,11 @@ final class ProvisionFormType extends AbstractType
 
         $formBuilder->add('incomeAmount', TextType::class);
 
-        $formBuilder->add('lectorExpenses', TextType::class, [
-            'help' => 'Lunch',
-            'required' => false,
-        ]);
-        $formBuilder->add('organizerExpenses', TextType::class, [
-            'help' => 'Certificates, small food',
-            'required' => false,
-        ]);
-        $formBuilder->add('ownerExpenses', TextType::class, [
-            'help' => 'Rent, Coworking space',
-            'required' => false,
+        $formBuilder->add('partners', CollectionType::class, [
+            'entry_type' => PartnerFormType::class,
+            // prevents errors adding on default values
+            // @see https://symfony.com/doc/current/form/form_collections.html#allowing-new-tags-with-the-prototype
+            'allow_add' => true,
         ]);
 
         $formBuilder->add('submit', SubmitType::class, [

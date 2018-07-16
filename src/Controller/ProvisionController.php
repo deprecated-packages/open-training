@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ProvisionFormType;
+use OpenLecture\Provision\Data\PartnerData;
 use OpenLecture\Provision\Data\ProvisionData;
 use OpenLecture\Provision\ProvisionResolver;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,6 +47,9 @@ final class ProvisionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            dump($provisionData);
+            die;
+
             $resolvedProfitData = $this->provisionResolver->resolve($provisionData);
 
             return $this->render('provision/result.twig', [
@@ -72,6 +76,30 @@ final class ProvisionController extends AbstractController
      */
     private function createProvisionForm($data = null): FormInterface
     {
+        // default values
+        if (! $data) {
+            $data = new ProvisionData();
+
+            $partners = [];
+
+            $partnerData = new PartnerData();
+            $partnerData->setName('lector');
+            $partnerData->setProvisionRatio(0.5);
+            $partners['Lector'] = $partnerData;
+
+            $partnerData = new PartnerData();
+            $partnerData->setName('organizer');
+            $partnerData->setProvisionRatio(0.25);
+            $partners['Organizer'] = $partnerData;
+
+            $partnerData = new PartnerData();
+            $partnerData->setName('owner');
+            $partnerData->setProvisionRatio(0.25);
+            $partners['Owner'] = $partnerData;
+
+            $data->setPartners($partners);
+        }
+
         return $this->createForm(ProvisionFormType::class, $data);
     }
 }

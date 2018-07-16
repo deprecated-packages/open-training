@@ -16,6 +16,7 @@ services:
     Symplify\CodingStandard\Sniffs\DependencyInjection\NoClassInstantiationSniff:
         extraAllowedClasses:
             - 'OpenLecture\Provision\Data\*'
+            - 'Doctrine\Common\Collections\ArrayCollection'
 
 parameters:
     exclude_checkers:

@@ -2,6 +2,8 @@
 
 namespace OpenLecture\Provision\Data;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 final class ProvisionData
 {
     /**
@@ -10,23 +12,13 @@ final class ProvisionData
     private $incomeAmount = 0;
 
     /**
-     * @var int
+     * @var PartnerData[]
      */
-    private $lectorExpenses = 0;
+    private $partners = [];
 
-    /**
-     * @var int
-     */
-    private $organizerExpenses = 0;
-
-    /**
-     * @var int
-     */
-    private $ownerExpenses = 0;
-
-    public function getOwnerExpenses(): int
+    public function __construct()
     {
-        return $this->ownerExpenses;
+        $this->partners = new ArrayCollection();
     }
 
     public function setIncomeAmount(int $incomeAmount): void
@@ -39,28 +31,24 @@ final class ProvisionData
         return $this->incomeAmount;
     }
 
-    public function getLectorExpenses(): int
+    public function addPartner(PartnerData $partnerData): void
     {
-        return $this->lectorExpenses;
+        $this->partners[] = $partnerData;
     }
 
-    public function setLectorExpenses(?int $lectorExpenses): void
+    /**
+     * @return ArrayCollection|PartnerData[]
+     */
+    public function getPartners()
     {
-        $this->lectorExpenses = (int) $lectorExpenses;
+        return $this->partners;
     }
 
-    public function getOrganizerExpenses(): int
+    /**
+     * @param PartnerData[] $partners
+     */
+    public function setPartners(array $partners): void
     {
-        return $this->organizerExpenses;
-    }
-
-    public function setOrganizerExpenses(?int $organizerExpenses): void
-    {
-        $this->organizerExpenses = (int) $organizerExpenses;
-    }
-
-    public function setOwnerExpenses(?int $ownerExpenses): void
-    {
-        $this->ownerExpenses = (int) $ownerExpenses;
+        $this->partners = $partners;
     }
 }

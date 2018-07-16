@@ -59,7 +59,7 @@ final class ProvisionResolver
         return (int) $result + $expenses;
     }
 
-    private function resolveLectorProfit(int $profit, int $lectorExpenses, float $provisionRate): int
+    private function resolveLectorProfit(int $profit, int $expenses, float $provisionRate): int
     {
         $result = $profit * $provisionRate;
 
@@ -67,6 +67,6 @@ final class ProvisionResolver
         $result *= (1 - self::TAX_BALANCER_LECTOR);
 
         // cover his or her expenses
-        return (int) $result + $lectorExpenses;
+        return (int) $result + $expenses;
     }
 }
