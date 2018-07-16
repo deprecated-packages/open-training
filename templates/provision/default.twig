@@ -1,7 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    ...Provisoin
+    <h2>Compute the Provision</h2>
 
-    {{ render(controller('App\\Component\\ProvisionFormComponent')) }}
+    {% if amount %}
+        {{ amount }}
+
+
+        <h3>Lector</h3>
+
+        <h3>Organizer</h3>
+
+        <h3>Organizer 50:50</h3>
+    {% endif %}
+
+    {{ render(controller('App\\Controller\\ProvisionController::renderProvisionForm')) }}
 {% endblock %}

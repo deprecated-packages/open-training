@@ -13,8 +13,16 @@ services:
     # class should be Abstact or Final
     SlamCsFixer\FinalInternalClassFixer: ~
 
+    Symplify\CodingStandard\Sniffs\DependencyInjection\NoClassInstantiationSniff:
+        extraAllowedClasses:
+            - 'App\Entity\*'
+
 parameters:
     exclude_checkers:
         # exclude from psr12.yml
         - 'PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer'
         - 'PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer'
+
+    skip:
+        Symplify\CodingStandard\Sniffs\ControlStructure\SprintfOverContactSniff:
+            - 'src/Kernel.php'
