@@ -30,8 +30,15 @@ final class ProvisionResolverTest extends WebTestCase
     /**
      * @dataProvider provideData()
      */
-    public function test(int $incomeAmount, int $lectorExpenses, int $organizerExpenses, int $ownerExpenses, int $expectedLectorProfit, int $expectedOrganizerProfit, int $expectedOwnerProfit)
-    {
+    public function test(
+        int $incomeAmount,
+        int $lectorExpenses,
+        int $organizerExpenses,
+        int $ownerExpenses,
+        int $expectedLectorProfit,
+        int $expectedOrganizerProfit,
+        int $expectedOwnerProfit
+    ): void {
         $provisionData = new ProvisionData();
         $provisionData->setIncomeAmount($incomeAmount);
         $provisionData->setLectorExpenses($lectorExpenses);

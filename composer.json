@@ -20,6 +20,8 @@
     },
     "require-dev": {
         "phpstan/phpstan": "^0.10.1",
+        "phpunit/phpunit": "^7.2",
+        "shopsys/http-smoke-testing": "@dev",
         "slam/php-cs-fixer-extensions": "^1.16",
         "symfony/browser-kit": "^4.2",
         "symfony/debug-bundle": "^4.2",
