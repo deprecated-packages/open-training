@@ -2,6 +2,8 @@
 
 namespace OpenLecture\Provision\Data;
 
+use OpenLecture\Provision\Exception\InvalidProvisionRateTotalException;
+
 final class ProvisionData
 {
     /**
@@ -19,6 +21,8 @@ final class ProvisionData
      */
     public function __construct(int $incomeAmount, array $partnerDatas)
     {
+        $this->ensureProvisionRateTotalIsOne($partnerDatas);
+
         $this->partnerDatas = $partnerDatas;
         $this->incomeAmount = $incomeAmount;
     }
@@ -34,5 +38,25 @@ final class ProvisionData
     public function getPartnerDatas(): array
     {
         return $this->partnerDatas;
+    }
+
+    /**
+     * @param PartnerData[] $partnerDatas
+     */
+    private function ensureProvisionRateTotalIsOne(array $partnerDatas): void
+    {
+        $provisionRateTotal = 0;
+        foreach ($partnerDatas as $partnerData) {
+            $provisionRateTotal += $partnerData->getProvisionRate();
+        }
+
+        if ($provisionRateTotal === 1.0) {
+            return;
+        }
+
+        new InvalidProvisionRateTotalException(sprintf(
+            'The provision total rate mut be 1, instead of %f.',
+            $provisionRateTotal
+        ));
     }
 }

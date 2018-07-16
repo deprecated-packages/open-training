@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Form\ProvisionFormType;
+use App\Request\ProvisionFormRequest;
+use OpenLecture\Provision\Data\PartnerData;
+use OpenLecture\Provision\Data\ProvisionData;
 use OpenLecture\Provision\ProvisionResolver;
-use OpenLecture\Provision\Request\ProvisionFormRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,13 +48,12 @@ final class ProvisionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($provisionFormRequest);
-            die;
+            $provisionData = $this->createProvisionDataFromProvisionFormRequest($provisionFormRequest);
 
-            $resolvedProfitData = $this->provisionResolver->resolve($provisionFormRequest);
+            $this->provisionResolver->resolve($provisionData);
 
             return $this->render('provision/result.twig', [
-                'resolvedProfitData' => $resolvedProfitData,
+                'provisionData' => $provisionData,
             ]);
         }
 
@@ -78,5 +79,15 @@ final class ProvisionController extends AbstractController
         return $this->createForm(ProvisionFormType::class, $data, [
             'action' => $this->generateUrl('process_provision_form'),
         ]);
+    }
+
+    private function createProvisionDataFromProvisionFormRequest(
+        ProvisionFormRequest $provisionFormRequest
+    ): ProvisionData {
+        $partnerDatas[] = new PartnerData('Lector', 0.5, $provisionFormRequest->getOwnerExpenses());
+        $partnerDatas[] = new PartnerData('Organizer', 0.25, $provisionFormRequest->getOwnerExpenses());
+        $partnerDatas[] = new PartnerData('Owner', 0.25, $provisionFormRequest->getOwnerExpenses());
+
+        return new ProvisionData($provisionFormRequest->getIncomeAmount(), $partnerDatas);
     }
 }

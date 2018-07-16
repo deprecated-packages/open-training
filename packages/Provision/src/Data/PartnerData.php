@@ -19,6 +19,11 @@ final class PartnerData
      */
     private $provisionRate;
 
+    /**
+     * @var int|null
+     */
+    private $profit;
+
     public function __construct(string $name, float $provisionRate, int $expenses)
     {
         $this->expenses = $expenses;
@@ -39,5 +44,15 @@ final class PartnerData
     public function getExpenses(): int
     {
         return $this->expenses;
+    }
+
+    public function changeProfit(int $profit): void
+    {
+        $this->profit = $profit;
+    }
+
+    public function getProfit(): ?int
+    {
+        return $this->profit;
     }
 }

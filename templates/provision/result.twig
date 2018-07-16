@@ -10,17 +10,11 @@
                 <th>How much?</th>
             </tr>
         </thead>
-        <tr>
-            <td>Lector</td>
-            <td>{{ resolvedProfitData.getLectorProfit()|number_format }} Kč</td>
-        </tr>
-        <tr>
-            <td>Organizer</td>
-            <td>{{ resolvedProfitData.getOrganizerProfit()|number_format }} Kč</td>
-        </tr>
-        <tr>
-            <td>Owner</td>
-            <td>{{ resolvedProfitData.getOwnerProfit()|number_format }} Kč</td>
-        </tr>
+        {% for partnerData in provisionData.getPartnerDatas() %}
+            <tr>
+                <td>{{ partnerData.getName() }}</td>
+                <td>{{ partnerData.getProfit()|number_format }} Kč</td>
+            </tr>
+        {% endfor %}
     </table>
 {% endblock %}

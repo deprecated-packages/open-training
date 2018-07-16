@@ -3,20 +3,9 @@
 namespace OpenLecture\Provision;
 
 use OpenLecture\Provision\Data\ProvisionData;
-use OpenLecture\Provision\Data\ResolvedProfitData;
 
 final class ProvisionResolver
 {
-    /**
-     * @var float
-     */
-    private const PROVISION_LECTOR = 0.5;
-
-    /**
-     * @var float
-     */
-    private const PROVISION_ORGANIZER = 0.25;
-
     /**
      * To cover dual tax payments by main invoicing entity
      * 10 000  profit ~= 2000 taxes
@@ -25,41 +14,24 @@ final class ProvisionResolver
      */
     private const TAX_BALANCER_LECTOR = 0.11;
 
-    public function resolve(ProvisionData $provisionData): ResolvedProfitData
+    public function resolve(ProvisionData $provisionData): void
     {
-        $profit = $provisionData->getIncomeAmount() - $provisionData->getLectorExpenses() - $provisionData->getOrganizerExpenses() - $provisionData->getOwnerExpenses();
+        $profit = $provisionData->getIncomeAmount();
+        foreach ($provisionData->getPartnerDatas() as $partnerData) {
+            $profit -= $partnerData->getExpenses();
+        }
 
-        // @todo ... or per user provisin note?
-
-        $profitLector = $this->resolveLectorProfit(
-            $profit,
-            $provisionData->getLectorExpenses(),
-            self::PROVISION_LECTOR
-        );
-
-        $profitOrganizer = $this->resolveOrganizerProfit(
-            $profit,
-            $provisionData->getOrganizerExpenses(),
-            self::PROVISION_ORGANIZER
-        );
-
-        $profitOwner = $profit - $profitLector - $profitOrganizer;
-
-        return new ResolvedProfitData($profitLector, $profitOrganizer, $profitOwner);
+        foreach ($provisionData->getPartnerDatas() as $partnerData) {
+            $partnerProfit = $this->resolvePartnerProfit(
+                $profit,
+                $partnerData->getExpenses(),
+                $partnerData->getProvisionRate()
+            );
+            $partnerData->changeProfit($partnerProfit);
+        }
     }
 
-    private function resolveOrganizerProfit(int $profit, int $expenses, float $provisionRate): int
-    {
-        $result = $profit * $provisionRate;
-
-        // to cover his or her taxes payment from original income
-        $result *= (1 - self::TAX_BALANCER_LECTOR);
-
-        // cover his or her expenses
-        return (int) $result + $expenses;
-    }
-
-    private function resolveLectorProfit(int $profit, int $expenses, float $provisionRate): int
+    private function resolvePartnerProfit(int $profit, int $expenses, float $provisionRate): int
     {
         $result = $profit * $provisionRate;
 

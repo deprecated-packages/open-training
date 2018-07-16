@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace OpenLecture\Provision\Request;
+namespace App\Request;
 
 /**
  * @see https://blog.martinhujer.cz/symfony-forms-with-request-objects/

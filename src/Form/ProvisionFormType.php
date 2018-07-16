@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use OpenLecture\Provision\Request\ProvisionFormRequest;
+use App\Request\ProvisionFormRequest;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
