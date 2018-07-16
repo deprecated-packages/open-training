@@ -3,14 +3,12 @@
 namespace OpenLecture\Provision\Tests;
 
 use Iterator;
+use OpenLecture\Provision\Data\PartnerData;
 use OpenLecture\Provision\Data\ProvisionData;
 use OpenLecture\Provision\ProvisionResolver;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @see https://symfony.com/blog/new-in-symfony-4-1-simpler-service-testing
- */
-final class ProvisionResolverTest extends WebTestCase
+final class ProvisionResolverTest extends TestCase
 {
     /**
      * @var ProvisionResolver
@@ -19,41 +17,33 @@ final class ProvisionResolverTest extends WebTestCase
 
     protected function setUp(): void
     {
-        self::bootKernel();
-
-        // gets the special container that allows fetching private services
-        $container = self::$container;
-
-        $this->provisionResolver = $container->get(ProvisionResolver::class);
+        $this->provisionResolver = new ProvisionResolver();
     }
 
     /**
      * @dataProvider provideData()
+     * @param PartnerData[] $partnerDatas
+     * @param int[] $expectedProfits
      */
-    public function test(
-        int $incomeAmount,
-        int $lectorExpenses,
-        int $organizerExpenses,
-        int $ownerExpenses,
-        int $expectedLectorProfit,
-        int $expectedOrganizerProfit,
-        int $expectedOwnerProfit
-    ): void {
-        $provisionData = new ProvisionData();
-        $provisionData->setIncomeAmount($incomeAmount);
-        $provisionData->setLectorExpenses($lectorExpenses);
-        $provisionData->setOrganizerExpenses($organizerExpenses);
-        $provisionData->setOwnerExpenses($ownerExpenses);
+    public function test(int $incomeAmount, array $partnerDatas, array $expectedProfits): void {
+        $provisionData = new ProvisionData($incomeAmount, $partnerDatas);
 
-        $resolvedProfitData = $this->provisionResolver->resolve($provisionData);
+        $this->provisionResolver->resolve($provisionData);
 
-        $this->assertSame($expectedLectorProfit, $resolvedProfitData->getLectorProfit());
-        $this->assertSame($expectedOrganizerProfit, $resolvedProfitData->getOrganizerProfit());
-        $this->assertSame($expectedOwnerProfit, $resolvedProfitData->getOwnerProfit());
+        $i = 0;
+        foreach ($provisionData->getPartnerDatas() as $partnerData) {
+            $this->assertSame($expectedProfits[$i], $partnerData->getProfit());
+            ++$i;
+        }
     }
 
     public function provideData(): Iterator
     {
-        yield [1000, 50, 0, 0, 50, 50, 50];
+        $lectorPartnerData = new PartnerData('lector', 0.5, 0);
+        $organizerPartnerData = new PartnerData('organizer', 0.25, 0);
+        $ownerPartnerData = new PartnerData('lector', 0.25, 0);
+
+        // basic
+        yield [10000, [$lectorPartnerData, $organizerPartnerData, $ownerPartnerData], [4450, 2225, 2225]];
     }
 }
