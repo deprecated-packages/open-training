@@ -40,16 +40,16 @@ final class ProvisionResolverTest extends TestCase
 
     public function provideData(): Iterator
     {
+        $lectorPartnerDataFactory = function (int $expeses): PartnerData {
+            return new PartnerData('lector', 0.5, $expeses);
+        };
+
         $organizerPartnerDataFactory = function (int $expenses): PartnerData {
             return new PartnerData('organizer', 0.25, $expenses);
         };
 
         $ownerPartnerDataFactory = function (int $expenses): PartnerData {
             return new PartnerData('lector', 0.25, $expenses, true);
-        };
-
-        $lectorPartnerDataFactory = function (int $expeses): PartnerData {
-            return new PartnerData('lector', 0.5, $expeses);
         };
 
         // basic
@@ -76,6 +76,22 @@ final class ProvisionResolverTest extends TestCase
             10000,
             [$lectorPartnerDataFactory(0), $organizerPartnerDataFactory(0), $ownerPartnerDataFactory(2000)],
             [3560, 1780, 4000],
+        ];
+
+        // Google Sheets migration
+        // Docker 06/2018
+        yield [
+            33992,
+            [$lectorPartnerDataFactory(1651), $organizerPartnerDataFactory(171), $ownerPartnerDataFactory(0)],
+            [15966, 7328, 8042],
+        ];
+
+        // Google Sheets migration
+        // CD 06/2018
+        yield [
+            49990,
+            [$lectorPartnerDataFactory(2600), $organizerPartnerDataFactory(209), $ownerPartnerDataFactory(0)],
+            [23595, 10706, 11795],
         ];
     }
 }

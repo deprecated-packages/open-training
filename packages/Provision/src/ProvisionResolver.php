@@ -18,6 +18,7 @@ final class ProvisionResolver
     public function resolve(ProvisionData $provisionData): void
     {
         $profit = $provisionData->getIncomeAmount();
+
         foreach ($provisionData->getPartnerDatas() as $partnerData) {
             $profit -= $partnerData->getExpenses();
         }
