@@ -2,8 +2,6 @@
 
 namespace OpenLecture\Provision\Data;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 final class ProvisionData
 {
     /**
@@ -14,15 +12,14 @@ final class ProvisionData
     /**
      * @var PartnerData[]
      */
-    private $partners = [];
+    private $partnerDatas = [];
 
-    public function __construct()
+    /**
+     * @param PartnerData[] $partnerDatas
+     */
+    public function __construct(int $incomeAmount, array $partnerDatas)
     {
-        $this->partners = new ArrayCollection();
-    }
-
-    public function setIncomeAmount(int $incomeAmount): void
-    {
+        $this->partnerDatas = $partnerDatas;
         $this->incomeAmount = $incomeAmount;
     }
 
@@ -31,24 +28,11 @@ final class ProvisionData
         return $this->incomeAmount;
     }
 
-    public function addPartner(PartnerData $partnerData): void
-    {
-        $this->partners[] = $partnerData;
-    }
-
     /**
-     * @return ArrayCollection|PartnerData[]
+     * @return PartnerData[]
      */
-    public function getPartners()
+    public function getPartnerDatas(): array
     {
-        return $this->partners;
-    }
-
-    /**
-     * @param PartnerData[] $partners
-     */
-    public function setPartners(array $partners): void
-    {
-        $this->partners = $partners;
+        return $this->partnerDatas;
     }
 }

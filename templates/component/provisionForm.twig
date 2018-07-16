@@ -2,12 +2,12 @@
     {{ form_label(form.incomeAmount) }}
     {{ form_widget(form.incomeAmount) }}
 
-    {% for partner in form.partners %}
-        <h3>{{ form_label(partner) }}</h3>
-        {{ form_widget(partner) }}
+    {#{% for partner in form.partners %}#}
+        {#<h3>{{ form_label(partner) }}</h3>#}
+        {#{{ form_widget(partner) }}#}
 
-        {{ form_errors(partner) }}
-    {% endfor %}
+        {#{{ form_errors(partner) }}#}
+    {#{% endfor %}#}
 
     {{ form_widget(form) }}
     {{ form_errors(form) }}

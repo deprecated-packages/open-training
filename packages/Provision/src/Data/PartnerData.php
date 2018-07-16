@@ -10,42 +10,34 @@ final class PartnerData
     private $name;
 
     /**
-     * @var float
-     */
-    private $provisionRatio;
-
-    /**
      * @var int
      */
     private $expenses = 0;
+
+    /**
+     * @var float
+     */
+    private $provisionRate;
+
+    public function __construct(string $name, float $provisionRate, int $expenses)
+    {
+        $this->expenses = $expenses;
+        $this->name = $name;
+        $this->provisionRate = $provisionRate;
+    }
 
     public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function getProvisionRate(): float
     {
-        $this->name = $name;
-    }
-
-    public function getProvisionRatio(): float
-    {
-        return $this->provisionRatio;
-    }
-
-    public function setProvisionRatio(float $provisionRatio): void
-    {
-        $this->provisionRatio = $provisionRatio;
+        return $this->provisionRate;
     }
 
     public function getExpenses(): int
     {
         return $this->expenses;
-    }
-
-    public function setExpenses(int $expenses): void
-    {
-        $this->expenses = $expenses;
     }
 }

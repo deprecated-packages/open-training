@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Form\ProvisionFormType;
-use OpenLecture\Provision\Data\PartnerData;
-use OpenLecture\Provision\Data\ProvisionData;
 use OpenLecture\Provision\ProvisionResolver;
+use OpenLecture\Provision\Request\ProvisionFormRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,16 +40,16 @@ final class ProvisionController extends AbstractController
      */
     public function processProvision(Request $request): Response
     {
-        $provisionData = new ProvisionData();
+        $provisionFormRequest = new ProvisionFormRequest();
 
-        $form = $this->createProvisionForm($provisionData);
+        $form = $this->createProvisionForm($provisionFormRequest);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($provisionData);
+            dump($provisionFormRequest);
             die;
 
-            $resolvedProfitData = $this->provisionResolver->resolve($provisionData);
+            $resolvedProfitData = $this->provisionResolver->resolve($provisionFormRequest);
 
             return $this->render('provision/result.twig', [
                 'resolvedProfitData' => $resolvedProfitData,
@@ -76,30 +75,8 @@ final class ProvisionController extends AbstractController
      */
     private function createProvisionForm($data = null): FormInterface
     {
-        // default values
-        if (! $data) {
-            $data = new ProvisionData();
-
-            $partners = [];
-
-            $partnerData = new PartnerData();
-            $partnerData->setName('lector');
-            $partnerData->setProvisionRatio(0.5);
-            $partners['Lector'] = $partnerData;
-
-            $partnerData = new PartnerData();
-            $partnerData->setName('organizer');
-            $partnerData->setProvisionRatio(0.25);
-            $partners['Organizer'] = $partnerData;
-
-            $partnerData = new PartnerData();
-            $partnerData->setName('owner');
-            $partnerData->setProvisionRatio(0.25);
-            $partners['Owner'] = $partnerData;
-
-            $data->setPartners($partners);
-        }
-
-        return $this->createForm(ProvisionFormType::class, $data);
+        return $this->createForm(ProvisionFormType::class, $data, [
+            'action' => $this->generateUrl('process_provision_form'),
+        ]);
     }
 }
