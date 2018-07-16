@@ -9,5 +9,3 @@ services:
         exclude:
             - '../src/Entity/'
             - '../src/Kernel.php'
-
-# ,Migrations,Tests,Kernel.php

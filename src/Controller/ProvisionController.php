@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Provision;
+use App\Entity\ProvisionData;
 use App\Form\ProvisionFormType;
+use OpenLecture\Provision\ProvisionResolver;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,6 +16,16 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class ProvisionController extends AbstractController
 {
+    /**
+     * @var ProvisionResolver
+     */
+    private $provisionResolver;
+
+    public function __construct(ProvisionResolver $provisionResolver)
+    {
+        $this->provisionResolver = $provisionResolver;
+    }
+
     /**
      * @Route(path="/provision/", name="provision")
      * @Route(path="/provision/{amount}", name="provision_detail")
@@ -31,14 +43,22 @@ final class ProvisionController extends AbstractController
      */
     public function processProvision(Request $request): Response
     {
-        $provision = new Provision();
+        $provisionData = new ProvisionData();
 
-        $form = $this->createForm(ProvisionFormType::class, $provision);
+        $form = $this->createProvisionForm($provisionData);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            return $this->redirectToRoute('provision_detail', [
-                'amount' => $provision->getAmount(),
+            $privisionResult = $this->provisionResolver->resolve($provisionData);
+
+            dump($privisionResult);
+            die;
+
+            dump($provisionData);
+            die;
+
+            return $this->redirectToRoute('provision_result', [
+                'amount' => $provisionData->getAmount(),
             ]);
         }
 
@@ -47,12 +67,20 @@ final class ProvisionController extends AbstractController
 
     /**
      * Call in Twig template as:
-     * {{ render(controller('App\\Component\\ProvisionFormComponent::renderProvisionForm()')) }}
+     * {{ render(controller('App\\Controller\\ProvisionController::renderProvisionForm()')) }}
      */
     public function renderProvisionForm(): Response
     {
         return $this->render('component/provisionForm.twig', [
-            'form' => $this->createForm(ProvisionFormType::class)->createView(),
+            'form' => $this->createProvisionForm()->createView(),
         ]);
+    }
+
+    /**
+     * @param mixed $data
+     */
+    private function createProvisionForm($data = null): FormInterface
+    {
+        return $this->createForm(ProvisionFormType::class, $data);
     }
 }

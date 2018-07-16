@@ -1,5 +1,5 @@
 {
-    "name": "open-lectures/open-lectures",
+    "name": "open-lecture/open-lecture",
     "license": "MIT",
     "require": {
         "php": "^7.2",
@@ -15,11 +15,9 @@
         "symfony/flex": "^1.0",
         "symfony/form": "^4.2",
         "symfony/framework-bundle": "^4.2",
-        "symfony/monolog-bundle": "^3.1",
         "symfony/security-bundle": "^4.2",
         "symfony/swiftmailer-bundle": "^3.1",
         "symfony/twig-bundle": "^4.2",
-        "symfony/validator": "^4.2",
         "symfony/yaml": "^4.2",
         "twig/extensions": "^1.5"
     },
@@ -37,12 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src",
+            "OpenLecture\\Provision\\": "packages/Provision/src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "App\\Tests\\": "tests"
         }
     },
     "scripts": {

@@ -3,9 +3,8 @@
 {% block main %}
     <h2>Compute the Provision</h2>
 
-    {% if amount %}
+    {% if amount is defined and amount %}
         {{ amount }}
-
 
         <h3>Lector</h3>
 

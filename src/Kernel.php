@@ -26,7 +26,7 @@ final class Kernel extends BaseKernel
     /**
      * @var string
      */
-    public const CONFIG_EXTENSIONS = '.{php,xml,yaml,yml}';
+    public const CONFIG_EXTENSIONS = '.{yaml,yml}';
 
     public function getCacheDir(): string
     {
@@ -53,6 +53,9 @@ final class Kernel extends BaseKernel
         $containerBuilder->addResource(new FileResource($this->getProjectDir() . '/config/bundles.php'));
         $containerBuilder->setParameter('container.dumper.inline_class_loader', true);
         $confDir = $this->getProjectDir() . '/config';
+
+        // local packages
+        $loader->load($this->getProjectDir() . '/packages/*/src/config/*' . self::CONFIG_EXTENSIONS, 'glob');
 
         $loader->load($confDir . '/{packages}/*' . self::CONFIG_EXTENSIONS, 'glob');
         $loader->load($confDir . '/{packages}/' . $this->environment . '/**/*' . self::CONFIG_EXTENSIONS, 'glob');
