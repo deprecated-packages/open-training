@@ -25,6 +25,11 @@ final class PartnerData
     private $profit;
 
     /**
+     * Is the one who is responsible for main invoicing.
+     *
+     * He or she has main tax handicap, as he or she pays taxes for whole amount,
+     * compared to others, who only pays partially.
+     *
      * @var bool
      */
     private $isOfficialInvoicer;
