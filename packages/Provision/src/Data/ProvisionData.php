@@ -5,62 +5,62 @@ namespace OpenLecture\Provision\Data;
 final class ProvisionData
 {
     /**
-     * @var float
+     * @var int
      */
-    private $incomeAmount = 0.0;
+    private $incomeAmount = 0;
 
     /**
-     * @var float
+     * @var int
      */
-    private $lectorExpenses = 0.0;
+    private $lectorExpenses = 0;
 
     /**
-     * @var float
+     * @var int
      */
-    private $organizerExpenses = 0.0;
+    private $organizerExpenses = 0;
 
     /**
-     * @var float
+     * @var int
      */
-    private $ownerExpenses = 0.0;
+    private $ownerExpenses = 0;
 
-    public function getOwnerExpenses(): float
+    public function getOwnerExpenses(): int
     {
         return $this->ownerExpenses;
     }
 
-    public function setIncomeAmount(float $incomeAmount): void
+    public function setIncomeAmount(int $incomeAmount): void
     {
         $this->incomeAmount = $incomeAmount;
     }
 
-    public function getIncomeAmount(): float
+    public function getIncomeAmount(): int
     {
         return $this->incomeAmount;
     }
 
-    public function getLectorExpenses(): float
+    public function getLectorExpenses(): int
     {
         return $this->lectorExpenses;
     }
 
-    public function setLectorExpenses(?float $lectorExpenses): void
+    public function setLectorExpenses(?int $lectorExpenses): void
     {
-        $this->lectorExpenses = (float) $lectorExpenses;
+        $this->lectorExpenses = (int) $lectorExpenses;
     }
 
-    public function getOrganizerExpenses(): float
+    public function getOrganizerExpenses(): int
     {
         return $this->organizerExpenses;
     }
 
-    public function setOrganizerExpenses(?float $organizerExpenses): void
+    public function setOrganizerExpenses(?int $organizerExpenses): void
     {
-        $this->organizerExpenses = (float) $organizerExpenses;
+        $this->organizerExpenses = (int) $organizerExpenses;
     }
 
-    public function setOwnerExpenses(?float $ownerExpenses): void
+    public function setOwnerExpenses(?int $ownerExpenses): void
     {
-        $this->ownerExpenses = (float) $ownerExpenses;
+        $this->ownerExpenses = (int) $ownerExpenses;
     }
 }

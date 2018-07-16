@@ -48,7 +48,7 @@ final class ProvisionResolver
         return new ResolvedProfitData($profitLector, $profitOrganizer, $profitOwner);
     }
 
-    private function resolveOrganizerProfit(float $profit, float $expenses, float $provisionRate): float
+    private function resolveOrganizerProfit(int $profit, int $expenses, float $provisionRate): int
     {
         $result = $profit * $provisionRate;
 
@@ -56,10 +56,10 @@ final class ProvisionResolver
         $result *= (1 - self::TAX_BALANCER_LECTOR);
 
         // cover his or her expenses
-        return $result + $expenses;
+        return (int) $result + $expenses;
     }
 
-    private function resolveLectorProfit(float $profit, float $lectorExpenses, float $provisionRate): float
+    private function resolveLectorProfit(int $profit, int $lectorExpenses, float $provisionRate): int
     {
         $result = $profit * $provisionRate;
 
@@ -67,6 +67,6 @@ final class ProvisionResolver
         $result *= (1 - self::TAX_BALANCER_LECTOR);
 
         // cover his or her expenses
-        return $result + $lectorExpenses;
+        return (int) $result + $lectorExpenses;
     }
 }
