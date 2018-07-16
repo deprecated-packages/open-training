@@ -6,6 +6,7 @@ use App\Form\ProvisionFormType;
 use OpenLecture\Provision\Data\ProvisionData;
 use OpenLecture\Provision\ProvisionResolver;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,7 +42,7 @@ final class ProvisionController extends AbstractController
     {
         $provisionData = new ProvisionData();
 
-        $form = $this->createForm(ProvisionFormType::class);
+        $form = $this->createProvisionForm($provisionData);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -56,14 +57,21 @@ final class ProvisionController extends AbstractController
     }
 
     /**
-     * @Component
      * Call in Twig template as:
      * {{ render(controller('App\\Controller\\ProvisionController::renderProvisionForm()')) }}
      */
     public function renderProvisionForm(): Response
     {
         return $this->render('component/provisionForm.twig', [
-            'form' => $this->createForm(ProvisionFormType::class)->createView(),
+            'form' => $this->createProvisionForm()->createView(),
         ]);
+    }
+
+    /**
+     * @param mixed|null $data
+     */
+    private function createProvisionForm($data = null): FormInterface
+    {
+        return $this->createForm(ProvisionFormType::class, $data);
     }
 }

@@ -7,24 +7,24 @@ final class ProvisionData
     /**
      * @var float
      */
-    private $incomeAmount = 0;
+    private $incomeAmount = 0.0;
 
     /**
      * @var float
      */
-    private $lectorExpenses = 0;
+    private $lectorExpenses = 0.0;
 
     /**
      * @var float
      */
-    private $organizerExpenses = 0;
+    private $organizerExpenses = 0.0;
 
     /**
      * @var float
      */
-    private $ownerExpenses = 0;
+    private $ownerExpenses = 0.0;
 
-    public function getOwnerPaidAmount(): float
+    public function getOwnerExpenses(): float
     {
         return $this->ownerExpenses;
     }

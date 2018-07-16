@@ -29,7 +29,7 @@ final class ProvisionResolver
 
     public function resolve(ProvisionData $provisionData): ResolvedProfitData
     {
-        $profit = $provisionData->getIncomeAmount() - $provisionData->getLectorExpenses() - $provisionData->getOrganizerExpenses() - $provisionData->getOwnerPaidAmount();
+        $profit = $provisionData->getIncomeAmount() - $provisionData->getLectorExpenses() - $provisionData->getOrganizerExpenses() - $provisionData->getOwnerExpenses();
 
         // @todo ... or per user provisin note?
 
@@ -38,6 +38,7 @@ final class ProvisionResolver
             $provisionData->getLectorExpenses(),
             self::PROVISION_LECTOR
         );
+
         $profitOrganizer = $this->resolveOrganizerProfit(
             $profit,
             $provisionData->getOrganizerExpenses(),
@@ -49,25 +50,25 @@ final class ProvisionResolver
         return new ResolvedProfitData($profitLector, $profitOrganizer, $profitOwner);
     }
 
-    private function resolveOrganizerProfit(float $profit, float $organizerExpenses, float $provisionRate): float
+    private function resolveOrganizerProfit(float $profit, float $expenses, float $provisionRate): float
     {
-        $profitOrganizer = $profit * $provisionRate;
+        $result = $profit * $provisionRate;
 
         // to cover his or her taxes payment from original income
-        $profitOrganizer *= (1 - self::TAX_BALANCER_LECTOR);
+        $result *= (1 - self::TAX_BALANCER_LECTOR);
 
-        // cover his expense
-        return $profitOrganizer + $organizerExpenses;
+        // cover his or her expenses
+        return $result + $expenses;
     }
 
     private function resolveLectorProfit(float $profit, float $lectorExpenses, float $provisionRate): float
     {
-        $profitLector = $profit * $provisionRate;
+        $result = $profit * $provisionRate;
 
         // to cover his or her taxes payment from original income
-        $profitLector *= (1 - self::TAX_BALANCER_LECTOR);
+        $result *= (1 - self::TAX_BALANCER_LECTOR);
 
-        // cover his expense
-        return $profitLector + $lectorExpenses;
+        // cover his or her expenses
+        return $result + $lectorExpenses;
     }
 }
