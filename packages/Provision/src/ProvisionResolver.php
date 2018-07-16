@@ -2,7 +2,8 @@
 
 namespace OpenLecture\Provision;
 
-use App\Entity\ProvisionData;
+use OpenLecture\Provision\Data\ProvisionData;
+use OpenLecture\Provision\Data\ResolvedProfitData;
 
 final class ProvisionResolver
 {
@@ -26,33 +27,47 @@ final class ProvisionResolver
 
     // @todo move input and output data objects here to "src/Data"
 
-    public function resolve(ProvisionData $provisionData)
+    public function resolve(ProvisionData $provisionData): ResolvedProfitData
     {
-        dump($provisionData->getIncomeAmount());
+        $profit = $provisionData->getIncomeAmount() - $provisionData->getLectorExpenses() - $provisionData->getOrganizerExpenses() - $provisionData->getOwnerPaidAmount();
 
-        $profit = $provisionData->getIncomeAmount() - $provisionData->getLectorPaidAmount() - $provisionData->getOrganizerPaidAmount() - $provisionData->getOwnerPaidAmount();
+        // @todo ... or per user provisin note?
 
-        // @todo split 2 methods per lector/organizer
+        $profitLector = $this->resolveLectorProfit(
+            $profit,
+            $provisionData->getLectorExpenses(),
+            self::PROVISION_LECTOR
+        );
+        $profitOrganizer = $this->resolveOrganizerProfit(
+            $profit,
+            $provisionData->getOrganizerExpenses(),
+            self::PROVISION_ORGANIZER
+        );
 
-        // compute provision to lector
-        // compute provision to organizer
+        $profitOwner = $profit - $profitLector - $profitOrganizer;
 
-        $profitLector = $profit * self::PROVISION_LECTOR;
-        $profitOrganizer = $profit * self::PROVISION_ORGANIZER;
-
-        // taxes paid twice instead of lectors/organizers from the original income
-        $profitLector *= (1 - self::TAX_BALANCER_LECTOR);
-        $profitOrganizer *= (1 - self::TAX_BALANCER_LECTOR);
-
-        $profitLector = $profitLector + $provisionData->getLectorPaidAmount();
-        $profitOrganizer = $profitOrganizer + $provisionData->getOrganizerPaidAmount();
-
-        dump($profitLector);
-        dump($profitOrganizer);
-        die;
-
-        dump($provisionData);
-        die;
+        return new ResolvedProfitData($profitLector, $profitOrganizer, $profitOwner);
     }
 
+    private function resolveOrganizerProfit(float $profit, float $organizerExpenses, float $provisionRate): float
+    {
+        $profitOrganizer = $profit * $provisionRate;
+
+        // to cover his or her taxes payment from original income
+        $profitOrganizer *= (1 - self::TAX_BALANCER_LECTOR);
+
+        // cover his expense
+        return $profitOrganizer + $organizerExpenses;
+    }
+
+    private function resolveLectorProfit(float $profit, float $lectorExpenses, float $provisionRate): float
+    {
+        $profitLector = $profit * $provisionRate;
+
+        // to cover his or her taxes payment from original income
+        $profitLector *= (1 - self::TAX_BALANCER_LECTOR);
+
+        // cover his expense
+        return $profitLector + $lectorExpenses;
+    }
 }

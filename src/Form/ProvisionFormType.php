@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\ProvisionData;
+use OpenLecture\Provision\Data\ProvisionData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,13 +18,18 @@ final class ProvisionFormType extends AbstractType
     {
         $formBuilder->add('incomeAmount', TextType::class);
 
-        $formBuilder->add('lectorPaidAmount', TextType::class, [
-            'help' => 'Lunch'
+        $formBuilder->add('lectorExpenses', TextType::class, [
+            'help' => 'Lunch',
+            'required' => false,
         ]);
-        $formBuilder->add('organizerPaidAmount', TextType::class, [
-            'help' => 'Certificates, small food'
+        $formBuilder->add('organizerExpenses', TextType::class, [
+            'help' => 'Certificates, small food',
+            'required' => false,
         ]);
-        $formBuilder->add('ownerPaidAmount', TextType::class);
+        $formBuilder->add('ownerExpenses', TextType::class, [
+            'help' => 'Rent, Coworking space',
+            'required' => false,
+        ]);
 
         $formBuilder->add('submit', SubmitType::class, [
             'label' => 'Compute Provisions',

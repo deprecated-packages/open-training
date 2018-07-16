@@ -48,9 +48,9 @@
         "auto-scripts": {
             "cache:clear": "symfony-cmd"
         },
-        "check-cs": "vendor/bin/ecs check src",
-        "fix-cs": "vendor/bin/ecs check src --fix",
-        "phpstan": "vendor/bin/phpstan analyse src --level max"
+        "check-cs": "vendor/bin/ecs check src packages",
+        "fix-cs": "vendor/bin/ecs check src packages --fix",
+        "phpstan": "vendor/bin/phpstan analyse src packages --level max"
     },
     "config": {
         "sort-packages": true

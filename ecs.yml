@@ -15,7 +15,7 @@ services:
 
     Symplify\CodingStandard\Sniffs\DependencyInjection\NoClassInstantiationSniff:
         extraAllowedClasses:
-            - 'App\Entity\*'
+            - 'OpenLecture\Provision\Data\*'
 
 parameters:
     exclude_checkers:

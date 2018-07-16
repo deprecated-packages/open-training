@@ -4,3 +4,5 @@ services:
 
     OpenLecture\Provision\:
         resource: '../'
+        exclude:
+            - '../Data'

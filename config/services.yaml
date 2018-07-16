@@ -7,5 +7,4 @@ services:
     App\:
         resource: '../src/'
         exclude:
-            - '../src/Entity/'
             - '../src/Kernel.php'

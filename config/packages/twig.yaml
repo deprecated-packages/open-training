@@ -4,3 +4,9 @@ twig:
     form_themes:
         - 'form/layout.html.twig'
         - 'form/fields.html.twig'
+
+    # see https://symfony.com/blog/new-in-symfony-2-7-default-date-and-number-format-configuration
+    number_format:
+        decimals: 2
+        decimal_point: ','
+        thousands_separator: ' '

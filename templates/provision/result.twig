@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h2>Computed the Provision</h2>
+
+    <table class="table table-bordered">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Who?</th>
+                <th>How much?</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>Lector</td>
+            <td>{{ resolvedProfitData.getLectorProfit()|number_format }} Kč</td>
+        </tr>
+        <tr>
+            <td>Organizer</td>
+            <td>{{ resolvedProfitData.getOrganizerProfit()|number_format }} Kč</td>
+        </tr>
+        <tr>
+            <td>Owner</td>
+            <td>{{ resolvedProfitData.getOwnerProfit()|number_format }} Kč</td>
+        </tr>
+    </table>
+{% endblock %}
