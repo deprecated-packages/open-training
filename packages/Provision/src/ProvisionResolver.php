@@ -25,8 +25,6 @@ final class ProvisionResolver
      */
     private const TAX_BALANCER_LECTOR = 0.11;
 
-    // @todo move input and output data objects here to "src/Data"
-
     public function resolve(ProvisionData $provisionData): ResolvedProfitData
     {
         $profit = $provisionData->getIncomeAmount() - $provisionData->getLectorExpenses() - $provisionData->getOrganizerExpenses() - $provisionData->getOwnerExpenses();

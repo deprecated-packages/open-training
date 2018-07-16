@@ -4,13 +4,10 @@
     "require": {
         "php": "^7.2",
         "ext-pdo_sqlite": "*",
-        "erusev/parsedown": "^1.6",
         "doctrine/doctrine-bundle": "^1.9",
         "doctrine/orm": "^2.7",
-        "ezyang/htmlpurifier": "^4.9",
         "sensio/framework-extra-bundle": "^5.0",
         "symfony/asset": "^4.2",
-        "symfony/expression-language": "^4.2",
         "symfony/dependency-injection": "^4.2",
         "symfony/flex": "^1.0",
         "symfony/form": "^4.2",
@@ -25,10 +22,7 @@
         "phpstan/phpstan": "^0.10.1",
         "slam/php-cs-fixer-extensions": "^1.16",
         "symfony/browser-kit": "^4.2",
-        "symfony/css-selector": "^4.2",
         "symfony/debug-bundle": "^4.2",
-        "symfony/dotenv": "^4.2",
-        "symfony/stopwatch": "^4.2",
         "symfony/web-profiler-bundle": "^4.2",
         "symfony/web-server-bundle": "^4.2",
         "symplify/easy-coding-standard": "^4.5"
@@ -41,7 +35,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests"
+            "App\\Tests\\": "tests",
+            "OpenLecture\\Provision\\Tests\\": "packages/Provision/tests"
         }
     },
     "scripts": {
