@@ -1,12 +1,15 @@
 {
+    "automattic/phpcs-neutron-ruleset": {
+        "version": "v1.8.0"
+    },
+    "automattic/phpcs-neutron-standard": {
+        "version": "v1.5.2"
+    },
     "composer/semver": {
         "version": "1.4.2"
     },
     "composer/xdebug-handler": {
         "version": "1.1.0"
-    },
-    "dama/doctrine-test-bundle": {
-        "version": "v4.0.1"
     },
     "doctrine/annotations": {
         "version": "v1.5.0"
@@ -19,9 +22,6 @@
     },
     "doctrine/common": {
         "version": "v2.8.1"
-    },
-    "doctrine/data-fixtures": {
-        "version": "v1.3.1"
     },
     "doctrine/dbal": {
         "version": "v2.6.2"
@@ -37,15 +37,6 @@
     },
     "doctrine/doctrine-cache-bundle": {
         "version": "1.3.2"
-    },
-    "doctrine/doctrine-fixtures-bundle": {
-        "version": "3.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.0",
-            "ref": "2ea6070ecf365f9a801ccaed4b31d4a3b7af5693"
-        }
     },
     "doctrine/event-manager": {
         "version": "v1.0.0"
@@ -71,12 +62,6 @@
     "egulias/email-validator": {
         "version": "2.1.2"
     },
-    "erusev/parsedown": {
-        "version": "1.6.3"
-    },
-    "ezyang/htmlpurifier": {
-        "version": "v4.9.3"
-    },
     "friendsofphp/php-cs-fixer": {
         "version": "2.2",
         "recipe": {
@@ -94,9 +79,6 @@
     },
     "jean85/pretty-package-versions": {
         "version": "1.2"
-    },
-    "monolog/monolog": {
-        "version": "1.23.0"
     },
     "myclabs/deep-copy": {
         "version": "1.8.1"
@@ -124,6 +106,9 @@
     },
     "nikic/php-parser": {
         "version": "v4.0.3"
+    },
+    "object-calisthenics/phpcs-calisthenics-rules": {
+        "version": "v3.2.1"
     },
     "ocramius/package-versions": {
         "version": "1.3.0"
@@ -239,6 +224,12 @@
     "shopsys/http-smoke-testing": {
         "version": "v7.0.0-alpha3"
     },
+    "sirbrillig/phpcs-import-detection": {
+        "version": "v1.0.0"
+    },
+    "sirbrillig/phpcs-variable-analysis": {
+        "version": "v2.1.0"
+    },
     "slam/php-cs-fixer-extensions": {
         "version": "v1.16.0"
     },
@@ -275,9 +266,6 @@
     "symfony/contracts": {
         "version": "1.0-dev"
     },
-    "symfony/css-selector": {
-        "version": "v3.4.0-beta2"
-    },
     "symfony/debug": {
         "version": "v3.4.0-beta2"
     },
@@ -299,13 +287,7 @@
     "symfony/dom-crawler": {
         "version": "v3.4.0-beta2"
     },
-    "symfony/dotenv": {
-        "version": "v3.4.0-beta2"
-    },
     "symfony/event-dispatcher": {
-        "version": "v3.4.0-beta2"
-    },
-    "symfony/expression-language": {
         "version": "v3.4.0-beta2"
     },
     "symfony/filesystem": {
@@ -347,29 +329,8 @@
     "symfony/intl": {
         "version": "v3.4.0-beta2"
     },
-    "symfony/monolog-bridge": {
-        "version": "v3.4.0-beta2"
-    },
-    "symfony/monolog-bundle": {
-        "version": "3.1",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.1",
-            "ref": "94d0b0b417e988466de57cea583f83b396e44661"
-        }
-    },
     "symfony/options-resolver": {
         "version": "v3.4.0-beta2"
-    },
-    "symfony/phpunit-bridge": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "0a66a0097def4db1cd03bcb3d4a268440ae4cb47"
-        }
     },
     "symfony/polyfill-ctype": {
         "version": "v1.8.0"
@@ -425,15 +386,6 @@
             "ref": "8daf8ede72274989fb0dc66b83cb4bc1693afbb9"
         }
     },
-    "symfony/translation": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "58f37511a2ceec2761716413ce679cbe118e37c3"
-        }
-    },
     "symfony/twig-bridge": {
         "version": "v3.4.0-beta2"
     },
@@ -445,9 +397,6 @@
             "version": "3.3",
             "ref": "42324de95dde296ef158f48d6cf7fefddd18da7d"
         }
-    },
-    "symfony/validator": {
-        "version": "v3.4.0-beta2"
     },
     "symfony/var-dumper": {
         "version": "v3.4.0-beta2"
@@ -505,5 +454,8 @@
     },
     "webmozart/assert": {
         "version": "1.3.0"
+    },
+    "wp-coding-standards/wpcs": {
+        "version": "0.14.1"
     }
 }
