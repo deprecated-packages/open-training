@@ -19,6 +19,8 @@
         "twig/extensions": "^1.5"
     },
     "require-dev": {
+        "automattic/phpcs-neutron-ruleset": "^1.8",
+        "object-calisthenics/phpcs-calisthenics-rules": "^3.3",
         "phpstan/phpstan": "^0.10.1",
         "phpunit/phpunit": "^7.2",
         "shopsys/http-smoke-testing": "@dev",

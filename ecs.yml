@@ -18,6 +18,12 @@ services:
             - 'OpenLecture\Provision\Data\*'
             - 'App\Request\*Request'
 
+    # from object calisthenics
+    ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff: ~
+    ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff:
+        allowedClasses:
+            - 'App\Request\*FormRequest'
+
 parameters:
     exclude_checkers:
         # exclude from psr12.yml
