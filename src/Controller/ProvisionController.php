@@ -32,7 +32,7 @@ final class ProvisionController extends AbstractController
      * @Route(path="/provision/", name="provision")
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function __invoke(): Response
+    public function default(): Response
     {
         return $this->render('provision/default.twig');
     }
@@ -40,7 +40,7 @@ final class ProvisionController extends AbstractController
     /**
      * @Route(path="/provision-result", methods={"POST"}, name="process_provision_form")
      */
-    public function processProvision(Request $request): Response
+    public function processProvisionForm(Request $request): Response
     {
         $provisionFormRequest = new ProvisionFormRequest();
 
@@ -62,9 +62,9 @@ final class ProvisionController extends AbstractController
 
     /**
      * Call in Twig template as:
-     * {{ render(controller('App\\Controller\\ProvisionController::renderProvisionForm()')) }}
+     * {{ render(controller('App\\Controller\\ProvisionController::componentProvisionForm()')) }}
      */
-    public function renderProvisionForm(): Response
+    public function componentProvisionForm(): Response
     {
         return $this->render('component/provisionForm.twig', [
             'form' => $this->createProvisionForm()->createView(),
