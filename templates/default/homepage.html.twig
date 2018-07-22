@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id 'homepage' %}
-
 {#
     the homepage is a special page which displays neither a header nor a footer.
     this is done with the 'trick' of defining empty Twig blocks without any content
@@ -11,34 +9,12 @@
 
 {% block body %}
     <div class="page-header">
-        <h1>{{ 'title.homepage'|trans|raw }}</h1>
+        <h1>{{ 'title.homepage'|raw }}</h1>
     </div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="jumbotron">
-                <p>
-                    {{ 'help.browse_app'|trans|raw }}
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-lg" href="{{ path('blog_index') }}">
-                        <i class="fa fa-users" aria-hidden="true"></i> {{ 'action.browse_app'|trans }}
-                    </a>
-                </p>
-            </div>
-        </div>
+    Welcome to lecture
 
-        <div class="col-sm-6">
-            <div class="jumbotron">
-                <p>
-                    {{ 'help.browse_admin'|trans|raw }}
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-lg" href="{{ path('admin_index') }}">
-                        <i class="fa fa-lock" aria-hidden="true"></i> {{ 'action.browse_admin'|trans }}
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
+    <ul>
+        <li><a href="{{ url('provision') }}">Provision compute</a></li>
+    </ul>
 {% endblock %}

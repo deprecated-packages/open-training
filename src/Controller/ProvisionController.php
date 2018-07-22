@@ -29,7 +29,7 @@ final class ProvisionController extends AbstractController
     }
 
     /**
-     * @Route(path="/provision/")
+     * @Route(path="/provision/", name="provision")
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
     public function __invoke(): Response
