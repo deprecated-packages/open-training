@@ -47,6 +47,9 @@ parameters:
         - 'PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer'
         - 'PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer'
 
+    exclude_files:
+        - 'src/Form/RegisterToLectureFormType.php'
+
     skip:
         Symplify\CodingStandard\Sniffs\ControlStructure\SprintfOverContactSniff:
             - 'src/Kernel.php'
