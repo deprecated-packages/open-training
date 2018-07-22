@@ -18,11 +18,14 @@ services:
             - 'OpenLecture\Provision\Data\*'
             - 'App\Request\*Request'
 
-    # from object calisthenics
+    # object calisthenics - https://github.com/object-calisthenics/phpcs-calisthenics-rules
     ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff: ~
     ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff:
         allowedClasses:
             - 'App\Request\*FormRequest'
+
+    # automattic - https://github.com/Automattic/phpcs-neutron-standard
+
 
 parameters:
     exclude_checkers:
