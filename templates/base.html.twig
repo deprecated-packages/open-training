@@ -1,18 +1,10 @@
-{#
-   This is the base template used as the application layout which contains the
-   common elements and decorates all the other templates.
-   See https://symfony.com/doc/current/book/templating.html#template-inheritance-and-layouts
-#}
 <!DOCTYPE html>
-<html lang="{{ app.request.locale }}">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>{% block title %}Symfony Demo application{% endblock %}</title>
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
-        {% endblock %}
-
+        <title>{% block title %}Open Tranins{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 

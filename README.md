@@ -1,48 +1,27 @@
-Symfony Demo Application
+# Open Trainings
 ========================
 
-The "Symfony Demo Application" is a reference application created to show how
-to develop Symfony applications following the recommended best practices.
+Open and free platform for organizing trainings. 
 
-Requirements
-------------
+We cover all you need to organize a training, with a trainer and attendees:
 
-  * PHP 7.2 or higher;
-  * PDO-SQLite PHP extension enabled
+- [ ] create training
+- [ ] create a new term for the training
+- [ ] let people buy and attend a training
+- [ ] automated invoicing
+- [ ] automated emails to all parties
+- compute provision for the trainer and the organizer
 
-Installation
-------------
-
-Execute this command to install the project:
-
-```bash
-$ composer create-project symfony/symfony-demo
-```
-
-Usage
------
-
-There's no need to configure anything to run the application. Just execute this
-command to run the built-in web server and access the application in your
-browser at <http://localhost:8000>:
+## Instal
 
 ```bash
-$ cd symfony-demo/
-$ php bin/console server:run
+git remote add origin ...
+git pull
+composer update
 ```
 
-Alternatively, you can [configure a fully-featured web server][2] like Nginx
-or Apache to run the application.
-
-Tests
------
-
-Execute this command to run tests:
+## Run
 
 ```bash
-$ cd symfony-demo/
-$ ./vendor/bin/simple-phpunit
+bin/console server:run
 ```
-
-[1]: https://symfony.com/doc/current/reference/requirements.html
-[2]: https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
