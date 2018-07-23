@@ -18,7 +18,7 @@ yarn-error.log
 /public/build/images/glyphicons-*
 composer.lock
 
-# install via "composer install-adminer"
+# install via "composer adminer-install"
 /public/adminer
 
 ###> symfony/framework-bundle ###
