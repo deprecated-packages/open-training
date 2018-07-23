@@ -19,7 +19,7 @@ git remote add origin ...
 git pull
 composer update
 
-composer install-adminer
+composer adminer-install
 ```
 
 ## Run
