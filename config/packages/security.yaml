@@ -46,8 +46,3 @@ security:
                 path: security_logout
                 # The name of the route to redirect to after logging out
                 target: homepage
-
-    access_control:
-        # this is a catch-all for the admin area
-        # additional security lives in the controllers
-        - { path: '^/admin', roles: ROLE_ADMIN }

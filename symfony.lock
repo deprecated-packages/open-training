@@ -38,6 +38,9 @@
     "symfony/orm-pack": {
         "version": "v1.0.5"
     },
+    "vrana/adminer": {
+        "version": "v4.6.3"
+    },
     "zendframework/zend-code": {
         "version": "3.3.0"
     },
