@@ -17,6 +17,7 @@
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "^4.2",
         "symfony/swiftmailer-bundle": "^3.1",
+        "symfony/templating": "^4.2",
         "symfony/twig-bridge": "^4.2",
         "symfony/twig-bundle": "^4.2",
         "symfony/validator": "^4.2",
@@ -51,7 +52,8 @@
     },
     "scripts": {
         "auto-scripts": {
-            "cache:clear": "symfony-cmd"
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "check-cs": "vendor/bin/ecs check src packages",
         "fix-cs": "vendor/bin/ecs check src packages --fix",

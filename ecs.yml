@@ -24,7 +24,6 @@ services:
     ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff: ~
     ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff: ~
     ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff: ~
-    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff: ~
     ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff: ~
     ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff:
         allowedClasses:

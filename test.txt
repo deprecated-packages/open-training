@@ -1,0 +1,723 @@
+
+Symfony Container Services
+==========================
+
+ ------------------------------------------------------------------------------------ ------------------------------------------------------------------------------------------------ 
+  Service ID                                                                           Class name                                                                                      
+ ------------------------------------------------------------------------------------ ------------------------------------------------------------------------------------------------ 
+  App\Controller\ProvisionController                                                   App\Controller\ProvisionController                                                              
+  App\Controller\SecurityController                                                    App\Controller\SecurityController                                                               
+  App\Entity\Place                                                                     App\Entity\Place                                                                                
+  App\Entity\Trainer                                                                   App\Entity\Trainer                                                                              
+  App\Entity\Training                                                                  App\Entity\Training                                                                             
+  App\Form\ProvisionFormType                                                           App\Form\ProvisionFormType                                                                      
+  App\Form\RegisterToLectureFormType                                                   App\Form\RegisterToLectureFormType                                                              
+  App\Repository\PlaceRepository                                                       App\Repository\PlaceRepository                                                                  
+  App\Repository\TrainerRepository                                                     App\Repository\TrainerRepository                                                                
+  App\Repository\TrainingRepository                                                    App\Repository\TrainingRepository                                                               
+  App\Request\ProvisionFormRequest                                                     App\Request\ProvisionFormRequest                                                                
+  Doctrine\Common\Annotations\Reader                                                   alias for "annotations.cached_reader"                                                           
+  Doctrine\Common\Persistence\ManagerRegistry                                          alias for "doctrine"                                                                            
+  Doctrine\Common\Persistence\ObjectManager                                            alias for "doctrine.orm.default_entity_manager"                                                 
+  Doctrine\DBAL\Connection                                                             alias for "doctrine.dbal.default_connection"                                                    
+  Doctrine\DBAL\Driver\Connection                                                      alias for "doctrine.dbal.default_connection"                                                    
+  Doctrine\ORM\EntityManagerInterface                                                  alias for "doctrine.orm.default_entity_manager"                                                 
+  OpenLecture\Provision\Exception\InvalidProvisionRateTotalException                   OpenLecture\Provision\Exception\InvalidProvisionRateTotalException                              
+  OpenLecture\Provision\ProvisionResolver                                              OpenLecture\Provision\ProvisionResolver                                                         
+  Psr\Cache\CacheItemPoolInterface                                                     alias for "cache.app"                                                                           
+  Psr\Container\ContainerInterface                                                     alias for "service_container"                                                                   
+  Psr\Log\LoggerInterface                                                              alias for "logger"                                                                              
+  Psr\SimpleCache\CacheInterface                                                       alias for "cache.app.simple"                                                                    
+  SessionHandlerInterface                                                              alias for "session.handler"                                                                     
+  Swift_Mailer                                                                         alias for "swiftmailer.mailer.default"                                                          
+  Swift_Spool                                                                          alias for "swiftmailer.mailer.default.spool.memory"                                             
+  Swift_Transport                                                                      alias for "swiftmailer.mailer.default.transport.spool"                                          
+  Symfony\Bridge\Doctrine\RegistryInterface                                            alias for "doctrine"                                                                            
+  Symfony\Bundle\FrameworkBundle\Controller\RedirectController                         Symfony\Bundle\FrameworkBundle\Controller\RedirectController                                    
+  Symfony\Bundle\FrameworkBundle\Controller\TemplateController                         Symfony\Bundle\FrameworkBundle\Controller\TemplateController                                    
+  Symfony\Component\Asset\Packages                                                     alias for "assets.packages"                                                                     
+  Symfony\Component\Cache\Adapter\AdapterInterface                                     alias for "cache.app"                                                                           
+  Symfony\Component\Cache\CacheInterface                                               alias for "cache.app.taggable"                                                                  
+  Symfony\Component\DependencyInjection\ContainerInterface                             alias for "service_container"                                                                   
+  Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface             alias for "parameter_bag"                                                                       
+  Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface             alias for "parameter_bag"                                                                       
+  Symfony\Component\EventDispatcher\EventDispatcherInterface                           alias for "debug.event_dispatcher"                                                              
+  Symfony\Component\Filesystem\Filesystem                                              alias for "filesystem"                                                                          
+  Symfony\Component\Form\FormFactoryInterface                                          alias for "form.factory"                                                                        
+  Symfony\Component\Form\FormRegistryInterface                                         alias for "form.registry"                                                                       
+  Symfony\Component\Form\ResolvedFormTypeFactoryInterface                              alias for "form.resolved_type_factory"                                                          
+  Symfony\Component\HttpFoundation\RequestStack                                        alias for "request_stack"                                                                       
+  Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface                     alias for "session.flash_bag"                                                                   
+  Symfony\Component\HttpFoundation\Session\SessionInterface                            alias for "session"                                                                             
+  Symfony\Component\HttpFoundation\Session\Storage\SessionStorageInterface             alias for "session.storage.native"                                                              
+  Symfony\Component\HttpKernel\Config\FileLocator                                      alias for "file_locator"                                                                        
+  Symfony\Component\HttpKernel\Debug\FileLinkFormatter                                 alias for "debug.file_link_formatter"                                                           
+  Symfony\Component\HttpKernel\HttpKernelInterface                                     alias for "http_kernel"                                                                         
+  Symfony\Component\HttpKernel\KernelInterface                                         alias for "kernel"                                                                              
+  Symfony\Component\PropertyAccess\PropertyAccessorInterface                           alias for "property_accessor"                                                                   
+  Symfony\Component\Routing\Generator\UrlGeneratorInterface                            alias for "router.default"                                                                      
+  Symfony\Component\Routing\Matcher\UrlMatcherInterface                                alias for "router.default"                                                                      
+  Symfony\Component\Routing\RequestContext                                             alias for "router.request_context"                                                              
+  Symfony\Component\Routing\RequestContextAwareInterface                               alias for "router.default"                                                                      
+  Symfony\Component\Routing\RouterInterface                                            alias for "router.default"                                                                      
+  Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface        alias for "security.authentication.manager"                                                     
+  Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface   alias for "security.token_storage"                                                              
+  Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface         alias for "debug.security.access.decision_manager"                                              
+  Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface          alias for "security.authorization_checker"                                                      
+  Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface                      alias for "security.encoder_factory.generic"                                                    
+  Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface                 alias for "security.user_password_encoder.generic"                                              
+  Symfony\Component\Security\Core\Role\RoleHierarchyInterface                          alias for "security.role_hierarchy"                                                             
+  Symfony\Component\Security\Core\Security                                             alias for "security.helper"                                                                     
+  Symfony\Component\Security\Core\User\UserCheckerInterface                            alias for "security.user_checker"                                                               
+  Symfony\Component\Security\Core\User\UserProviderInterface                           alias for "security.user.provider.concrete.database_users"                                      
+  Symfony\Component\Security\Csrf\CsrfTokenManagerInterface                            alias for "security.csrf.token_manager"                                                         
+  Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface               alias for "security.csrf.token_generator"                                                       
+  Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface                   alias for "security.csrf.token_storage"                                                         
+  Symfony\Component\Security\Guard\GuardAuthenticatorHandler                           alias for "security.authentication.guard_handler"                                               
+  Symfony\Component\Security\Http\Authentication\AuthenticationUtils                   alias for "security.authentication_utils"                                                       
+  Symfony\Component\Security\Http\Firewall                                             alias for "debug.security.firewall"                                                             
+  Symfony\Component\Security\Http\HttpUtils                                            alias for "security.http_utils"                                                                 
+  Symfony\Component\Security\Http\Session\SessionAuthenticationStrategyInterface       alias for "security.authentication.session_strategy"                                            
+  Symfony\Component\Stopwatch\Stopwatch                                                alias for "debug.stopwatch"                                                                     
+  Symfony\Component\Translation\Extractor\ExtractorInterface                           alias for "translation.extractor"                                                               
+  Symfony\Component\Translation\Reader\TranslationReaderInterface                      alias for "translation.reader"                                                                  
+  Symfony\Component\Translation\TranslatorInterface                                    alias for "translator.data_collector"                                                           
+  Symfony\Component\Translation\Writer\TranslationWriterInterface                      alias for "translation.writer"                                                                  
+  Symfony\Component\Validator\Validator\ValidatorInterface                             alias for "debug.validator"                                                                     
+  Twig\Environment                                                                     alias for "twig"                                                                                
+  Twig\Extensions\IntlExtension                                                        Twig\Extensions\IntlExtension                                                                   
+  Twig_Environment                                                                     alias for "twig"                                                                                
+  annotation_reader                                                                    alias for "annotations.cached_reader"                                                           
+  annotations.cache                                                                    Symfony\Component\Cache\DoctrineProvider                                                        
+  annotations.cache_warmer                                                             Symfony\Bundle\FrameworkBundle\CacheWarmer\AnnotationsCacheWarmer                               
+  annotations.cached_reader                                                            Doctrine\Common\Annotations\CachedReader                                                        
+  annotations.dummy_registry                                                           Doctrine\Common\Annotations\AnnotationRegistry                                                  
+  annotations.filesystem_cache                                                         Doctrine\Common\Cache\FilesystemCache                                                           
+  annotations.reader                                                                   Doctrine\Common\Annotations\AnnotationReader                                                    
+  argument_metadata_factory                                                            Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory                         
+  argument_resolver                                                                    alias for "debug.argument_resolver"                                                             
+  argument_resolver.controller_locator                                                 alias for ".service_locator.9_yeNH1"                                                            
+  argument_resolver.default                                                            alias for "debug.argument_resolver.default"                                                     
+  argument_resolver.request                                                            alias for "debug.argument_resolver.request"                                                     
+  argument_resolver.request_attribute                                                  alias for "debug.argument_resolver.request_attribute"                                           
+  argument_resolver.service                                                            alias for "debug.argument_resolver.service"                                                     
+  argument_resolver.session                                                            alias for "debug.argument_resolver.session"                                                     
+  argument_resolver.variadic                                                           alias for "debug.argument_resolver.variadic"                                                    
+  assets._default_package                                                              Symfony\Component\Asset\PathPackage                                                             
+  assets._version__default                                                             Symfony\Component\Asset\VersionStrategy\JsonManifestVersionStrategy                             
+  assets.context                                                                       Symfony\Component\Asset\Context\RequestStackContext                                             
+  assets.empty_package                                                                 Symfony\Component\Asset\Package                                                                 
+  assets.empty_version_strategy                                                        Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy                                    
+  assets.json_manifest_version_strategy                                                Symfony\Component\Asset\VersionStrategy\JsonManifestVersionStrategy                             
+  assets.packages                                                                      Symfony\Component\Asset\Packages                                                                
+  assets.path_package                                                                  Symfony\Component\Asset\PathPackage                                                             
+  assets.static_version_strategy                                                       Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy                                   
+  assets.url_package                                                                   Symfony\Component\Asset\UrlPackage                                                              
+  cache.adapter.apcu                                                                   Symfony\Component\Cache\Adapter\ApcuAdapter                                                     
+  cache.adapter.array                                                                  Symfony\Component\Cache\Adapter\ArrayAdapter                                                    
+  cache.adapter.doctrine                                                               Symfony\Component\Cache\Adapter\DoctrineAdapter                                                 
+  cache.adapter.filesystem                                                             Symfony\Component\Cache\Adapter\FilesystemAdapter                                               
+  cache.adapter.memcached                                                              Symfony\Component\Cache\Adapter\MemcachedAdapter                                                
+  cache.adapter.pdo                                                                    Symfony\Component\Cache\Adapter\PdoAdapter                                                      
+  cache.adapter.psr6                                                                   Symfony\Component\Cache\Adapter\ProxyAdapter                                                    
+  cache.adapter.redis                                                                  Symfony\Component\Cache\Adapter\RedisAdapter                                                    
+  cache.adapter.system                                                                 Symfony\Component\Cache\Adapter\PhpFilesAdapter                                                 
+  cache.annotations                                                                    Symfony\Component\Cache\Adapter\TraceableAdapter                                                
+  cache.annotations.recorder_inner                                                     Symfony\Component\Cache\Adapter\PhpFilesAdapter                                                 
+  cache.app                                                                            Symfony\Component\Cache\Adapter\TraceableAdapter                                                
+  cache.app.recorder_inner                                                             Symfony\Component\Cache\Adapter\FilesystemAdapter                                               
+  cache.app.simple                                                                     Symfony\Component\Cache\Simple\Psr6Cache                                                        
+  cache.app.taggable                                                                   Symfony\Component\Cache\Adapter\TagAwareAdapter                                                 
+  cache.app_clearer                                                                    alias for "cache.default_clearer"                                                               
+  cache.default_clearer                                                                Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer                                      
+  cache.default_memcached_provider                                                     alias for ".cache_connection.JKE6keX"                                                           
+  cache.default_pdo_provider                                                           alias for "doctrine.dbal.default_connection"                                                    
+  cache.default_redis_provider                                                         alias for ".cache_connection.GD_MSZC"                                                           
+  cache.global_clearer                                                                 Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer                                      
+  cache.property_access                                                                Symfony\Component\Cache\Adapter\ArrayAdapter                                                    
+  cache.security_expression_language                                                   Symfony\Component\Cache\Adapter\TraceableAdapter                                                
+  cache.security_expression_language.recorder_inner                                    Symfony\Component\Cache\Adapter\PhpFilesAdapter                                                 
+  cache.serializer                                                                     Symfony\Component\Cache\Adapter\TraceableAdapter                                                
+  cache.serializer.recorder_inner                                                      Symfony\Component\Cache\Adapter\PhpFilesAdapter                                                 
+  cache.system                                                                         Symfony\Component\Cache\Adapter\TraceableAdapter                                                
+  cache.system.recorder_inner                                                          Symfony\Component\Cache\Adapter\PhpFilesAdapter                                                 
+  cache.system_clearer                                                                 Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer                                      
+  cache.validator                                                                      Symfony\Component\Cache\Adapter\TraceableAdapter                                                
+  cache.validator.recorder_inner                                                       Symfony\Component\Cache\Adapter\PhpFilesAdapter                                                 
+  cache_clearer                                                                        Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer                                     
+  cache_warmer                                                                         Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate                                   
+  config.resource.self_checking_resource_checker                                       Symfony\Component\Config\Resource\SelfCheckingResourceChecker                                   
+  config_cache_factory                                                                 Symfony\Component\Config\ResourceCheckerConfigCacheFactory                                      
+  console.command.about                                                                Symfony\Bundle\FrameworkBundle\Command\AboutCommand                                             
+  console.command.assets_install                                                       Symfony\Bundle\FrameworkBundle\Command\AssetsInstallCommand                                     
+  console.command.cache_clear                                                          Symfony\Bundle\FrameworkBundle\Command\CacheClearCommand                                        
+  console.command.cache_pool_clear                                                     Symfony\Bundle\FrameworkBundle\Command\CachePoolClearCommand                                    
+  console.command.cache_pool_delete                                                    Symfony\Bundle\FrameworkBundle\Command\CachePoolDeleteCommand                                   
+  console.command.cache_pool_prune                                                     Symfony\Bundle\FrameworkBundle\Command\CachePoolPruneCommand                                    
+  console.command.cache_warmup                                                         Symfony\Bundle\FrameworkBundle\Command\CacheWarmupCommand                                       
+  console.command.config_debug                                                         Symfony\Bundle\FrameworkBundle\Command\ConfigDebugCommand                                       
+  console.command.config_dump_reference                                                Symfony\Bundle\FrameworkBundle\Command\ConfigDumpReferenceCommand                               
+  console.command.container_debug                                                      Symfony\Bundle\FrameworkBundle\Command\ContainerDebugCommand                                    
+  console.command.debug_autowiring                                                     Symfony\Bundle\FrameworkBundle\Command\DebugAutowiringCommand                                   
+  console.command.event_dispatcher_debug                                               Symfony\Bundle\FrameworkBundle\Command\EventDispatcherDebugCommand                              
+  console.command.form_debug                                                           Symfony\Component\Form\Command\DebugCommand                                                     
+  console.command.public_alias.doctrine_cache.contains_command                         alias for "doctrine_cache.contains_command"                                                     
+  console.command.public_alias.doctrine_cache.delete_command                           alias for "doctrine_cache.delete_command"                                                       
+  console.command.public_alias.doctrine_cache.flush_command                            alias for "doctrine_cache.flush_command"                                                        
+  console.command.public_alias.doctrine_cache.stats_command                            alias for "doctrine_cache.stats_command"                                                        
+  console.command.public_alias.doctrine_migrations.diff_command                        alias for "doctrine_migrations.diff_command"                                                    
+  console.command.public_alias.doctrine_migrations.execute_command                     alias for "doctrine_migrations.execute_command"                                                 
+  console.command.public_alias.doctrine_migrations.generate_command                    alias for "doctrine_migrations.generate_command"                                                
+  console.command.public_alias.doctrine_migrations.latest_command                      alias for "doctrine_migrations.latest_command"                                                  
+  console.command.public_alias.doctrine_migrations.migrate_command                     alias for "doctrine_migrations.migrate_command"                                                 
+  console.command.public_alias.doctrine_migrations.status_command                      alias for "doctrine_migrations.status_command"                                                  
+  console.command.public_alias.doctrine_migrations.version_command                     alias for "doctrine_migrations.version_command"                                                 
+  console.command.router_debug                                                         Symfony\Bundle\FrameworkBundle\Command\RouterDebugCommand                                       
+  console.command.router_match                                                         Symfony\Bundle\FrameworkBundle\Command\RouterMatchCommand                                       
+  console.command.translation_debug                                                    Symfony\Bundle\FrameworkBundle\Command\TranslationDebugCommand                                  
+  console.command.translation_update                                                   Symfony\Bundle\FrameworkBundle\Command\TranslationUpdateCommand                                 
+  console.command.xliff_lint                                                           Symfony\Bundle\FrameworkBundle\Command\XliffLintCommand                                         
+  console.command.yaml_lint                                                            Symfony\Bundle\FrameworkBundle\Command\YamlLintCommand                                          
+  console.command_loader                                                               Symfony\Component\Console\CommandLoader\ContainerCommandLoader                                  
+  console.error_listener                                                               Symfony\Component\Console\EventListener\ErrorListener                                           
+  controller_name_converter                                                            Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser                                  
+  controller_resolver                                                                  alias for "debug.controller_resolver"                                                           
+  data_collector.ajax                                                                  Symfony\Component\HttpKernel\DataCollector\AjaxDataCollector                                    
+  data_collector.cache                                                                 Symfony\Component\Cache\DataCollector\CacheDataCollector                                        
+  data_collector.config                                                                Symfony\Component\HttpKernel\DataCollector\ConfigDataCollector                                  
+  data_collector.doctrine                                                              Doctrine\Bundle\DoctrineBundle\DataCollector\DoctrineDataCollector                              
+  data_collector.dump                                                                  Symfony\Component\HttpKernel\DataCollector\DumpDataCollector                                    
+  data_collector.events                                                                Symfony\Component\HttpKernel\DataCollector\EventDataCollector                                   
+  data_collector.exception                                                             Symfony\Component\HttpKernel\DataCollector\ExceptionDataCollector                               
+  data_collector.form                                                                  Symfony\Component\Form\Extension\DataCollector\FormDataCollector                                
+  data_collector.form.extractor                                                        Symfony\Component\Form\Extension\DataCollector\FormDataExtractor                                
+  data_collector.logger                                                                Symfony\Component\HttpKernel\DataCollector\LoggerDataCollector                                  
+  data_collector.memory                                                                Symfony\Component\HttpKernel\DataCollector\MemoryDataCollector                                  
+  data_collector.request                                                               Symfony\Component\HttpKernel\DataCollector\RequestDataCollector                                 
+  data_collector.router                                                                Symfony\Bundle\FrameworkBundle\DataCollector\RouterDataCollector                                
+  data_collector.security                                                              Symfony\Bundle\SecurityBundle\DataCollector\SecurityDataCollector                               
+  data_collector.time                                                                  Symfony\Component\HttpKernel\DataCollector\TimeDataCollector                                    
+  data_collector.translation                                                           Symfony\Component\Translation\DataCollector\TranslationDataCollector                            
+  data_collector.twig                                                                  Symfony\Bridge\Twig\DataCollector\TwigDataCollector                                             
+  data_collector.validator                                                             Symfony\Component\Validator\DataCollector\ValidatorDataCollector                                
+  database_connection                                                                  alias for "doctrine.dbal.default_connection"                                                    
+  debug.argument_resolver                                                              Symfony\Component\HttpKernel\Controller\TraceableArgumentResolver                               
+  debug.argument_resolver.default                                                      Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver                 
+  debug.argument_resolver.default.inner                                                Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver                   
+  debug.argument_resolver.inner                                                        Symfony\Component\HttpKernel\Controller\ArgumentResolver                                        
+  debug.argument_resolver.request                                                      Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver                 
+  debug.argument_resolver.request.inner                                                Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver                   
+  debug.argument_resolver.request_attribute                                            Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver                 
+  debug.argument_resolver.request_attribute.inner                                      Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestAttributeValueResolver          
+  debug.argument_resolver.service                                                      Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver                 
+  debug.argument_resolver.service.inner                                                Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver                   
+  debug.argument_resolver.session                                                      Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver                 
+  debug.argument_resolver.session.inner                                                Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver                   
+  debug.argument_resolver.variadic                                                     Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver                 
+  debug.argument_resolver.variadic.inner                                               Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver                  
+  debug.controller_resolver                                                            Symfony\Component\HttpKernel\Controller\TraceableControllerResolver                             
+  debug.controller_resolver.inner                                                      Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver                                    
+  debug.debug_handlers_listener                                                        Symfony\Component\HttpKernel\EventListener\DebugHandlersListener                                
+  debug.dump_listener                                                                  Symfony\Component\HttpKernel\EventListener\DumpListener                                         
+  debug.event_dispatcher                                                               Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher                                     
+  debug.event_dispatcher.inner                                                         Symfony\Component\EventDispatcher\EventDispatcher                                               
+  debug.file_link_formatter                                                            Symfony\Component\HttpKernel\Debug\FileLinkFormatter                                            
+  debug.file_link_formatter.url_format                                                 string                                                                                          
+  debug.security.access.decision_manager                                               Symfony\Component\Security\Core\Authorization\TraceableAccessDecisionManager                    
+  debug.security.access.decision_manager.inner                                         Symfony\Component\Security\Core\Authorization\AccessDecisionManager                             
+  debug.security.firewall                                                              Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener                                   
+  debug.security.user_value_resolver                                                   Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver                 
+  debug.security.user_value_resolver.inner                                             Symfony\Component\Security\Http\Controller\UserValueResolver                                    
+  debug.stopwatch                                                                      Symfony\Component\Stopwatch\Stopwatch                                                           
+  debug.validator                                                                      Symfony\Component\Validator\Validator\TraceableValidator                                        
+  debug.validator.inner                                                                Symfony\Component\Validator\Validator\ValidatorInterface                                        
+  dependency_injection.config.container_parameters_resource_checker                    Symfony\Component\DependencyInjection\Config\ContainerParametersResourceChecker                 
+  doctrine                                                                             Doctrine\Bundle\DoctrineBundle\Registry                                                         
+  doctrine.cache_clear_metadata_command                                                Doctrine\Bundle\DoctrineBundle\Command\Proxy\ClearMetadataCacheDoctrineCommand                  
+  doctrine.cache_clear_query_cache_command                                             Doctrine\Bundle\DoctrineBundle\Command\Proxy\ClearQueryCacheDoctrineCommand                     
+  doctrine.cache_clear_result_command                                                  Doctrine\Bundle\DoctrineBundle\Command\Proxy\ClearResultCacheDoctrineCommand                    
+  doctrine.cache_collection_region_command                                             Doctrine\Bundle\DoctrineBundle\Command\Proxy\CollectionRegionDoctrineCommand                    
+  doctrine.clear_entity_region_command                                                 Doctrine\Bundle\DoctrineBundle\Command\Proxy\EntityRegionCacheDoctrineCommand                   
+  doctrine.clear_query_region_command                                                  Doctrine\Bundle\DoctrineBundle\Command\Proxy\QueryRegionCacheDoctrineCommand                    
+  doctrine.database_create_command                                                     Doctrine\Bundle\DoctrineBundle\Command\CreateDatabaseDoctrineCommand                            
+  doctrine.database_drop_command                                                       Doctrine\Bundle\DoctrineBundle\Command\DropDatabaseDoctrineCommand                              
+  doctrine.database_import_command                                                     Doctrine\Bundle\DoctrineBundle\Command\Proxy\ImportDoctrineCommand                              
+  doctrine.dbal.connection                                                             Doctrine\DBAL\Connection                                                                        
+  doctrine.dbal.connection.configuration                                               Doctrine\DBAL\Configuration                                                                     
+  doctrine.dbal.connection.event_manager                                               Symfony\Bridge\Doctrine\ContainerAwareEventManager                                              
+  doctrine.dbal.connection_factory                                                     Doctrine\Bundle\DoctrineBundle\ConnectionFactory                                                
+  doctrine.dbal.default_connection                                                     Doctrine\DBAL\Connection                                                                        
+  doctrine.dbal.default_connection.configuration                                       Doctrine\DBAL\Configuration                                                                     
+  doctrine.dbal.default_connection.event_manager                                       Symfony\Bridge\Doctrine\ContainerAwareEventManager                                              
+  doctrine.dbal.event_manager                                                          alias for "doctrine.dbal.default_connection.event_manager"                                      
+  doctrine.dbal.logger                                                                 Symfony\Bridge\Doctrine\Logger\DbalLogger                                                       
+  doctrine.dbal.logger.chain                                                           Doctrine\DBAL\Logging\LoggerChain                                                               
+  doctrine.dbal.logger.chain.default                                                   Doctrine\DBAL\Logging\LoggerChain                                                               
+  doctrine.dbal.logger.profiling                                                       Doctrine\DBAL\Logging\DebugStack                                                                
+  doctrine.dbal.logger.profiling.default                                               Doctrine\DBAL\Logging\DebugStack                                                                
+  doctrine.ensure_production_settings_command                                          Doctrine\Bundle\DoctrineBundle\Command\Proxy\EnsureProductionSettingsDoctrineCommand            
+  doctrine.generate_entities_command                                                   Doctrine\Bundle\DoctrineBundle\Command\GenerateEntitiesDoctrineCommand                          
+  doctrine.mapping_convert_command                                                     Doctrine\Bundle\DoctrineBundle\Command\Proxy\ConvertMappingDoctrineCommand                      
+  doctrine.mapping_import_command                                                      Doctrine\Bundle\DoctrineBundle\Command\ImportMappingDoctrineCommand                             
+  doctrine.mapping_info_command                                                        Doctrine\Bundle\DoctrineBundle\Command\Proxy\InfoDoctrineCommand                                
+  doctrine.orm.configuration                                                           Doctrine\ORM\Configuration                                                                      
+  doctrine.orm.container_repository_factory                                            Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory                            
+  doctrine.orm.default_annotation_metadata_driver                                      Doctrine\ORM\Mapping\Driver\AnnotationDriver                                                    
+  doctrine.orm.default_configuration                                                   Doctrine\ORM\Configuration                                                                      
+  doctrine.orm.default_entity_listener_resolver                                        Doctrine\Bundle\DoctrineBundle\Mapping\ContainerAwareEntityListenerResolver                     
+  doctrine.orm.default_entity_manager                                                  Doctrine\ORM\EntityManager                                                                      
+  doctrine.orm.default_entity_manager.event_manager                                    alias for "doctrine.dbal.default_connection.event_manager"                                      
+  doctrine.orm.default_listeners.attach_entity_listeners                               Doctrine\ORM\Tools\AttachEntityListenersListener                                                
+  doctrine.orm.default_manager_configurator                                            Doctrine\Bundle\DoctrineBundle\ManagerConfigurator                                              
+  doctrine.orm.default_metadata_cache                                                  alias for "doctrine_cache.providers.doctrine.orm.default_metadata_cache"                        
+  doctrine.orm.default_metadata_driver                                                 Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain                                   
+  doctrine.orm.default_query_cache                                                     alias for "doctrine_cache.providers.doctrine.orm.default_query_cache"                           
+  doctrine.orm.default_result_cache                                                    alias for "doctrine_cache.providers.doctrine.orm.default_result_cache"                          
+  doctrine.orm.entity_manager                                                          alias for "doctrine.orm.default_entity_manager"                                                 
+  doctrine.orm.entity_manager.abstract                                                 Doctrine\ORM\EntityManager                                                                      
+  doctrine.orm.listeners.resolve_target_entity                                         Doctrine\ORM\Tools\ResolveTargetEntityListener                                                  
+  doctrine.orm.manager_configurator.abstract                                           Doctrine\Bundle\DoctrineBundle\ManagerConfigurator                                              
+  doctrine.orm.metadata.annotation_reader                                              alias for "annotations.cached_reader"                                                           
+  doctrine.orm.naming_strategy.default                                                 Doctrine\ORM\Mapping\DefaultNamingStrategy                                                      
+  doctrine.orm.naming_strategy.underscore                                              Doctrine\ORM\Mapping\UnderscoreNamingStrategy                                                   
+  doctrine.orm.proxy_cache_warmer                                                      Symfony\Bridge\Doctrine\CacheWarmer\ProxyCacheWarmer                                            
+  doctrine.orm.quote_strategy.ansi                                                     Doctrine\ORM\Mapping\AnsiQuoteStrategy                                                          
+  doctrine.orm.quote_strategy.default                                                  Doctrine\ORM\Mapping\DefaultQuoteStrategy                                                       
+  doctrine.orm.security.user.provider                                                  Symfony\Bridge\Doctrine\Security\User\EntityUserProvider                                        
+  doctrine.orm.validator.unique                                                        Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator                             
+  doctrine.orm.validator_initializer                                                   Symfony\Bridge\Doctrine\Validator\DoctrineInitializer                                           
+  doctrine.query_dql_command                                                           Doctrine\Bundle\DoctrineBundle\Command\Proxy\RunDqlDoctrineCommand                              
+  doctrine.query_sql_command                                                           Doctrine\Bundle\DoctrineBundle\Command\Proxy\RunSqlDoctrineCommand                              
+  doctrine.schema_create_command                                                       Doctrine\Bundle\DoctrineBundle\Command\Proxy\CreateSchemaDoctrineCommand                        
+  doctrine.schema_drop_command                                                         Doctrine\Bundle\DoctrineBundle\Command\Proxy\DropSchemaDoctrineCommand                          
+  doctrine.schema_update_command                                                       Doctrine\Bundle\DoctrineBundle\Command\Proxy\UpdateSchemaDoctrineCommand                        
+  doctrine.schema_validate_command                                                     Doctrine\Bundle\DoctrineBundle\Command\Proxy\ValidateSchemaCommand                              
+  doctrine.twig.doctrine_extension                                                     Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension                                           
+  doctrine_cache.abstract.apc                                                          Doctrine\Common\Cache\ApcCache                                                                  
+  doctrine_cache.abstract.apcu                                                         Doctrine\Common\Cache\ApcuCache                                                                 
+  doctrine_cache.abstract.array                                                        Doctrine\Common\Cache\ArrayCache                                                                
+  doctrine_cache.abstract.chain                                                        Doctrine\Common\Cache\ChainCache                                                                
+  doctrine_cache.abstract.couchbase                                                    Doctrine\Common\Cache\CouchbaseCache                                                            
+  doctrine_cache.abstract.file_system                                                  Doctrine\Common\Cache\FilesystemCache                                                           
+  doctrine_cache.abstract.memcache                                                     Doctrine\Common\Cache\MemcacheCache                                                             
+  doctrine_cache.abstract.memcached                                                    Doctrine\Common\Cache\MemcachedCache                                                            
+  doctrine_cache.abstract.mongodb                                                      Doctrine\Common\Cache\MongoDBCache                                                              
+  doctrine_cache.abstract.php_file                                                     Doctrine\Common\Cache\PhpFileCache                                                              
+  doctrine_cache.abstract.predis                                                       Doctrine\Common\Cache\PredisCache                                                               
+  doctrine_cache.abstract.redis                                                        Doctrine\Common\Cache\RedisCache                                                                
+  doctrine_cache.abstract.riak                                                         Doctrine\Common\Cache\RiakCache                                                                 
+  doctrine_cache.abstract.sqlite3                                                      Doctrine\Common\Cache\SQLite3Cache                                                              
+  doctrine_cache.abstract.void                                                         Doctrine\Common\Cache\VoidCache                                                                 
+  doctrine_cache.abstract.wincache                                                     Doctrine\Common\Cache\WinCacheCache                                                             
+  doctrine_cache.abstract.xcache                                                       Doctrine\Common\Cache\XcacheCache                                                               
+  doctrine_cache.abstract.zenddata                                                     Doctrine\Common\Cache\ZendDataCache                                                             
+  doctrine_cache.contains_command                                                      Doctrine\Bundle\DoctrineCacheBundle\Command\ContainsCommand                                     
+  doctrine_cache.delete_command                                                        Doctrine\Bundle\DoctrineCacheBundle\Command\DeleteCommand                                       
+  doctrine_cache.flush_command                                                         Doctrine\Bundle\DoctrineCacheBundle\Command\FlushCommand                                        
+  doctrine_cache.providers.doctrine.orm.default_metadata_cache                         Doctrine\Common\Cache\ArrayCache                                                                
+  doctrine_cache.providers.doctrine.orm.default_query_cache                            Doctrine\Common\Cache\ArrayCache                                                                
+  doctrine_cache.providers.doctrine.orm.default_result_cache                           Doctrine\Common\Cache\ArrayCache                                                                
+  doctrine_cache.stats_command                                                         Doctrine\Bundle\DoctrineCacheBundle\Command\StatsCommand                                        
+  doctrine_migrations.diff_command                                                     Doctrine\Bundle\MigrationsBundle\Command\MigrationsDiffDoctrineCommand                          
+  doctrine_migrations.execute_command                                                  Doctrine\Bundle\MigrationsBundle\Command\MigrationsExecuteDoctrineCommand                       
+  doctrine_migrations.generate_command                                                 Doctrine\Bundle\MigrationsBundle\Command\MigrationsGenerateDoctrineCommand                      
+  doctrine_migrations.latest_command                                                   Doctrine\Bundle\MigrationsBundle\Command\MigrationsLatestDoctrineCommand                        
+  doctrine_migrations.migrate_command                                                  Doctrine\Bundle\MigrationsBundle\Command\MigrationsMigrateDoctrineCommand                       
+  doctrine_migrations.status_command                                                   Doctrine\Bundle\MigrationsBundle\Command\MigrationsStatusDoctrineCommand                        
+  doctrine_migrations.version_command                                                  Doctrine\Bundle\MigrationsBundle\Command\MigrationsVersionDoctrineCommand                       
+  easy_admin.property_accessor                                                         alias for "property_accessor"                                                                   
+  easyadmin.autocomplete                                                               EasyCorp\Bundle\EasyAdminBundle\Search\Autocomplete                                             
+  easyadmin.cache.manager                                                              EasyCorp\Bundle\EasyAdminBundle\Cache\CacheManager                                              
+  easyadmin.config.manager                                                             EasyCorp\Bundle\EasyAdminBundle\Configuration\ConfigManager                                     
+  easyadmin.configuration.action_config_pass                                           EasyCorp\Bundle\EasyAdminBundle\Configuration\ActionConfigPass                                  
+  easyadmin.configuration.default_config_pass                                          EasyCorp\Bundle\EasyAdminBundle\Configuration\DefaultConfigPass                                 
+  easyadmin.configuration.design_config_pass                                           EasyCorp\Bundle\EasyAdminBundle\Configuration\DesignConfigPass                                  
+  easyadmin.configuration.menu_config_pass                                             EasyCorp\Bundle\EasyAdminBundle\Configuration\MenuConfigPass                                    
+  easyadmin.configuration.metadata_config_pass                                         EasyCorp\Bundle\EasyAdminBundle\Configuration\MetadataConfigPass                                
+  easyadmin.configuration.normalizer_config_pass                                       EasyCorp\Bundle\EasyAdminBundle\Configuration\NormalizerConfigPass                              
+  easyadmin.configuration.property_config_pass                                         EasyCorp\Bundle\EasyAdminBundle\Configuration\PropertyConfigPass                                
+  easyadmin.configuration.template_config_pass                                         EasyCorp\Bundle\EasyAdminBundle\Configuration\TemplateConfigPass                                
+  easyadmin.configuration.view_config_pass                                             EasyCorp\Bundle\EasyAdminBundle\Configuration\ViewConfigPass                                    
+  easyadmin.data_collector                                                             EasyCorp\Bundle\EasyAdminBundle\DataCollector\EasyAdminDataCollector                            
+  easyadmin.finder                                                                     EasyCorp\Bundle\EasyAdminBundle\Search\Finder                                                   
+  easyadmin.form.guesser.missing_doctrine_orm_type_guesser                             EasyCorp\Bundle\EasyAdminBundle\Form\Guesser\MissingDoctrineOrmTypeGuesser                      
+  easyadmin.form.type                                                                  EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminFormType                                     
+  easyadmin.form.type.autocomplete                                                     EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType                             
+  easyadmin.form.type.configurator.autocomplete                                        EasyCorp\Bundle\EasyAdminBundle\Form\Type\Configurator\AutocompleteTypeConfigurator             
+  easyadmin.form.type.configurator.checkbox                                            EasyCorp\Bundle\EasyAdminBundle\Form\Type\Configurator\CheckboxTypeConfigurator                 
+  easyadmin.form.type.configurator.collection                                          EasyCorp\Bundle\EasyAdminBundle\Form\Type\Configurator\CollectionTypeConfigurator               
+  easyadmin.form.type.configurator.entity                                              EasyCorp\Bundle\EasyAdminBundle\Form\Type\Configurator\EntityTypeConfigurator                   
+  easyadmin.form.type.configurator.type                                                EasyCorp\Bundle\EasyAdminBundle\Form\Type\Configurator\TypeConfigurator                         
+  easyadmin.form.type.divider                                                          EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminDividerType                                  
+  easyadmin.form.type.extension                                                        EasyCorp\Bundle\EasyAdminBundle\Form\Extension\EasyAdminExtension                               
+  easyadmin.form.type.group                                                            EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminGroupType                                    
+  easyadmin.form.type.section                                                          EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminSectionType                                  
+  easyadmin.form.type_guesser_chain                                                    Symfony\Component\Form\FormTypeGuesserChain                                                     
+  easyadmin.listener.controller                                                        EasyCorp\Bundle\EasyAdminBundle\EventListener\ControllerListener                                
+  easyadmin.listener.request_post_initialize                                           EasyCorp\Bundle\EasyAdminBundle\EventListener\RequestPostInitializeListener                     
+  easyadmin.paginator                                                                  EasyCorp\Bundle\EasyAdminBundle\Search\Paginator                                                
+  easyadmin.query_builder                                                              EasyCorp\Bundle\EasyAdminBundle\Search\QueryBuilder                                             
+  easyadmin.router                                                                     EasyCorp\Bundle\EasyAdminBundle\Router\EasyAdminRouter                                          
+  easyadmin.twig.extension                                                             EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension                                     
+  esi                                                                                  Symfony\Component\HttpKernel\HttpCache\Esi                                                      
+  esi_listener                                                                         Symfony\Component\HttpKernel\EventListener\SurrogateListener                                    
+  event_dispatcher                                                                     alias for "debug.event_dispatcher"                                                              
+  file_locator                                                                         Symfony\Component\HttpKernel\Config\FileLocator                                                 
+  filesystem                                                                           Symfony\Component\Filesystem\Filesystem                                                         
+  form.choice_list_factory                                                             alias for "form.choice_list_factory.cached"                                                     
+  form.choice_list_factory.cached                                                      Symfony\Component\Form\ChoiceList\Factory\CachingFactoryDecorator                               
+  form.choice_list_factory.default                                                     Symfony\Component\Form\ChoiceList\Factory\DefaultChoiceListFactory                              
+  form.choice_list_factory.property_access                                             Symfony\Component\Form\ChoiceList\Factory\PropertyAccessDecorator                               
+  form.extension                                                                       Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension               
+  form.factory                                                                         Symfony\Component\Form\FormFactory                                                              
+  form.property_accessor                                                               alias for "property_accessor"                                                                   
+  form.registry                                                                        Symfony\Component\Form\FormRegistry                                                             
+  form.resolved_type_factory                                                           Symfony\Component\Form\Extension\DataCollector\Proxy\ResolvedTypeFactoryDataCollectorProxy      
+  form.server_params                                                                   Symfony\Component\Form\Util\ServerParams                                                        
+  form.type.choice                                                                     Symfony\Component\Form\Extension\Core\Type\ChoiceType                                           
+  form.type.entity                                                                     Symfony\Bridge\Doctrine\Form\Type\EntityType                                                    
+  form.type.form                                                                       Symfony\Component\Form\Extension\Core\Type\FormType                                             
+  form.type_extension.csrf                                                             Symfony\Component\Form\Extension\Csrf\Type\FormTypeCsrfExtension                                
+  form.type_extension.form.data_collector                                              Symfony\Component\Form\Extension\DataCollector\Type\DataCollectorTypeExtension                  
+  form.type_extension.form.http_foundation                                             Symfony\Component\Form\Extension\HttpFoundation\Type\FormTypeHttpFoundationExtension            
+  form.type_extension.form.request_handler                                             Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationRequestHandler                    
+  form.type_extension.form.validator                                                   Symfony\Component\Form\Extension\Validator\Type\FormTypeValidatorExtension                      
+  form.type_extension.repeated.validator                                               Symfony\Component\Form\Extension\Validator\Type\RepeatedTypeValidatorExtension                  
+  form.type_extension.submit.validator                                                 Symfony\Component\Form\Extension\Validator\Type\SubmitTypeValidatorExtension                    
+  form.type_extension.upload.validator                                                 Symfony\Component\Form\Extension\Validator\Type\UploadValidatorExtension                        
+  form.type_guesser.doctrine                                                           Symfony\Bridge\Doctrine\Form\DoctrineOrmTypeGuesser                                             
+  form.type_guesser.validator                                                          Symfony\Component\Form\Extension\Validator\ValidatorTypeGuesser                                 
+  fragment.handler                                                                     Symfony\Component\HttpKernel\DependencyInjection\LazyLoadingFragmentHandler                     
+  fragment.listener                                                                    Symfony\Component\HttpKernel\EventListener\FragmentListener                                     
+  fragment.renderer.esi                                                                Symfony\Component\HttpKernel\Fragment\EsiFragmentRenderer                                       
+  fragment.renderer.hinclude                                                           Symfony\Component\HttpKernel\Fragment\HIncludeFragmentRenderer                                  
+  fragment.renderer.inline                                                             Symfony\Component\HttpKernel\Fragment\InlineFragmentRenderer                                    
+  framework_extra_bundle.argument_name_convertor                                       Sensio\Bundle\FrameworkExtraBundle\Request\ArgumentNameConverter                                
+  framework_extra_bundle.date_time_param_converter                                     Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter                
+  framework_extra_bundle.event.is_granted                                              Sensio\Bundle\FrameworkExtraBundle\EventListener\IsGrantedListener                              
+  http_exception_listener                                                              Symfony\Component\HttpKernel\EventListener\ExceptionListener                                    
+  http_kernel                                                                          Symfony\Component\HttpKernel\HttpKernel                                                         
+  kernel                                                                                                                                                                               
+  locale_listener                                                                      Symfony\Component\HttpKernel\EventListener\LocaleListener                                       
+  logger                                                                               Symfony\Component\HttpKernel\Log\Logger                                                         
+  mailer                                                                               alias for "swiftmailer.mailer.default"                                                          
+  maker.auto_command.abstract                                                          Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_auth                                                         Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_command                                                      Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_controller                                                   Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_crud                                                         Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_entity                                                       Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_fixtures                                                     Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_form                                                         Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_functional_test                                              Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_migration                                                    Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_serializer_encoder                                           Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_subscriber                                                   Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_twig_extension                                               Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_unit_test                                                    Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_validator                                                    Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.auto_command.make_voter                                                        Symfony\Bundle\MakerBundle\Command\MakerCommand                                                 
+  maker.autoloader_finder                                                              Symfony\Bundle\MakerBundle\Util\ComposerAutoloaderFinder                                        
+  maker.autoloader_util                                                                Symfony\Bundle\MakerBundle\Util\AutoloaderUtil                                                  
+  maker.console_error_listener                                                         Symfony\Bundle\MakerBundle\Event\ConsoleErrorSubscriber                                         
+  maker.doctrine_helper                                                                Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper                                              
+  maker.event_registry                                                                 Symfony\Bundle\MakerBundle\EventRegistry                                                        
+  maker.file_manager                                                                   Symfony\Bundle\MakerBundle\FileManager                                                          
+  maker.generator                                                                      Symfony\Bundle\MakerBundle\Generator                                                            
+  maker.maker.make_authenticator                                                       Symfony\Bundle\MakerBundle\Maker\MakeAuthenticator                                              
+  maker.maker.make_command                                                             Symfony\Bundle\MakerBundle\Maker\MakeCommand                                                    
+  maker.maker.make_controller                                                          Symfony\Bundle\MakerBundle\Maker\MakeController                                                 
+  maker.maker.make_crud                                                                Symfony\Bundle\MakerBundle\Maker\MakeCrud                                                       
+  maker.maker.make_entity                                                              Symfony\Bundle\MakerBundle\Maker\MakeEntity                                                     
+  maker.maker.make_fixtures                                                            Symfony\Bundle\MakerBundle\Maker\MakeFixtures                                                   
+  maker.maker.make_form                                                                Symfony\Bundle\MakerBundle\Maker\MakeForm                                                       
+  maker.maker.make_functional_test                                                     Symfony\Bundle\MakerBundle\Maker\MakeFunctionalTest                                             
+  maker.maker.make_migration                                                           Symfony\Bundle\MakerBundle\Maker\MakeMigration                                                  
+  maker.maker.make_serializer_encoder                                                  Symfony\Bundle\MakerBundle\Maker\MakeSerializerEncoder                                          
+  maker.maker.make_subscriber                                                          Symfony\Bundle\MakerBundle\Maker\MakeSubscriber                                                 
+  maker.maker.make_twig_extension                                                      Symfony\Bundle\MakerBundle\Maker\MakeTwigExtension                                              
+  maker.maker.make_unit_test                                                           Symfony\Bundle\MakerBundle\Maker\MakeUnitTest                                                   
+  maker.maker.make_validator                                                           Symfony\Bundle\MakerBundle\Maker\MakeValidator                                                  
+  maker.maker.make_voter                                                               Symfony\Bundle\MakerBundle\Maker\MakeVoter                                                      
+  parameter_bag                                                                        Symfony\Component\DependencyInjection\ParameterBag\ContainerBag                                 
+  profiler                                                                             Symfony\Component\HttpKernel\Profiler\Profiler                                                  
+  profiler.storage                                                                     Symfony\Component\HttpKernel\Profiler\FileProfilerStorage                                       
+  profiler_listener                                                                    Symfony\Component\HttpKernel\EventListener\ProfilerListener                                     
+  property_accessor                                                                    Symfony\Component\PropertyAccess\PropertyAccessor                                               
+  request_stack                                                                        Symfony\Component\HttpFoundation\RequestStack                                                   
+  resolve_controller_name_subscriber                                                   Symfony\Bundle\FrameworkBundle\EventListener\ResolveControllerNameSubscriber                    
+  response_listener                                                                    Symfony\Component\HttpKernel\EventListener\ResponseListener                                     
+  router                                                                               alias for "router.default"                                                                      
+  router.cache_warmer                                                                  Symfony\Bundle\FrameworkBundle\CacheWarmer\RouterCacheWarmer                                    
+  router.default                                                                       Symfony\Bundle\FrameworkBundle\Routing\Router                                                   
+  router.request_context                                                               Symfony\Component\Routing\RequestContext                                                        
+  router_listener                                                                      Symfony\Component\HttpKernel\EventListener\RouterListener                                       
+  routing.loader                                                                       Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader                                         
+  routing.loader.annotation                                                            Symfony\Bundle\FrameworkBundle\Routing\AnnotatedRouteControllerLoader                           
+  routing.loader.annotation.directory                                                  Symfony\Component\Routing\Loader\AnnotationDirectoryLoader                                      
+  routing.loader.annotation.file                                                       Symfony\Component\Routing\Loader\AnnotationFileLoader                                           
+  routing.loader.directory                                                             Symfony\Component\Routing\Loader\DirectoryLoader                                                
+  routing.loader.glob                                                                  Symfony\Component\Routing\Loader\GlobFileLoader                                                 
+  routing.loader.php                                                                   Symfony\Component\Routing\Loader\PhpFileLoader                                                  
+  routing.loader.service                                                               Symfony\Component\Routing\Loader\DependencyInjection\ServiceRouterLoader                        
+  routing.loader.xml                                                                   Symfony\Component\Routing\Loader\XmlFileLoader                                                  
+  routing.loader.yml                                                                   Symfony\Component\Routing\Loader\YamlFileLoader                                                 
+  routing.resolver                                                                     Symfony\Component\Config\Loader\LoaderResolver                                                  
+  security.access.authenticated_voter                                                  Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter                          
+  security.access.decision_manager                                                     alias for "debug.security.access.decision_manager"                                              
+  security.access.simple_role_voter                                                    Symfony\Component\Security\Core\Authorization\Voter\RoleVoter                                   
+  security.access_listener                                                             Symfony\Component\Security\Http\Firewall\AccessListener                                         
+  security.access_map                                                                  Symfony\Component\Security\Http\AccessMap                                                       
+  security.authentication.basic_entry_point                                            Symfony\Component\Security\Http\EntryPoint\BasicAuthenticationEntryPoint                        
+  security.authentication.custom_failure_handler                                       Symfony\Component\Security\Http\Authentication\CustomAuthenticationFailureHandler               
+  security.authentication.custom_success_handler                                       Symfony\Component\Security\Http\Authentication\CustomAuthenticationSuccessHandler               
+  security.authentication.failure_handler                                              Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler              
+  security.authentication.failure_handler.main.form_login                              Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler              
+  security.authentication.form_entry_point                                             Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint                         
+  security.authentication.form_entry_point.main                                        Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint                         
+  security.authentication.guard_handler                                                Symfony\Component\Security\Guard\GuardAuthenticatorHandler                                      
+  security.authentication.listener.abstract                                                                                                                                            
+  security.authentication.listener.anonymous                                           Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener                        
+  security.authentication.listener.anonymous.main                                      Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener                        
+  security.authentication.listener.basic                                               Symfony\Component\Security\Http\Firewall\BasicAuthenticationListener                            
+  security.authentication.listener.form                                                Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener             
+  security.authentication.listener.form.main                                           Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener             
+  security.authentication.listener.guard                                               Symfony\Component\Security\Guard\Firewall\GuardAuthenticationListener                           
+  security.authentication.listener.json                                                Symfony\Component\Security\Http\Firewall\UsernamePasswordJsonAuthenticationListener             
+  security.authentication.listener.rememberme                                          Symfony\Component\Security\Http\Firewall\RememberMeListener                                     
+  security.authentication.listener.remote_user                                         Symfony\Component\Security\Http\Firewall\RemoteUserAuthenticationListener                       
+  security.authentication.listener.simple_form                                         Symfony\Component\Security\Http\Firewall\SimpleFormAuthenticationListener                       
+  security.authentication.listener.simple_preauth                                      Symfony\Component\Security\Http\Firewall\SimplePreAuthenticationListener                        
+  security.authentication.listener.x509                                                Symfony\Component\Security\Http\Firewall\X509AuthenticationListener                             
+  security.authentication.manager                                                      Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager                    
+  security.authentication.provider.anonymous                                           Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider         
+  security.authentication.provider.anonymous.main                                      Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider         
+  security.authentication.provider.dao                                                 Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider               
+  security.authentication.provider.dao.main                                            Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider               
+  security.authentication.provider.guard                                               Symfony\Component\Security\Guard\Provider\GuardAuthenticationProvider                           
+  security.authentication.provider.ldap_bind                                           Symfony\Component\Security\Core\Authentication\Provider\LdapBindAuthenticationProvider          
+  security.authentication.provider.pre_authenticated                                   Symfony\Component\Security\Core\Authentication\Provider\PreAuthenticatedAuthenticationProvider  
+  security.authentication.provider.rememberme                                          Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider        
+  security.authentication.provider.simple                                              Symfony\Component\Security\Core\Authentication\Provider\SimpleAuthenticationProvider            
+  security.authentication.rememberme.services.abstract                                                                                                                                 
+  security.authentication.rememberme.services.persistent                               Symfony\Component\Security\Http\RememberMe\PersistentTokenBasedRememberMeServices               
+  security.authentication.rememberme.services.simplehash                               Symfony\Component\Security\Http\RememberMe\TokenBasedRememberMeServices                         
+  security.authentication.retry_entry_point                                            Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint                        
+  security.authentication.session_strategy                                             Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy                           
+  security.authentication.session_strategy.main                                        alias for "security.authentication.session_strategy"                                            
+  security.authentication.session_strategy_noop                                        Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy                           
+  security.authentication.simple_success_failure_handler                               Symfony\Component\Security\Http\Authentication\SimpleAuthenticationHandler                      
+  security.authentication.success_handler                                              Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler              
+  security.authentication.success_handler.main.form_login                              Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler              
+  security.authentication.switchuser_listener                                          Symfony\Component\Security\Http\Firewall\SwitchUserListener                                     
+  security.authentication.trust_resolver                                               Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolver                      
+  security.authentication_utils                                                        Symfony\Component\Security\Http\Authentication\AuthenticationUtils                              
+  security.authorization_checker                                                       Symfony\Component\Security\Core\Authorization\AuthorizationChecker                              
+  security.channel_listener                                                            Symfony\Component\Security\Http\Firewall\ChannelListener                                        
+  security.command.user_password_encoder                                               Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand                                
+  security.context_listener                                                            Symfony\Component\Security\Http\Firewall\ContextListener                                        
+  security.context_listener.0                                                          Symfony\Component\Security\Http\Firewall\ContextListener                                        
+  security.csrf.token_generator                                                        Symfony\Component\Security\Csrf\TokenGenerator\UriSafeTokenGenerator                            
+  security.csrf.token_manager                                                          Symfony\Component\Security\Csrf\CsrfTokenManager                                                
+  security.csrf.token_storage                                                          Symfony\Component\Security\Csrf\TokenStorage\SessionTokenStorage                                
+  security.encoder_factory                                                             alias for "security.encoder_factory.generic"                                                    
+  security.encoder_factory.generic                                                     Symfony\Component\Security\Core\Encoder\EncoderFactory                                          
+  security.exception_listener                                                          Symfony\Component\Security\Http\Firewall\ExceptionListener                                      
+  security.exception_listener.main                                                     Symfony\Component\Security\Http\Firewall\ExceptionListener                                      
+  security.firewall                                                                    alias for "debug.security.firewall"                                                             
+  security.firewall.config                                                             Symfony\Bundle\SecurityBundle\Security\FirewallConfig                                           
+  security.firewall.context                                                            Symfony\Bundle\SecurityBundle\Security\FirewallContext                                          
+  security.firewall.map                                                                Symfony\Bundle\SecurityBundle\Security\FirewallMap                                              
+  security.firewall.map.config.dev                                                     Symfony\Bundle\SecurityBundle\Security\FirewallConfig                                           
+  security.firewall.map.config.main                                                    Symfony\Bundle\SecurityBundle\Security\FirewallConfig                                           
+  security.firewall.map.context.dev                                                    Symfony\Bundle\SecurityBundle\Security\FirewallContext                                          
+  security.firewall.map.context.main                                                   Symfony\Bundle\SecurityBundle\Security\FirewallContext                                          
+  security.helper                                                                      Symfony\Component\Security\Core\Security                                                        
+  security.http_utils                                                                  Symfony\Component\Security\Http\HttpUtils                                                       
+  security.logout.handler.cookie_clearing                                              Symfony\Component\Security\Http\Logout\CookieClearingLogoutHandler                              
+  security.logout.handler.csrf_token_clearing                                          Symfony\Component\Security\Http\Logout\CsrfTokenClearingLogoutHandler                           
+  security.logout.handler.session                                                      Symfony\Component\Security\Http\Logout\SessionLogoutHandler                                     
+  security.logout.success_handler                                                      Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler                              
+  security.logout.success_handler.main                                                 Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler                              
+  security.logout_listener                                                             Symfony\Component\Security\Http\Firewall\LogoutListener                                         
+  security.logout_listener.main                                                        Symfony\Component\Security\Http\Firewall\LogoutListener                                         
+  security.logout_url_generator                                                        Symfony\Component\Security\Http\Logout\LogoutUrlGenerator                                       
+  security.password_encoder                                                            alias for "security.user_password_encoder.generic"                                              
+  security.rememberme.response_listener                                                Symfony\Component\Security\Http\RememberMe\ResponseListener                                     
+  security.rememberme.token.provider.in_memory                                         Symfony\Component\Security\Core\Authentication\RememberMe\InMemoryTokenProvider                 
+  security.role_hierarchy                                                              Symfony\Component\Security\Core\Role\RoleHierarchy                                              
+  security.token_storage                                                               Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage                       
+  security.user.provider.chain                                                         Symfony\Component\Security\Core\User\ChainUserProvider                                          
+  security.user.provider.concrete.database_users                                       Symfony\Bridge\Doctrine\Security\User\EntityUserProvider                                        
+  security.user.provider.in_memory                                                     Symfony\Component\Security\Core\User\InMemoryUserProvider                                       
+  security.user.provider.in_memory.user                                                Symfony\Component\Security\Core\User\User                                                       
+  security.user.provider.ldap                                                          Symfony\Component\Security\Core\User\LdapUserProvider                                           
+  security.user.provider.missing                                                       Symfony\Component\Security\Core\User\MissingUserProvider                                        
+  security.user_checker                                                                Symfony\Component\Security\Core\User\UserChecker                                                
+  security.user_checker.main                                                           alias for "security.user_checker"                                                               
+  security.user_password_encoder.generic                                               Symfony\Component\Security\Core\Encoder\UserPasswordEncoder                                     
+  security.user_value_resolver                                                         alias for "debug.security.user_value_resolver"                                                  
+  security.validator.user_password                                                     Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator                     
+  sensio_framework_extra.cache.listener                                                Sensio\Bundle\FrameworkExtraBundle\EventListener\HttpCacheListener                              
+  sensio_framework_extra.controller.listener                                           Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener                             
+  sensio_framework_extra.converter.doctrine.orm                                        Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter                
+  sensio_framework_extra.converter.listener                                            Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener                         
+  sensio_framework_extra.converter.manager                                             Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterManager                 
+  sensio_framework_extra.security.listener                                             Sensio\Bundle\FrameworkExtraBundle\EventListener\SecurityListener                               
+  sensio_framework_extra.view.guesser                                                  Sensio\Bundle\FrameworkExtraBundle\Templating\TemplateGuesser                                   
+  sensio_framework_extra.view.listener                                                 Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener                               
+  service_container                                                                    Symfony\Component\DependencyInjection\ContainerInterface                                        
+  services_resetter                                                                    Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter                               
+  session                                                                              Symfony\Component\HttpFoundation\Session\Session                                                
+  session.attribute_bag                                                                Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag                                 
+  session.flash_bag                                                                    Symfony\Component\HttpFoundation\Session\Flash\FlashBag                                         
+  session.handler.native_file                                                          Symfony\Component\HttpFoundation\Session\Storage\Handler\StrictSessionHandler                   
+  session.save_listener                                                                Symfony\Component\HttpKernel\EventListener\SaveSessionListener                                  
+  session.storage                                                                      alias for "session.storage.native"                                                              
+  session.storage.filesystem                                                           alias for "session.storage.mock_file"                                                           
+  session.storage.metadata_bag                                                         Symfony\Component\HttpFoundation\Session\Storage\MetadataBag                                    
+  session.storage.mock_file                                                            Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage                         
+  session.storage.native                                                               Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage                           
+  session.storage.php_bridge                                                           Symfony\Component\HttpFoundation\Session\Storage\PhpBridgeSessionStorage                        
+  session_listener                                                                     Symfony\Component\HttpKernel\EventListener\SessionListener                                      
+  streamed_response_listener                                                           Symfony\Component\HttpKernel\EventListener\StreamedResponseListener                             
+  swiftmailer.command.debug                                                            Symfony\Bundle\SwiftmailerBundle\Command\DebugCommand                                           
+  swiftmailer.command.new_email                                                        Symfony\Bundle\SwiftmailerBundle\Command\NewEmailCommand                                        
+  swiftmailer.command.send_email                                                       Symfony\Bundle\SwiftmailerBundle\Command\SendEmailCommand                                       
+  swiftmailer.data_collector                                                           Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector                             
+  swiftmailer.email_sender.listener                                                    Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener                              
+  swiftmailer.mailer                                                                   alias for "swiftmailer.mailer.default"                                                          
+  swiftmailer.mailer.abstract                                                          Swift_Mailer                                                                                    
+  swiftmailer.mailer.default                                                           Swift_Mailer                                                                                    
+  swiftmailer.mailer.default.plugin.messagelogger                                      Swift_Plugins_MessageLogger                                                                     
+  swiftmailer.mailer.default.spool                                                     alias for "swiftmailer.mailer.default.spool.memory"                                             
+  swiftmailer.mailer.default.spool.memory                                              Swift_MemorySpool                                                                               
+  swiftmailer.mailer.default.transport                                                 alias for "swiftmailer.mailer.default.transport.spool"                                          
+  swiftmailer.mailer.default.transport.dynamic                                         Swift_Transport                                                                                 
+  swiftmailer.mailer.default.transport.eventdispatcher                                 Swift_Events_SimpleEventDispatcher                                                              
+  swiftmailer.mailer.default.transport.real                                            alias for "swiftmailer.mailer.default.transport.dynamic"                                        
+  swiftmailer.mailer.default.transport.spool                                           Swift_Transport_SpoolTransport                                                                  
+  swiftmailer.plugin.antiflood.abstract                                                Swift_Plugins_AntiFloodPlugin                                                                   
+  swiftmailer.plugin.impersonate.abstract                                              Swift_Plugins_ImpersonatePlugin                                                                 
+  swiftmailer.plugin.messagelogger                                                     alias for "swiftmailer.mailer.default.plugin.messagelogger"                                     
+  swiftmailer.plugin.messagelogger.abstract                                            Swift_Plugins_MessageLogger                                                                     
+  swiftmailer.plugin.redirecting.abstract                                              Swift_Plugins_RedirectingPlugin                                                                 
+  swiftmailer.spool                                                                    alias for "swiftmailer.mailer.default.spool.memory"                                             
+  swiftmailer.spool.file.abstract                                                      Swift_FileSpool                                                                                 
+  swiftmailer.spool.memory.abstract                                                    Swift_MemorySpool                                                                               
+  swiftmailer.transport                                                                alias for "swiftmailer.mailer.default.transport.spool"                                          
+  swiftmailer.transport.authhandler.abstract                                           Swift_Transport_Esmtp_AuthHandler                                                               
+  swiftmailer.transport.buffer.abstract                                                Swift_Transport_StreamBuffer                                                                    
+  swiftmailer.transport.eventdispatcher.abstract                                       Swift_Events_SimpleEventDispatcher                                                              
+  swiftmailer.transport.failover                                                       Swift_Transport_FailoverTransport                                                               
+  swiftmailer.transport.null.abstract                                                  Swift_Transport_NullTransport                                                                   
+  swiftmailer.transport.real                                                           alias for "swiftmailer.mailer.default.transport.dynamic"                                        
+  swiftmailer.transport.replacementfactory                                             Swift_StreamFilters_StringReplacementFilterFactory                                              
+  swiftmailer.transport.sendmail.abstract                                              Swift_Transport_SendmailTransport                                                               
+  swiftmailer.transport.smtp.abstract                                                  Swift_Transport_EsmtpTransport                                                                  
+  swiftmailer.transport.smtp.configurator.abstract                                     Symfony\Bundle\SwiftmailerBundle\DependencyInjection\SmtpTransportConfigurator                  
+  swiftmailer.transport.spool.abstract                                                 Swift_Transport_SpoolTransport                                                                  
+  templating.helper.logout_url                                                         Symfony\Bundle\SecurityBundle\Templating\Helper\LogoutUrlHelper                                 
+  templating.helper.security                                                           Symfony\Bundle\SecurityBundle\Templating\Helper\SecurityHelper                                  
+  translation.dumper.csv                                                               Symfony\Component\Translation\Dumper\CsvFileDumper                                              
+  translation.dumper.ini                                                               Symfony\Component\Translation\Dumper\IniFileDumper                                              
+  translation.dumper.json                                                              Symfony\Component\Translation\Dumper\JsonFileDumper                                             
+  translation.dumper.mo                                                                Symfony\Component\Translation\Dumper\MoFileDumper                                               
+  translation.dumper.php                                                               Symfony\Component\Translation\Dumper\PhpFileDumper                                              
+  translation.dumper.po                                                                Symfony\Component\Translation\Dumper\PoFileDumper                                               
+  translation.dumper.qt                                                                Symfony\Component\Translation\Dumper\QtFileDumper                                               
+  translation.dumper.res                                                               Symfony\Component\Translation\Dumper\IcuResFileDumper                                           
+  translation.dumper.xliff                                                             Symfony\Component\Translation\Dumper\XliffFileDumper                                            
+  translation.dumper.yaml                                                              Symfony\Component\Translation\Dumper\YamlFileDumper                                             
+  translation.dumper.yml                                                               Symfony\Component\Translation\Dumper\YamlFileDumper                                             
+  translation.extractor                                                                Symfony\Component\Translation\Extractor\ChainExtractor                                          
+  translation.extractor.php                                                            Symfony\Component\Translation\Extractor\PhpExtractor                                            
+  translation.loader.csv                                                               Symfony\Component\Translation\Loader\CsvFileLoader                                              
+  translation.loader.dat                                                               Symfony\Component\Translation\Loader\IcuDatFileLoader                                           
+  translation.loader.ini                                                               Symfony\Component\Translation\Loader\IniFileLoader                                              
+  translation.loader.json                                                              Symfony\Component\Translation\Loader\JsonFileLoader                                             
+  translation.loader.mo                                                                Symfony\Component\Translation\Loader\MoFileLoader                                               
+  translation.loader.php                                                               Symfony\Component\Translation\Loader\PhpFileLoader                                              
+  translation.loader.po                                                                Symfony\Component\Translation\Loader\PoFileLoader                                               
+  translation.loader.qt                                                                Symfony\Component\Translation\Loader\QtFileLoader                                               
+  translation.loader.res                                                               Symfony\Component\Translation\Loader\IcuResFileLoader                                           
+  translation.loader.xliff                                                             Symfony\Component\Translation\Loader\XliffFileLoader                                            
+  translation.loader.yml                                                               Symfony\Component\Translation\Loader\YamlFileLoader                                             
+  translation.reader                                                                   Symfony\Component\Translation\Reader\TranslationReader                                          
+  translation.warmer                                                                   Symfony\Bundle\FrameworkBundle\CacheWarmer\TranslationsCacheWarmer                              
+  translation.writer                                                                   Symfony\Component\Translation\Writer\TranslationWriter                                          
+  translator                                                                           alias for "translator.data_collector"                                                           
+  translator.data_collector                                                            Symfony\Component\Translation\DataCollectorTranslator                                           
+  translator.data_collector.inner                                                      alias for "translator.default"                                                                  
+  translator.default                                                                   Symfony\Bundle\FrameworkBundle\Translation\Translator                                           
+  translator.formatter                                                                 alias for "translator.formatter.default"                                                        
+  translator.formatter.default                                                         Symfony\Component\Translation\Formatter\MessageFormatter                                        
+  translator.logging                                                                   Symfony\Component\Translation\LoggingTranslator                                                 
+  translator.selector                                                                  Symfony\Component\Translation\MessageSelector                                                   
+  translator_listener                                                                  Symfony\Component\HttpKernel\EventListener\TranslatorListener                                   
+  twig                                                                                 Twig\Environment                                                                                
+  twig.app_variable                                                                    Symfony\Bridge\Twig\AppVariable                                                                 
+  twig.cache_warmer                                                                    Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer                                  
+  twig.command.debug                                                                   Symfony\Bridge\Twig\Command\DebugCommand                                                        
+  twig.command.lint                                                                    Symfony\Bundle\TwigBundle\Command\LintCommand                                                   
+  twig.configurator.environment                                                        Symfony\Bundle\TwigBundle\DependencyInjection\Configurator\EnvironmentConfigurator              
+  twig.controller.exception                                                            Symfony\Bundle\TwigBundle\Controller\ExceptionController                                        
+  twig.controller.preview_error                                                        Symfony\Bundle\TwigBundle\Controller\PreviewErrorController                                     
+  twig.exception_listener                                                              Symfony\Component\HttpKernel\EventListener\ExceptionListener                                    
+  twig.extension.assets                                                                Symfony\Bridge\Twig\Extension\AssetExtension                                                    
+  twig.extension.code                                                                  Symfony\Bridge\Twig\Extension\CodeExtension                                                     
+  twig.extension.debug                                                                 Twig\Extension\DebugExtension                                                                   
+  twig.extension.debug.stopwatch                                                       Symfony\Bridge\Twig\Extension\StopwatchExtension                                                
+  twig.extension.dump                                                                  Symfony\Bridge\Twig\Extension\DumpExtension                                                     
+  twig.extension.form                                                                  Symfony\Bridge\Twig\Extension\FormExtension                                                     
+  twig.extension.httpfoundation                                                        Symfony\Bridge\Twig\Extension\HttpFoundationExtension                                           
+  twig.extension.httpkernel                                                            Symfony\Bridge\Twig\Extension\HttpKernelExtension                                               
+  twig.extension.logout_url                                                            Symfony\Bridge\Twig\Extension\LogoutUrlExtension                                                
+  twig.extension.profiler                                                              Symfony\Bridge\Twig\Extension\ProfilerExtension                                                 
+  twig.extension.routing                                                               Symfony\Bridge\Twig\Extension\RoutingExtension                                                  
+  twig.extension.security                                                              Symfony\Bridge\Twig\Extension\SecurityExtension                                                 
+  twig.extension.security_csrf                                                         Symfony\Bridge\Twig\Extension\CsrfExtension                                                     
+  twig.extension.trans                                                                 Symfony\Bridge\Twig\Extension\TranslationExtension                                              
+  twig.extension.weblink                                                               Symfony\Bridge\Twig\Extension\WebLinkExtension                                                  
+  twig.extension.webprofiler                                                           Symfony\Bundle\WebProfilerBundle\Twig\WebProfilerExtension                                      
+  twig.extension.yaml                                                                  Symfony\Bridge\Twig\Extension\YamlExtension                                                     
+  twig.form.engine                                                                     Symfony\Bridge\Twig\Form\TwigRendererEngine                                                     
+  twig.form.renderer                                                                   Symfony\Component\Form\FormRenderer                                                             
+  twig.loader                                                                          alias for "twig.loader.native_filesystem"                                                       
+  twig.loader.chain                                                                    Twig\Loader\ChainLoader                                                                         
+  twig.loader.filesystem                                                               alias for "twig.loader.native_filesystem"                                                       
+  twig.loader.native_filesystem                                                        Symfony\Bundle\TwigBundle\Loader\NativeFilesystemLoader                                         
+  twig.profile                                                                         Twig\Profiler\Profile                                                                           
+  twig.runtime.httpkernel                                                              Symfony\Bridge\Twig\Extension\HttpKernelRuntime                                                 
+  twig.runtime.security_csrf                                                           Symfony\Bridge\Twig\Extension\CsrfRuntime                                                       
+  twig.runtime_loader                                                                  Twig\RuntimeLoader\ContainerRuntimeLoader                                                       
+  twig.template_cache_warmer                                                           Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheWarmer                                       
+  twig.template_iterator                                                               Symfony\Bundle\TwigBundle\TemplateIterator                                                      
+  twig.translation.extractor                                                           Symfony\Bridge\Twig\Translation\TwigExtractor                                                   
+  uri_signer                                                                           Symfony\Component\HttpKernel\UriSigner                                                          
+  validate_request_listener                                                            Symfony\Component\HttpKernel\EventListener\ValidateRequestListener                              
+  validator                                                                            alias for "debug.validator"                                                                     
+  validator.builder                                                                    Symfony\Component\Validator\ValidatorBuilderInterface                                           
+  validator.email                                                                      Symfony\Component\Validator\Constraints\EmailValidator                                          
+  validator.expression                                                                 Symfony\Component\Validator\Constraints\ExpressionValidator                                     
+  validator.mapping.cache.symfony                                                      Symfony\Component\Validator\Mapping\Cache\Psr6Cache                                             
+  validator.mapping.cache_warmer                                                       Symfony\Bundle\FrameworkBundle\CacheWarmer\ValidatorCacheWarmer                                 
+  validator.mapping.class_metadata_factory                                             alias for "debug.validator"                                                                     
+  validator.validator_factory                                                          Symfony\Component\Validator\ContainerConstraintValidatorFactory                                 
+  var_dumper.cli_dumper                                                                Symfony\Component\VarDumper\Dumper\CliDumper                                                    
+  var_dumper.cloner                                                                    Symfony\Component\VarDumper\Cloner\VarCloner                                                    
+  var_dumper.command.server_dump                                                       Symfony\Component\VarDumper\Command\ServerDumpCommand                                           
+  var_dumper.dump_server                                                               Symfony\Component\VarDumper\Server\DumpServer                                                   
+  var_dumper.html_dumper                                                               Symfony\Component\VarDumper\Dumper\HtmlDumper                                                   
+  var_dumper.server_connection                                                         Symfony\Component\VarDumper\Server\Connection                                                   
+  web_profiler.controller.exception                                                    Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController                                 
+  web_profiler.controller.profiler                                                     Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController                                  
+  web_profiler.controller.router                                                       Symfony\Bundle\WebProfilerBundle\Controller\RouterController                                    
+  web_profiler.csp.handler                                                             Symfony\Bundle\WebProfilerBundle\Csp\ContentSecurityPolicyHandler                               
+  web_profiler.debug_toolbar                                                           Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener                          
+  web_server.command.server_run                                                        Symfony\Bundle\WebServerBundle\Command\ServerRunCommand                                         
+  web_server.command.server_start                                                      Symfony\Bundle\WebServerBundle\Command\ServerStartCommand                                       
+  web_server.command.server_status                                                     Symfony\Bundle\WebServerBundle\Command\ServerStatusCommand                                      
+  web_server.command.server_stop                                                       Symfony\Bundle\WebServerBundle\Command\ServerStopCommand                                        
+ ------------------------------------------------------------------------------------ ------------------------------------------------------------------------------------------------ 
+

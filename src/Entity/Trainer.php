@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -92,23 +92,23 @@ class Trainer
         return $this->trainins;
     }
 
-    public function addTrainin(Training $trainin): self
+    public function addTrainin(Training $training): self
     {
-        if (!$this->trainins->contains($trainin)) {
-            $this->trainins[] = $trainin;
-            $trainin->setTrainings($this);
+        if (! $this->trainins->contains($training)) {
+            $this->trainins[] = $training;
+            $training->setTrainings($this);
         }
 
         return $this;
     }
 
-    public function removeTrainin(Training $trainin): self
+    public function removeTrainin(Training $training): self
     {
-        if ($this->trainins->contains($trainin)) {
-            $this->trainins->removeElement($trainin);
+        if ($this->trainins->contains($training)) {
+            $this->trainins->removeElement($training);
             // set the owning side to null (unless already changed)
-            if ($trainin->getTrainings() === $this) {
-                $trainin->setTrainings(null);
+            if ($training->getTrainings() === $this) {
+                $training->setTrainings(null);
             }
         }
 
