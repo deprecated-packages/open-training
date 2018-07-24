@@ -10,6 +10,12 @@ services:
     Symplify\CodingStandard\Sniffs\CleanCode\CognitiveComplexitySniff:
         maxCognitiveComplexity: 8
 
+    Symplify\CodingStandard\Sniffs\CleanCode\ForbiddenParentClassSniff:
+        forbiddenParentClasses:
+            - 'Symfony\Bundle\FrameworkBundle\Controller\AbstractController'
+            - 'Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository'
+            - 'Doctrine\ORM\EntityRepository'
+
     # class should be Abstact or Final
     SlamCsFixer\FinalInternalClassFixer: ~
 
