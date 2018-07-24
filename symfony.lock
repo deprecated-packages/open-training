@@ -209,6 +209,15 @@
     "psr/simple-cache": {
         "version": "1.0.1"
     },
+    "rector/rector": {
+        "version": "v0.3.3"
+    },
+    "roave/better-reflection": {
+        "version": "3.1.0"
+    },
+    "roave/signature": {
+        "version": "1.0.0"
+    },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"
     },
