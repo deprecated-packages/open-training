@@ -54,6 +54,8 @@ parameters:
 
     exclude_files:
         - 'src/Form/RegisterToLectureFormType.php'
+        # missing @var and more
+        - 'src/Entity/*'
 
     skip:
         Symplify\CodingStandard\Sniffs\ControlStructure\SprintfOverContactSniff:
