@@ -3,19 +3,18 @@
 namespace App\Repository;
 
 use App\Entity\Training;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 
-/**
- * @method (Training | null) find($id, $lockMode = null, $lockVersion=null)
- * @method (Training | null) findOneBy(array $criteria, array $orderBy=null)
- * @method Training[]    findAll()
- * @method Training[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-final class TrainingRepository extends ServiceEntityRepository
+final class TrainingRepository
 {
-    public function __construct(RegistryInterface $registry)
+    /**
+     * @var EntityRepository
+     */
+    private $repository;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        parent::__construct($registry, Training::class);
+        $this->repository = $entityManager->getRepository(Training::class);
     }
 }

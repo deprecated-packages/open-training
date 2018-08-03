@@ -3,19 +3,18 @@
 namespace App\Repository;
 
 use App\Entity\Place;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 
-/**
- * @method (Place|null) find($id, $lockMode = null, $lockVersion=null)
- * @method (Place|null) findOneBy(array $criteria, array $orderBy=null)
- * @method Place[]    findAll()
- * @method Place[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-final class PlaceRepository extends ServiceEntityRepository
+final class PlaceRepository
 {
-    public function __construct(RegistryInterface $registry)
+    /**
+     * @var EntityRepository
+     */
+    private $repository;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        parent::__construct($registry, Place::class);
+        $this->repository = $entityManager->getRepository(Place::class);
     }
 }
