@@ -1,0 +1,5 @@
+easy_admin:
+    entities:
+        - App\Entity\Place
+        - App\Entity\Training
+        - App\Entity\Trainer

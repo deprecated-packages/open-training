@@ -5,7 +5,8 @@
         "php": "^7.2",
         "ext-pdo_sqlite": "*",
         "doctrine/doctrine-bundle": "^1.9",
-        "doctrine/orm": "^2.7",
+        "doctrine/orm": "^2.6",
+        "easycorp/easyadmin-bundle": "^1.17",
         "sensio/framework-extra-bundle": "^5.0",
         "symfony/asset": "^4.2",
         "symfony/dependency-injection": "^4.2",
@@ -13,10 +14,12 @@
         "symfony/flex": "^1.0",
         "symfony/form": "^4.2",
         "symfony/framework-bundle": "^4.2",
+        "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "^4.2",
         "symfony/swiftmailer-bundle": "^3.1",
-        "symfony/twig-bundle": "^4.2",
+        "symfony/templating": "^4.2",
         "symfony/twig-bridge": "^4.2",
+        "symfony/twig-bundle": "^4.2",
         "symfony/validator": "^4.2",
         "symfony/yaml": "^4.2",
         "twig/extensions": "^1.5"
@@ -26,12 +29,15 @@
         "object-calisthenics/phpcs-calisthenics-rules": "^3.3",
         "phpstan/phpstan": "^0.10.2",
         "phpunit/phpunit": "^7.2",
+        "rector/rector": "@dev",
         "shopsys/http-smoke-testing": "@dev",
         "slam/php-cs-fixer-extensions": "^1.16",
         "symfony/browser-kit": "^4.2",
         "symfony/debug-bundle": "^4.2",
+        "symfony/maker-bundle": "^1.5",
         "symfony/web-profiler-bundle": "^4.2",
         "symfony/web-server-bundle": "^4.2",
+        "symplify/coding-standard": "^4.6",
         "symplify/easy-coding-standard": "^4.5"
     },
     "autoload": {
@@ -42,18 +48,28 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests",
             "OpenLecture\\Provision\\Tests\\": "packages/Provision/tests"
         },
         "classmap": ["vendor/automattic/phpcs-neutron-standard/NeutronStandard"]
     },
     "scripts": {
         "auto-scripts": {
-            "cache:clear": "symfony-cmd"
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "check-cs": "vendor/bin/ecs check src packages",
         "fix-cs": "vendor/bin/ecs check src packages --fix",
-        "phpstan": "vendor/bin/phpstan analyse src packages --level max"
+        "phpstan": "vendor/bin/phpstan analyse src packages --level max",
+        "adminer-install": [
+            "mkdir -p public/adminer",
+            "wget https://raw.githubusercontent.com/vrana/adminer/master/plugins/plugin.php -O public/adminer/plugin.php",
+            "wget https://raw.githubusercontent.com/vrana/adminer/master/plugins/login-password-less.php -O public/adminer/login-password-less.php",
+            "wget https://raw.githubusercontent.com/vrana/adminer/master/adminer/sqlite.php -O public/adminer/index.php",
+            "wget https://github.com/vrana/adminer/releases/download/v4.6.3/adminer-4.6.3-en.php -O public/adminer/adminer.php",
+            "sed -i 's#index.php#adminer.php#g' public/adminer/index.php",
+            "sed -i 's#../plugins/##g' public/adminer/index.php",
+            "sed -i 's#PASSWORD_DEFAULT#PASSWORD_ARGON2I#g' public/adminer/index.php"
+        ]
     },
     "config": {
         "sort-packages": true

@@ -18,6 +18,8 @@ We cover all you need to organize a training, with a trainer and attendees:
 git remote add origin ...
 git pull
 composer update
+
+composer adminer-install
 ```
 
 ## Run

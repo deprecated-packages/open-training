@@ -10,6 +10,12 @@ services:
     Symplify\CodingStandard\Sniffs\CleanCode\CognitiveComplexitySniff:
         maxCognitiveComplexity: 8
 
+    Symplify\CodingStandard\Sniffs\CleanCode\ForbiddenParentClassSniff:
+        forbiddenParentClasses:
+            - 'Symfony\Bundle\FrameworkBundle\Controller\AbstractController'
+            - 'Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository'
+            - 'Doctrine\ORM\EntityRepository'
+
     # class should be Abstact or Final
     SlamCsFixer\FinalInternalClassFixer: ~
 
@@ -24,7 +30,6 @@ services:
     ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff: ~
     ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff: ~
     ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff: ~
-    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff: ~
     ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff: ~
     ObjectCalisthenics\Sniffs\NamingConventions\NoSetterSniff:
         allowedClasses:
@@ -49,6 +54,8 @@ parameters:
 
     exclude_files:
         - 'src/Form/RegisterToLectureFormType.php'
+        # missing @var and more
+        - 'src/Entity/*'
 
     skip:
         Symplify\CodingStandard\Sniffs\ControlStructure\SprintfOverContactSniff:

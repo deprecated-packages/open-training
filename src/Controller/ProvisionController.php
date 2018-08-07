@@ -7,25 +7,49 @@ use App\Request\ProvisionFormRequest;
 use OpenLecture\Provision\Data\PartnerData;
 use OpenLecture\Provision\Data\ProvisionData;
 use OpenLecture\Provision\ProvisionResolver;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * @see https://symfony.com/doc/current/controller/service.html#alternatives-to-base-controller-methods
  */
-final class ProvisionController extends AbstractController
+final class ProvisionController
 {
     /**
      * @var ProvisionResolver
      */
     private $provisionResolver;
 
-    public function __construct(ProvisionResolver $provisionResolver)
-    {
+    /**
+     * @var EngineInterface
+     */
+    private $templatingEngine;
+
+    /**
+     * @var RouterInterface
+     */
+    private $router;
+
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+
+    public function __construct(
+        ProvisionResolver $provisionResolver,
+        EngineInterface $templatingEngine,
+        RouterInterface $router,
+        FormFactoryInterface $formFactory
+    ) {
         $this->provisionResolver = $provisionResolver;
+        $this->templatingEngine = $templatingEngine;
+        $this->router = $router;
+        $this->formFactory = $formFactory;
     }
 
     /**
@@ -34,7 +58,7 @@ final class ProvisionController extends AbstractController
      */
     public function default(): Response
     {
-        return $this->render('provision/default.twig');
+        return $this->templatingEngine->renderResponse('provision/default.twig');
     }
 
     /**
@@ -52,12 +76,12 @@ final class ProvisionController extends AbstractController
 
             $this->provisionResolver->resolve($provisionData);
 
-            return $this->render('provision/result.twig', [
+            return $this->templatingEngine->renderResponse('provision/result.twig', [
                 'provisionData' => $provisionData,
             ]);
         }
 
-        return $this->render('provision/default.twig');
+        return $this->templatingEngine->renderResponse('provision/default.twig');
     }
 
     /**
@@ -66,7 +90,7 @@ final class ProvisionController extends AbstractController
      */
     public function componentProvisionForm(): Response
     {
-        return $this->render('component/provisionForm.twig', [
+        return $this->templatingEngine->renderResponse('component/provisionForm.twig', [
             'form' => $this->createProvisionForm()->createView(),
         ]);
     }
@@ -76,8 +100,8 @@ final class ProvisionController extends AbstractController
      */
     private function createProvisionForm($data = null): FormInterface
     {
-        return $this->createForm(ProvisionFormType::class, $data, [
-            'action' => $this->generateUrl('process_provision_form'),
+        return $this->formFactory->create(ProvisionFormType::class, $data, [
+            'action' => $this->router->generate('process_provision_form'),
         ]);
     }
 
