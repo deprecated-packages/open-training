@@ -16,7 +16,6 @@ yarn-error.log
 !var/SymfonyRequirements.php
 /public/build/fonts/glyphicons-*
 /public/build/images/glyphicons-*
-composer.lock
 
 # install via "composer adminer-install"
 /public/adminer
