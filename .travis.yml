@@ -23,3 +23,4 @@ script:
   - ./bin/console lint:yaml config
   # this checks that the Twig template files contain no syntax errors
   - ./bin/console lint:twig templates
+
