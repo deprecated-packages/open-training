@@ -428,6 +428,18 @@
             "ref": "f8a63faa0d9521526499c0a8f403c9964ecb0527"
         }
     },
+    "symfony/security-core": {
+        "version": "4.2-dev"
+    },
+    "symfony/security-csrf": {
+        "version": "4.2-dev"
+    },
+    "symfony/security-guard": {
+        "version": "4.2-dev"
+    },
+    "symfony/security-http": {
+        "version": "4.2-dev"
+    },
     "symfony/stopwatch": {
         "version": "v4.1.2"
     },
