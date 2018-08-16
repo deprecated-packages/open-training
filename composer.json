@@ -4,6 +4,7 @@
     "require": {
         "php": "^7.1",
         "ext-pdo_sqlite": "*",
+        "ext-intl": "*",
         "doctrine/doctrine-bundle": "^1.9",
         "doctrine/orm": "^2.6",
         "easycorp/easyadmin-bundle": "^1.17",
