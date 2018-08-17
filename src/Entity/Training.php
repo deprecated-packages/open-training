@@ -55,56 +55,97 @@ class Training
     private $trainer;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\TrainingTerm")
+     * @ORM\OneToMany(targetEntity="App\Entity\TrainingTerm", mappedBy="training")
      * @var TrainingTerm[]|ArrayCollection
      */
     private $trainingTerms = [];
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
+    public function __toString(): string
     {
         return $this->name;
     }
 
-    public function getDuration(): int
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function getDuration(): ?int
     {
         return $this->duration;
     }
 
-    public function getCapacity(): int
+    public function getCapacity(): ?int
     {
         return $this->capacity;
     }
 
-    public function getPrice(): int
+    public function getPrice(): ?int
     {
         return $this->price;
     }
 
-    public function getPlace(): Place
+    public function getPlace(): ?Place
     {
         return $this->place;
     }
 
-    public function getTrainer(): Trainer
+    public function getTrainer(): ?Trainer
     {
         return $this->trainer;
+    }
+
+    public function isActive(): ?bool
+    {
+        foreach ($this->trainingTerms as $trainingTerm) {
+            if ($trainingTerm->isActive()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
      * @return TrainingTerm[]|ArrayCollection
      */
-    public function getTrainingTerms(): array
+    public function getTrainingTerms(): iterable
     {
         return $this->trainingTerms;
     }
 
-    public function changeTrainer(Trainer $trainer): void
+    public function setTrainer(Trainer $trainer): void
     {
         $this->trainer = $trainer;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function setDuration(int $duration): void
+    {
+        $this->duration = $duration;
+    }
+
+    public function setCapacity(int $capacity): void
+    {
+        $this->capacity = $capacity;
+    }
+
+    public function setPrice(int $price): void
+    {
+        $this->price = $price;
+    }
+
+    public function setPlace(Place $place): void
+    {
+        $this->place = $place;
     }
 }

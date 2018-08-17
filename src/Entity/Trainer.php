@@ -38,22 +38,27 @@ class Trainer
     private $phone;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Training", mappedBy="trainings")
-     * @var Training[]
+     * @ORM\OneToMany(targetEntity="App\Entity\Training", mappedBy="trainer")
+     * @var Training[]|ArrayCollection
      */
-    private $trainins = [];
+    private $trainings = [];
 
     public function __construct()
     {
-        $this->trainins = new ArrayCollection();
+        $this->trainings = new ArrayCollection();
     }
 
-    public function getId(): int
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -68,29 +73,57 @@ class Trainer
         return $this->phone;
     }
 
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function setPhone(string $phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @param Training[] $trainings
+     */
+    public function setTrainings(array $trainings): void
+    {
+        $this->trainings = $trainings;
+    }
+
     /**
      * @return Collection|Training[]
      */
     public function getTrainings(): Collection
     {
-        return $this->trainins;
+        return $this->trainings;
     }
 
     public function addTraining(Training $training): void
     {
-        if (! $this->trainins->contains($training)) {
-            $this->trainins[] = $training;
-            $training->changeTrainer($this);
+        if (! $this->trainings->contains($training)) {
+            $this->trainings[] = $training;
+            $training->setTrainer($this);
         }
     }
 
     public function removeTraining(Training $training): void
     {
-        if ($this->trainins->contains($training)) {
-            $this->trainins->removeElement($training);
+        if ($this->trainings->contains($training)) {
+            $this->trainings->removeElement($training);
             // set the owning side to null (unless already changed)
             if ($training->getTrainer() === $this) {
-                $training->setTrainings(null);
+                $training->setTrainer(null);
             }
         }
     }

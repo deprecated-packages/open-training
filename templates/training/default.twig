@@ -20,7 +20,7 @@
                         <div class="flex col-md-6">
                             <h2>
                                 <a href="/training-detail/{{ training.getId() }}">
-                                    <strong>{{ training.getTitle()|raw }}</strong>
+                                    <strong>{{ training.getName()|raw }}</strong>
                                 </a>
                             </h2>
 
@@ -66,12 +66,12 @@
                 </p>
                 <p>
                     {% for training in trainings %}
-                    {% if training.isActive() == false %}
-                <li>
-                    <a href="/{{ training.getRelativeUrl() }}/">{{ training.getTitle()|raw }}</a>
-                </li>
-                {% endif %}
-                {% endfor %}
+                        {% if training.isActive() == false %}
+                            <li>
+                                <a href="/training-detail/{{ training.getId() }}/">{{ training.getName()|raw }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
                 </p>
             </div>
 

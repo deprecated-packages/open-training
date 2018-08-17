@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,7 +20,7 @@ class TrainingTerm
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime", length=255)
      * @var DateTimeInterface
      */
     private $date;
@@ -30,18 +31,38 @@ class TrainingTerm
      */
     private $training;
 
-    public function getId(): int
+    public function __toString(): string
+    {
+        return $this->date->format('Y-m-d H:i');
+    }
+
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDate(): DateTimeInterface
+    public function getDate(): ?DateTimeInterface
     {
         return $this->date;
     }
 
-    public function getTraining(): Training
+    public function getTraining(): ?Training
     {
         return $this->training;
+    }
+
+    public function setDate(DateTimeInterface $date): void
+    {
+        $this->date = $date;
+    }
+
+    public function setTraining(Training $training): void
+    {
+        $this->training = $training;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->date > new DateTime('now');
     }
 }

@@ -1,5 +1,17 @@
 easy_admin:
     entities:
-        - App\Entity\Place
-        - App\Entity\Training
-        - App\Entity\Trainer
+        Training:
+            class: 'App\Entity\Training'
+            form:
+                fields: ['name', 'duration', 'capacity', 'price', 'place', 'trainer']
+                # @todo how to exclude fields?
+                # https://github.com/EasyCorp/EasyAdminBundle/issues/589
+        TrainingTerm:
+            label: 'Training Term'
+            class: 'App\Entity\TrainingTerm'
+        Trainer:
+            class: 'App\Entity\Trainer'
+            form:
+                fields: ['name', 'email', 'phone']
+        Place:
+            class: 'App\Entity\Place'

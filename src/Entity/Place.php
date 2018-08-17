@@ -32,27 +32,32 @@ class Place
      */
     private $mapUrl;
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
+    public function __toString(): string
     {
         return $this->name;
     }
 
-    public function changeName(string $name): void
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    public function getMapUrl(): string
+    public function getMapUrl(): ?string
     {
         return $this->mapUrl;
     }
 
-    public function changeMapUrl(string $mapUrl): void
+    public function setMapUrl(string $mapUrl): void
     {
         $this->mapUrl = $mapUrl;
     }
