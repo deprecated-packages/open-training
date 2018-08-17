@@ -20,10 +20,22 @@ class TrainingTerm
     private $id;
 
     /**
-     * @ORM\Column(type="datetime", length=255)
+     * @ORM\Column(type="datetime", nullable=true)
      * @var DateTimeInterface
      */
-    private $date;
+    private $deadlineDateTime;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var DateTimeInterface
+     */
+    private $startDateTime;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var DateTimeInterface
+     */
+    private $endDateTime;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Training")
@@ -33,7 +45,7 @@ class TrainingTerm
 
     public function __toString(): string
     {
-        return $this->date->format('Y-m-d H:i');
+        return $this->startDateTime->format('Y-m-d H:i');
     }
 
     public function getId(): ?int
@@ -41,19 +53,9 @@ class TrainingTerm
         return $this->id;
     }
 
-    public function getDate(): ?DateTimeInterface
-    {
-        return $this->date;
-    }
-
     public function getTraining(): ?Training
     {
         return $this->training;
-    }
-
-    public function setDate(DateTimeInterface $date): void
-    {
-        $this->date = $date;
     }
 
     public function setTraining(Training $training): void
@@ -63,6 +65,46 @@ class TrainingTerm
 
     public function isActive(): bool
     {
-        return $this->date > new DateTime('now');
+        return $this->startDateTime > new DateTime('now');
+    }
+
+    public function getStartDateTime(): ?DateTimeInterface
+    {
+        return $this->startDateTime;
+    }
+
+    public function setStartDateTime(DateTimeInterface $startDateTime): void
+    {
+        $this->startDateTime = $startDateTime;
+    }
+
+    public function getEndDateTime(): ?DateTimeInterface
+    {
+        return $this->endDateTime;
+    }
+
+    public function setEndDateTime(DateTimeInterface $endDateTime): void
+    {
+        $this->endDateTime = $endDateTime;
+    }
+
+    public function getDeadlineDateTime(): ?DateTimeInterface
+    {
+        return $this->deadlineDateTime;
+    }
+
+    public function setDeadlineDateTime(DateTimeInterface $registrationDeadlineDateTime): void
+    {
+        $this->deadlineDateTime = $registrationDeadlineDateTime;
+    }
+
+    public function getStartDateTimeInFormat(string $format): string
+    {
+        return $this->startDateTime->format($format);
+    }
+
+    public function getEndDateTimeInFormat(string $format): string
+    {
+        return $this->endDateTime->format($format);
     }
 }

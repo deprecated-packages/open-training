@@ -3,13 +3,14 @@
 namespace App\Repository;
 
 use App\Entity\Place;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
 final class PlaceRepository
 {
     /**
-     * @var EntityRepository
+     * @var EntityRepository|ObjectRepository
      */
     private $entityRepository;
 
@@ -23,6 +24,6 @@ final class PlaceRepository
      */
     public function fetchAll(): array
     {
-        return $this->entityRepository->fetchAll();
+        return $this->entityRepository->findAll();
     }
 }

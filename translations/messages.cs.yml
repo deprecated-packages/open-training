@@ -1,0 +1,6 @@
+training:
+    next_term: 'Příští termín'
+    deadline: 'Uzavírka přihlášek'
+    add_to_calendar: 'Přidat do kalendáře'
+    trainer: 'Školí'
+    location: 'Místo'

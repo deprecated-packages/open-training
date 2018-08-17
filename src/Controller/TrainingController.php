@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Training;
 use App\Repository\TrainingRepository;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,6 +33,17 @@ final class TrainingController
     {
         return $this->templatingEngine->renderResponse('training/default.twig', [
             'trainings' => $this->trainingRepository->fetchAll(),
+        ]);
+    }
+
+    /**
+     * @Route(path="/training-detail/{training}", name="training-detail")
+     */
+    public function detail(Training $training): Response
+    {
+        return $this->templatingEngine->renderResponse('training/detail.twig', [
+            'training' => $training,
+            'trainer' => $training->getTrainer(),
         ]);
     }
 }

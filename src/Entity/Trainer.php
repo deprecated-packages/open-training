@@ -44,6 +44,12 @@ class Trainer
     private $website;
 
     /**
+     * @ORM\Column(type="text")
+     * @var string
+     */
+    private $bio;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Training", mappedBy="trainer")
      * @var Training[]|ArrayCollection
      */
@@ -127,10 +133,6 @@ class Trainer
     {
         if ($this->trainings->contains($training)) {
             $this->trainings->removeElement($training);
-            // set the owning side to null (unless already changed)
-            if ($training->getTrainer() === $this) {
-                $training->setTrainer(null);
-            }
         }
     }
 
@@ -142,5 +144,15 @@ class Trainer
     public function setWebsite(string $website): void
     {
         $this->website = $website;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function setBio(string $bio): void
+    {
+        $this->bio = $bio;
     }
 }

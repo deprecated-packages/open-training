@@ -1,9 +1,10 @@
 parameters:
-    locale: 'en'
+    locale: 'cs'
 
 services:
     _defaults:
         autowire: true
+        autoconfigure: true
         public: true
 
     App\:

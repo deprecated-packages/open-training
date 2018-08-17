@@ -12,6 +12,6 @@ easy_admin:
         Trainer:
             class: 'App\Entity\Trainer'
             form:
-                fields: ['name', 'email', 'phone']
+                fields: ['name', 'email', 'phone', 'bio']
         Place:
             class: 'App\Entity\Place'

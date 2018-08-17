@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  */
-class Training
+class TrainingReference
 {
     /**
      * @ORM\Id()
@@ -81,11 +80,6 @@ class Training
         }
 
         return null;
-    }
-
-    public function getNearestTermDeadline(): ?DateTimeInterface
-    {
-        return $this->getNearestTerm() ? $this->getNearestTerm()->getDeadlineDateTime() : null;
     }
 
     public function getId(): ?int
