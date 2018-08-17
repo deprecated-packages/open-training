@@ -21,7 +21,7 @@ services:
 
     Symplify\CodingStandard\Sniffs\DependencyInjection\NoClassInstantiationSniff:
         extraAllowedClasses:
-            - 'OpenLecture\Provision\Data\*'
+            - 'OpenTraining\Provision\Data\*'
             - 'App\Request\*Request'
 
     # object calisthenics - https://github.com/object-calisthenics/phpcs-calisthenics-rules

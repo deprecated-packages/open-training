@@ -18,6 +18,8 @@ use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
+use Symplify\PackageBuilder\DependencyInjection\CompilerPass\AutowireDefaultCompilerPass;
+use Symplify\PackageBuilder\DependencyInjection\CompilerPass\PublicDefaultCompilerPass;
 
 final class Kernel extends BaseKernel
 {
@@ -61,6 +63,9 @@ final class Kernel extends BaseKernel
         $loader->load($confDir . '/{packages}/' . $this->environment . '/**/*' . self::CONFIG_EXTENSIONS, 'glob');
         $loader->load($confDir . '/{services}' . self::CONFIG_EXTENSIONS, 'glob');
         $loader->load($confDir . '/{services}_' . $this->environment . self::CONFIG_EXTENSIONS, 'glob');
+
+//        $containerBuilder->addCompilerPass(new PublicDefaultCompilerPass());
+//        $containerBuilder->addCompilerPass(new AutowireDefaultCompilerPass());
     }
 
     protected function configureRoutes(RouteCollectionBuilder $routeCollectionBuilder): void

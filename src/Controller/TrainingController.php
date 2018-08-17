@@ -2,20 +2,13 @@
 
 namespace App\Controller;
 
-use App\Form\ProvisionFormType;
-use App\Request\ProvisionFormRequest;
-use OpenLecture\Provision\Data\PartnerData;
-use OpenLecture\Provision\Data\ProvisionData;
-use OpenLecture\Provision\ProvisionResolver;
+use App\Repository\TrainingRepository;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 
-final class LectureController
+final class TrainingController
 {
     /**
      * @var EngineInterface
@@ -26,20 +19,28 @@ final class LectureController
      * @var RouterInterface
      */
     private $router;
+    /**
+     * @var TrainingRepository
+     */
+    private $trainingRepository;
 
     public function __construct(
         EngineInterface $templatingEngine,
-        RouterInterface $router
+        RouterInterface $router,
+        TrainingRepository $trainingRepository
     ) {
         $this->templatingEngine = $templatingEngine;
         $this->router = $router;
+        $this->trainingRepository = $trainingRepository;
     }
 
     /**
-     * @Route(path="/lectures/", name="lectures")
+     * @Route(path="/trainings/", name="trainings")
      */
     public function default(): Response
     {
-        return $this->templatingEngine->renderResponse('lecture/default.twig');
+        return $this->templatingEngine->renderResponse('training/default.twig', [
+            'trainings' => $this->trainingRepository->fetchAll()
+        ]);
     }
 }

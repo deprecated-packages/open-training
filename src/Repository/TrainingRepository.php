@@ -17,4 +17,12 @@ final class TrainingRepository
     {
         $this->repository = $entityManager->getRepository(Training::class);
     }
+
+    /**
+     * @return Training[]
+     */
+    public function fetchAll(): array
+    {
+        return $this->repository->fetchAll();
+    }
 }
