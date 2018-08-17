@@ -38,6 +38,12 @@ class Trainer
     private $phone;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $website;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Training", mappedBy="trainer")
      * @var Training[]|ArrayCollection
      */
@@ -126,5 +132,15 @@ class Trainer
                 $training->setTrainer(null);
             }
         }
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebsite(string $website): void
+    {
+        $this->website = $website;
     }
 }

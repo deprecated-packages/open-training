@@ -3,7 +3,7 @@ easy_admin:
         Training:
             class: 'App\Entity\Training'
             form:
-                fields: ['name', 'duration', 'capacity', 'price', 'place', 'trainer']
+                fields: ['name', 'perex', 'duration', 'capacity', 'price', 'place', 'trainer']
                 # @todo how to exclude fields?
                 # https://github.com/EasyCorp/EasyAdminBundle/issues/589
         TrainingTerm:

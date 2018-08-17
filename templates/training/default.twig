@@ -25,25 +25,29 @@
                             </h2>
 
                             <div class="text-center pt-xl-5 pb-xl-5 border-secondary border mb-3 mt-3">
-                                <img width="120" src="/assets/images/people/{{ users[training.getUserId()].photo }}" class="img-thumbnail mr-4 rounded-circle pull-right">
+                                {#<img width="120" src="/assets/images/people/{{ users[training.getUserId()].photo }}" class="img-thumbnail mr-4 rounded-circle pull-right">#}
 
-                                <img src="{{ training.getImage() }}" width="150">
+                                {#<img src="{{ training.getImage() }}" width="150">#}
                             </div>
 
                             {% if training.getPerex() %}
                                 <p>{{ training.getPerex()|raw }}</p>
                             {% endif %}
 
-                            <p>Příští termín: <strong>{{ training.getHumanDate() }}</strong></p>
+                            {# @todo find the global date format #}
+                            <p>Příští termín: <strong>{{ training.getNearestTerm|date("Y-m-d H:i") }}</strong></p>
                             <p>
                                 Lektor:
                                 <strong>
-                                    {#{% if users[training.getUserId()].url is defined %}#}
-                                    {#<a href="{{ users[training.getUserId()].url }}">#}
-                                        {#{% endif %}#}
+                                    {% if training.getTrainerWebsite() %}
+                                        <a href="{{ training.getTrainerWebsite() }}">
+                                    {% endif %}
 
-                                        {#{{ users[training.getUserId()].name }}#}
-                                    {#</a>#}
+                                    {{ training.getTrainerName() }}
+
+                                    {% if training.getTrainerWebsite() %}
+                                        </a>
+                                    {% endif %}
                                 </strong>
                             </p>
 

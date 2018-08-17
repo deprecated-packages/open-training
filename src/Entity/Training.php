@@ -25,6 +25,12 @@ class Training
     private $name;
 
     /**
+     * @ORM\Column(type="text")
+     * @var string
+     */
+    private $perex;
+
+    /**
      * @ORM\Column(type="integer")
      * @var int
      */
@@ -59,6 +65,17 @@ class Training
      * @var TrainingTerm[]|ArrayCollection
      */
     private $trainingTerms = [];
+
+    public function getNearestTerm(): ?TrainingTerm
+    {
+        foreach ($this->trainingTerms as $trainingTerm) {
+            if ($trainingTerm->isActive()) {
+                return $trainingTerm;
+            }
+        }
+
+        return null;
+    }
 
     public function __toString(): string
     {
@@ -147,5 +164,25 @@ class Training
     public function setPlace(Place $place): void
     {
         $this->place = $place;
+    }
+
+    public function getPerex(): ?string
+    {
+        return $this->perex;
+    }
+
+    public function setPerex(string $perex): void
+    {
+        $this->perex = $perex;
+    }
+
+    public function getTrainerWebsite(): ?string
+    {
+        return $this->trainer->getWebsite();
+    }
+
+    public function getTrainerName(): ?string
+    {
+        return $this->trainer->getName();
     }
 }
