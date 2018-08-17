@@ -6,7 +6,6 @@ use App\Repository\TrainingRepository;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\RouterInterface;
 
 final class TrainingController
 {
@@ -16,21 +15,13 @@ final class TrainingController
     private $templatingEngine;
 
     /**
-     * @var RouterInterface
-     */
-    private $router;
-    /**
      * @var TrainingRepository
      */
     private $trainingRepository;
 
-    public function __construct(
-        EngineInterface $templatingEngine,
-        RouterInterface $router,
-        TrainingRepository $trainingRepository
-    ) {
+    public function __construct(EngineInterface $templatingEngine, TrainingRepository $trainingRepository)
+    {
         $this->templatingEngine = $templatingEngine;
-        $this->router = $router;
         $this->trainingRepository = $trainingRepository;
     }
 
@@ -40,7 +31,7 @@ final class TrainingController
     public function default(): Response
     {
         return $this->templatingEngine->renderResponse('training/default.twig', [
-            'trainings' => $this->trainingRepository->fetchAll()
+            'trainings' => $this->trainingRepository->fetchAll(),
         ]);
     }
 }

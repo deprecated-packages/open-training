@@ -23,6 +23,7 @@ services:
         extraAllowedClasses:
             - 'OpenTraining\Provision\Data\*'
             - 'App\Request\*Request'
+            - 'Doctrine\Common\Collections\ArrayCollection'
 
     # object calisthenics - https://github.com/object-calisthenics/phpcs-calisthenics-rules
     ObjectCalisthenics\Sniffs\ControlStructures\NoElseSniff: ~
@@ -54,9 +55,4 @@ parameters:
 
     exclude_files:
         - 'src/Form/RegisterToLectureFormType.php'
-        # missing @var and more
-        - 'src/Entity/*'
-
-    skip:
-        Symplify\CodingStandard\Sniffs\ControlStructure\SprintfOverContactSniff:
-            - 'src/Kernel.php'
+        - 'src/Kernel.php'

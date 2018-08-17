@@ -11,10 +11,18 @@ final class PlaceRepository
     /**
      * @var EntityRepository
      */
-    private $repository;
+    private $entityRepository;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->repository = $entityManager->getRepository(Place::class);
+        $this->entityRepository = $entityManager->getRepository(Place::class);
+    }
+
+    /**
+     * @return Place[]
+     */
+    public function fetchAll(): array
+    {
+        return $this->entityRepository->fetchAll();
     }
 }

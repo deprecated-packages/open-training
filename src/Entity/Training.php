@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TrainingRepository")
+ * @ORM\Entity
  */
 class Training
 {
@@ -13,113 +14,97 @@ class Training
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $duration;
 
     /**
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $capacity;
 
     /**
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Training", inversedBy="place")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Place")
+     * @var Place
      */
     private $place;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Trainer")
+     * @var Trainer
      */
     private $trainer;
 
-    public function getId()
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TrainingTerm")
+     * @var TrainingTerm[]|ArrayCollection
+     */
+    private $trainingTerms = [];
+
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDuration(): ?int
+    public function getDuration(): int
     {
         return $this->duration;
     }
 
-    public function setDuration(int $duration): self
-    {
-        $this->duration = $duration;
-
-        return $this;
-    }
-
-    public function getCapacity(): ?int
+    public function getCapacity(): int
     {
         return $this->capacity;
     }
 
-    public function setCapacity(int $capacity): self
-    {
-        $this->capacity = $capacity;
-
-        return $this;
-    }
-
-    public function getPrice(): ?int
+    public function getPrice(): int
     {
         return $this->price;
     }
 
-    public function setPrice(int $price): self
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    public function getPlace(): ?self
+    public function getPlace(): Place
     {
         return $this->place;
     }
 
-    public function setPlace(?self $place): self
-    {
-        $this->place = $place;
-
-        return $this;
-    }
-
-    public function getTrainer(): ?string
+    public function getTrainer(): Trainer
     {
         return $this->trainer;
     }
 
-    public function setTrainer(string $trainer): self
+    /**
+     * @return TrainingTerm[]|ArrayCollection
+     */
+    public function getTrainingTerms(): array
+    {
+        return $this->trainingTerms;
+    }
+
+    public function changeTrainer(Trainer $trainer): void
     {
         $this->trainer = $trainer;
-
-        return $this;
     }
 }

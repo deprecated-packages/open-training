@@ -1,14 +1,5 @@
 <?php declare(strict_types=1);
 
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace App;
 
 use Iterator;
@@ -18,8 +9,6 @@ use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
-use Symplify\PackageBuilder\DependencyInjection\CompilerPass\AutowireDefaultCompilerPass;
-use Symplify\PackageBuilder\DependencyInjection\CompilerPass\PublicDefaultCompilerPass;
 
 final class Kernel extends BaseKernel
 {
@@ -63,9 +52,6 @@ final class Kernel extends BaseKernel
         $loader->load($confDir . '/{packages}/' . $this->environment . '/**/*' . self::CONFIG_EXTENSIONS, 'glob');
         $loader->load($confDir . '/{services}' . self::CONFIG_EXTENSIONS, 'glob');
         $loader->load($confDir . '/{services}_' . $this->environment . self::CONFIG_EXTENSIONS, 'glob');
-
-//        $containerBuilder->addCompilerPass(new PublicDefaultCompilerPass());
-//        $containerBuilder->addCompilerPass(new AutowireDefaultCompilerPass());
     }
 
     protected function configureRoutes(RouteCollectionBuilder $routeCollectionBuilder): void

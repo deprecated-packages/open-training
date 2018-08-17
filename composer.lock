@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "766b7a81228339d28d6fe4dc9bc00617",
+    "content-hash": "83134457a6664c38f3e95e467bc9ac9a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -936,16 +936,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.6.2",
+            "version": "2.7.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "d2b4dd71d2a276edd65d0c170375b445f8a4a4a8"
+                "reference": "39609b855f70a87352b4b5e96044b04e73e5d465"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/d2b4dd71d2a276edd65d0c170375b445f8a4a4a8",
-                "reference": "d2b4dd71d2a276edd65d0c170375b445f8a4a4a8",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/39609b855f70a87352b4b5e96044b04e73e5d465",
+                "reference": "39609b855f70a87352b4b5e96044b04e73e5d465",
                 "shasum": ""
             },
             "require": {
@@ -974,7 +974,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6.x-dev"
+                    "dev-master": "2.7.x-dev"
                 }
             },
             "autoload": {
@@ -1014,7 +1014,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2018-07-12T20:47:13+00:00"
+            "time": "2018-08-08T18:07:29+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -8197,12 +8197,15 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "doctrine/orm": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.1",
-        "ext-pdo_sqlite": "*",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
         "ext-intl": "*"
     },
     "platform-dev": []

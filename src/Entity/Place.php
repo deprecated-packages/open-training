@@ -1,15 +1,11 @@
 <?php declare(strict_types=1);
 
-// @todo use Rectors
-// - remove fluent "self"
-// - turn Doctrine repositories to constructor injection
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PlaceRepository")
+ * @ORM\Entity
  */
 class Place
 {
@@ -18,47 +14,46 @@ class Place
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $name;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $mapUrl;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function changeName(string $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
 
-    public function getMapUrl(): ?string
+    public function getMapUrl(): string
     {
         return $this->mapUrl;
     }
 
-    public function setMapUrl(string $mapUrl): self
+    public function changeMapUrl(string $mapUrl): void
     {
         $this->mapUrl = $mapUrl;
-
-        return $this;
     }
 }

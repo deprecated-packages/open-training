@@ -11,10 +11,18 @@ final class TrainerRepository
     /**
      * @var EntityRepository
      */
-    private $repository;
+    private $entityRepository;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->repository = $entityManager->getRepository(Trainer::class);
+        $this->entityRepository = $entityManager->getRepository(Trainer::class);
+    }
+
+    /**
+     * @return Trainer[]
+     */
+    public function fetchAll(): array
+    {
+        return $this->entityRepository->fetchAll();
     }
 }
