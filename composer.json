@@ -1,5 +1,5 @@
 {
-    "name": "open-lecture/open-lecture",
+    "name": "open-training/open-training",
     "license": "MIT",
     "require": {
         "php": "^7.1",
