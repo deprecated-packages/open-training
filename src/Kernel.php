@@ -41,17 +41,7 @@ final class Kernel extends BaseKernel
 
     protected function configureContainer(ContainerBuilder $containerBuilder, LoaderInterface $loader): void
     {
-        $containerBuilder->addResource(new FileResource($this->getProjectDir() . '/config/bundles.php'));
-        $containerBuilder->setParameter('container.dumper.inline_class_loader', true);
-        $confDir = $this->getProjectDir() . '/config';
-
-        // local packages
-        $loader->load($this->getProjectDir() . '/packages/*/src/config/*' . self::CONFIG_EXTENSIONS, 'glob');
-
-        $loader->load($confDir . '/{packages}/*' . self::CONFIG_EXTENSIONS, 'glob');
-        $loader->load($confDir . '/{packages}/' . $this->environment . '/**/*' . self::CONFIG_EXTENSIONS, 'glob');
-        $loader->load($confDir . '/{services}' . self::CONFIG_EXTENSIONS, 'glob');
-        $loader->load($confDir . '/{services}_' . $this->environment . self::CONFIG_EXTENSIONS, 'glob');
+        $this->configureContainerFlex($containerBuilder, $loader);
     }
 
     protected function configureRoutes(RouteCollectionBuilder $routeCollectionBuilder): void
@@ -65,5 +55,20 @@ final class Kernel extends BaseKernel
             'glob'
         );
         $routeCollectionBuilder->import($confDir . '/{routes}' . self::CONFIG_EXTENSIONS, '/', 'glob');
+    }
+
+    private function configureContainerFlex(ContainerBuilder $containerBuilder, LoaderInterface $loader): void
+    {
+        $containerBuilder->addResource(new FileResource($this->getProjectDir() . '/config/bundles.php'));
+        $containerBuilder->setParameter('container.dumper.inline_class_loader', true);
+        $confDir = $this->getProjectDir() . '/config';
+
+        // local packages
+        $loader->load($this->getProjectDir() . '/packages/*/src/config/*' . self::CONFIG_EXTENSIONS, 'glob');
+
+        $loader->load($confDir . '/{packages}/*' . self::CONFIG_EXTENSIONS, 'glob');
+        $loader->load($confDir . '/{packages}/' . $this->environment . '/**/*' . self::CONFIG_EXTENSIONS, 'glob');
+        $loader->load($confDir . '/{services}' . self::CONFIG_EXTENSIONS, 'glob');
+        $loader->load($confDir . '/{services}_' . $this->environment . self::CONFIG_EXTENSIONS, 'glob');
     }
 }

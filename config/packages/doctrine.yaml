@@ -19,3 +19,8 @@ doctrine:
                 type: 'annotation'
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
+            # @todo register not manually here, but in a package
+            OpenTraining\Registration:
+                type: 'annotation'
+                dir: '%kernel.project_dir%/packages/Registration/src/Entity'
+                prefix: 'OpenTraining\Registration\Entity'
