@@ -10,5 +10,6 @@ training:
     capacity: 'Kapacita'
     hours: 'hodina|hodiny|hodin'
     price: 'Cena'
-    list_of_references: 'Co o školení říkají účastníci?
-    '
+    list_of_references: 'Co o školení říkají účastníci?'
+    lecture_places: 'Kde školíme'
+    over_x_references: 'Přes %count spokojených účastníků'

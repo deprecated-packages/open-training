@@ -32,7 +32,7 @@ class Training
     private $perex;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      * @var string
      */
     private $description;

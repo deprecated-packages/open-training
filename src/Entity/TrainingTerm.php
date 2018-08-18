@@ -20,7 +20,7 @@ class TrainingTerm
     private $id;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      * @var DateTimeInterface
      */
     private $deadlineDateTime;

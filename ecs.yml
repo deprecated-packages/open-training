@@ -57,3 +57,16 @@ parameters:
     exclude_files:
         - 'src/Form/RegisterToLectureFormType.php'
         - 'src/Kernel.php'
+
+    skip:
+        ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
+            # bugged
+            - 'src/Repository/TrainingTermRepository.php'
+
+        ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
+            # big entity
+            - 'src/Entity/Training.php'
+
+        ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff:
+            # big entity
+            - 'src/Entity/Training.php'

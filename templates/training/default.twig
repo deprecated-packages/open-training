@@ -83,22 +83,25 @@
             <hr>
 
             <div class="text-center">
-                <h2 class="mb-5">Přes 50 spokojených účastníků</h2>
+                <h2 class="mb-5">{{ "training.over_x_references"|transchoice(null, {'%count': referenceCount}) }}</h2>
 
-                {#<div class="row narrower">#}
-                    {#{% for training_reference in training_references %}#}
-                        {#{% if loop.counter < training_references_limit %}#}
+                <div class="row narrower">
+                    {% for reference in references %}
+                        {% if loop.index < training_max_references_to_show %}
                             {#{% include "_snippets/training/trainingReference.twig" with { "training_reference": training_reference, "active_training": trainings[training_reference.training_id] } %}#}
-                        {#{% endif %}#}
-                    {#{% endfor %}#}
-                {#</div>#}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
 
             <hr>
 
-            <div class="text-center">
+           <div class="text-center">
+                {# @todo render with.. counter #}
                 <h2>Už 9 proběhlých školení</h2>
 
+
+               {# todo copy #}
                 <p>Od <strong>května 2017</strong> jsme zorganizovali 9 veřejných školení od 5 odborných školitelů.</p>
 
                 <br>
@@ -136,11 +139,12 @@
             <hr>
 
             <div class="text-center" id="kde-skolime">
-                <h2>Kde školíme - @todo replace by places</h2>
+                <h2>{{ "training.lecture_places"|trans }}</h2>
                 <div class="row">
                     <div class="col-md-6">
                         <p>
-                            V prostorách <strong>karlínského <a href="https://www.footshop.cz/cs/">Footshopu</a></strong>.
+                            {{ place.description }}
+                            {#V prostorách <strong>karlínského <a href="https://www.footshop.cz/cs/">Footshopu</a></strong>.#}
                         </p>
 
                         {# todo <img src="/assets/images/places/footshpo.jpg" width="400" class="img-thumbnail">#}
@@ -149,6 +153,8 @@
             </div>
 
             <hr>
+
+            manual ...
 
             <div class="row">
                 <div class="col-md-6">

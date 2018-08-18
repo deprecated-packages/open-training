@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Place
 {
     /**
-     * @var int
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -19,14 +18,18 @@ class Place
     private $id;
 
     /**
-     * @var string
      * @ORM\Column(type="string", length=255)
      * @var string
      */
     private $name;
 
     /**
+     * @ORM\Column(type="text")
      * @var string
+     */
+    private $description;
+
+    /**
      * @ORM\Column(type="string", length=255)
      * @var string
      */
@@ -60,5 +63,15 @@ class Place
     public function setMapUrl(string $mapUrl): void
     {
         $this->mapUrl = $mapUrl;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
     }
 }

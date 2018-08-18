@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Training;
 use App\Repository\PlaceRepository;
+use App\Repository\TrainingReferenceRepository;
 use App\Repository\TrainingRepository;
+use App\Repository\TrainingTermRepository;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,14 +28,28 @@ final class TrainingController
      */
     private $placeRepository;
 
+    /**
+     * @var TrainingReferenceRepository
+     */
+    private $trainingReferenceRepository;
+
+    /**
+     * @var TrainingTermRepository
+     */
+    private $trainingTermRepository;
+
     public function __construct(
         EngineInterface $templatingEngine,
         TrainingRepository $trainingRepository,
-        PlaceRepository $placeRepository
+        PlaceRepository $placeRepository,
+        TrainingReferenceRepository $trainingReferenceRepository,
+        TrainingTermRepository $trainingTermRepository
     ) {
         $this->templatingEngine = $templatingEngine;
         $this->trainingRepository = $trainingRepository;
         $this->placeRepository = $placeRepository;
+        $this->trainingReferenceRepository = $trainingReferenceRepository;
+        $this->trainingTermRepository = $trainingTermRepository;
     }
 
     /**
@@ -43,6 +59,11 @@ final class TrainingController
     {
         return $this->templatingEngine->renderResponse('training/default.twig', [
             'trainings' => $this->trainingRepository->fetchAll(),
+            'place' => $this->placeRepository->getMainPlace(),
+            'references' => $this->trainingReferenceRepository->fetchAll(),
+            'referenceCount' => count($this->trainingReferenceRepository->fetchAll()),
+            'pastTerms' => $this->trainingTermRepository->fetchPast(),
+            'pastTermsCount' => count($this->trainingTermRepository->fetchPast()),
         ]);
     }
 

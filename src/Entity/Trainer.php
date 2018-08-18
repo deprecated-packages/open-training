@@ -125,21 +125,6 @@ class Trainer
         return $this->trainings;
     }
 
-//    public function addTraining(Training $training): void
-//    {
-//        if (! $this->trainings->contains($training)) {
-//            $this->trainings[] = $training;
-//            $training->setTrainer($this);
-//        }
-//    }
-//
-//    public function removeTraining(Training $training): void
-//    {
-//        if ($this->trainings->contains($training)) {
-//            $this->trainings->removeElement($training);
-//        }
-//    }
-
     public function getWebsite(): ?string
     {
         return $this->website;

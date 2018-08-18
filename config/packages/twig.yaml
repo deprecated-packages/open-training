@@ -5,6 +5,9 @@ twig:
         - 'form/layout.html.twig'
         - 'form/fields.html.twig'
 
+    globals:
+        training_max_references_to_show: '%training_max_references_to_show%'
+
     # see https://symfony.com/blog/new-in-symfony-2-7-default-date-and-number-format-configuration
     date:
         format: 'Y-m-d, H:i'
