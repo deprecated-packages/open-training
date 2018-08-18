@@ -34,8 +34,7 @@
                                 <p>{{ training.getPerex()|raw }}</p>
                             {% endif %}
 
-                            {# @todo find the global date format #}
-                            <p>Příští termín: <strong>{{ training.getNearestTerm|date("Y-m-d H:i") }}</strong></p>
+                            <p>Příští termín: <strong>{{ training.getNearestTerm|date }}</strong></p>
                             <p>
                                 Lektor:
                                 <strong>
