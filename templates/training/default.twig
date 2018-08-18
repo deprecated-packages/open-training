@@ -50,7 +50,7 @@
                                 </strong>
                             </p>
 
-                            <a href="/register-to-training/{{ training.getId() }}" class="btn btn-success btn-xs-block-only" target="_blank">
+                            <a href="{{ path('register-to-training', { 'training': training.getId() }) }}" class="btn btn-success btn-xs-block-only" target="_blank">
                                 <em class="fa fa-fw fa-handshake-o"></em>
                                 {{ "training.register"|trans }}
                             </a>
@@ -71,7 +71,7 @@
                     {% for training in trainings %}
                         {% if training.isActive() == false %}
                             <li>
-                                <a href="{{ path('training-detail', training.getId()) }}/">{{ training.getName()|raw }}</a>
+                                <a href="{{ path('training-detail', { 'training': training.getId() }) }}/">{{ training.getName()|raw }}</a>
                             </li>
                         {% endif %}
                     {% endfor %}

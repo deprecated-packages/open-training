@@ -1,0 +1,8 @@
+services:
+    OpenTraining\BetterEasyAdmin\Configuration\ExcludeFieldsConfigPass:
+        # has to run before \EasyCorp\Bundle\EasyAdminBundle\Configuration\NormalizerConfigPass
+        # because that takes "fields" values and populates actions with that
+        tags:
+             -
+                 name: "easyadmin.config_pass"
+                 priority: 120
