@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Training;
+use App\Repository\PlaceRepository;
 use App\Repository\TrainingRepository;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,10 +21,19 @@ final class TrainingController
      */
     private $trainingRepository;
 
-    public function __construct(EngineInterface $templatingEngine, TrainingRepository $trainingRepository)
-    {
+    /**
+     * @var PlaceRepository
+     */
+    private $placeRepository;
+
+    public function __construct(
+        EngineInterface $templatingEngine,
+        TrainingRepository $trainingRepository,
+        PlaceRepository $placeRepository
+    ) {
         $this->templatingEngine = $templatingEngine;
         $this->trainingRepository = $trainingRepository;
+        $this->placeRepository = $placeRepository;
     }
 
     /**
@@ -44,6 +54,7 @@ final class TrainingController
         return $this->templatingEngine->renderResponse('training/detail.twig', [
             'training' => $training,
             'trainer' => $training->getTrainer(),
+            'place' => $this->placeRepository->getMainPlace(),
         ]);
     }
 }

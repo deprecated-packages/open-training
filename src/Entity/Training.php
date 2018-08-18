@@ -32,6 +32,12 @@ class Training
     private $perex;
 
     /**
+     * @ORM\Column(type="text")
+     * @var string
+     */
+    private $description;
+
+    /**
      * @ORM\Column(type="integer")
      * @var int
      */
@@ -66,6 +72,18 @@ class Training
      * @var TrainingTerm[]|ArrayCollection
      */
     private $trainingTerms = [];
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TrainingReference", mappedBy="training")
+     * @var TrainingReference[]|ArrayCollection
+     */
+    private $trainingReferences = [];
+
+    public function __construct()
+    {
+        $this->trainingReferences = new ArrayCollection();
+        $this->trainingTerms = new ArrayCollection();
+    }
 
     public function __toString(): string
     {
@@ -190,5 +208,28 @@ class Training
     public function getTrainerName(): ?string
     {
         return $this->trainer->getName();
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    public function hasReferences(): bool
+    {
+        return (bool) count($this->trainingReferences);
+    }
+
+    /**
+     * @return TrainingReference[]|ArrayCollection
+     */
+    public function getReferences()
+    {
+        return $this->trainingReferences;
     }
 }

@@ -1,24 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    {# @todo lecture reference controller and render() forAll() / forTrainer() #}
-    {#<div class="col-md-6 text-left mb-4">#}
-    {#{% if lecture_reference.url %}#}
-    {#<a href="{{ lecture_reference.url }}">{% if lecture_reference.name is defined %}{{ lecture_reference.name }}{% else %}účastník{% endif %}</a>#}
-    {#{% endif %}#}
-
-    {#{% if is_lecture_detail is defined %}{% else %}na školení <a href="/{{ active_lecture.getRelativeUrl() }}">{{ active_lecture.getName() }}</a>:{% endif %}#}
-
-    {#<p class="mt-3">#}
-    {#<em>„{{ lecture_reference.reference|raw }}“</em>#}
-    {#</p>#}
-    {#</div>#}
-
-    {#<div class="container">#}
+    <div class="container">
         {#{% if training.getImage() %}#}
-            {#<p class="text-center mt-5 d-none d-sm-block">#}
+            <p class="text-center mt-5 d-none d-sm-block">
                 {#<img src="{{ training.getImage() }}" alt="" width="150">#}
-            {#</p>#}
+            </p>
         {#{% endif %}#}
 
         <h1 class="text-center">{{ training.getName() }}</h1>
@@ -27,14 +14,14 @@
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-4">
-                        {#<img width="100" src="/assets/images/people/{{ users[training.getUserId()].photo }}" alt="" class="img-thumbnail mb-3 rounded-circle pull-left mr-3">#}
+                        {#<img width="100" src="/assets/images/people/{{ trainer.getPhoto() }}" alt="" class="img-thumbnail mb-3 rounded-circle pull-left mr-3">#}
                     </div>
 
                     <div class="col-md">
                         {{ "training.trainer"|trans }}
 
                         {% if trainer.getWebsite() %}
-                            <a href="{{ users[training.getUserId()].url }}">
+                            <a href="{{ trainer.getWebsite() }}">
                         {% endif %}
 
                         {{ trainer.getName() }}
@@ -57,7 +44,7 @@
                     <strong>{{ training.getNearestTerm()|date }}</strong>
 
                     <br>
-
+ě
                     <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Lecture:+{{ training.getName() }}&dates={{ training.getNearestTerm()|google_calendar_link }}&details=Details:+https://pehapkari.cz/
 {#{{ training.getRelativeUrl() }}#}
 &ctz=Europe/Prague&location=
@@ -76,200 +63,87 @@
                 {% endif %}
 
                 <p>
-                    {{ "training.location"|trans }}
-                    {#{% if training.isInEnglish() %}Location{% else %}Místo{% endif %}:#}
-                    {#<strong>#}
-                        {#<a href="{{ places[training.getPlaceId()].google_maps_link }}">#}
-                            {#{{ places[training.getPlaceId()].name }}#}
-                        {#</a>#}
-                    {#</strong>#}
+                    {{ "training.location"|trans }}:
+                    <strong>
+                        <a href="{{ place.getMapUrl() }}">{{ place.getName() }}</a>
+                    </strong>
                 </p>
 
-                {#<p>#}
-                    {#{% if training.isInEnglish() %}Duration{% else %}Délka{% endif %}:#}
-                    {#<strong>{{ training.getDuration() }}</strong>#}
-                {#</p>#}
+                <p>
+                    {{ "training.duration"|trans }}:
+                    <strong>{{ training.getDuration() }}</strong>
+                    {{ "training.hours"|transchoice(training.getDuration()) }}
+                </p>
 
-                {#<p>#}
-                    {#{% if training.isInEnglish() %}Capacity{% else %}Kapacita{% endif %}:#}
-                    {#<strong>{{ training.getCapacity() }}</strong>#}
-                {#</p>#}
+                <p>
+                    {{ "training.capacity"|trans }}:
+                    <strong>{{ training.getCapacity() }}</strong>
+                </p>
 
-                {#<p>#}
-                    {#{% if training.isInEnglish() %}Price{% else %}Cena{% endif %}:#}
-                    {#<strong>{{ training.getPrice()|number_format(0, ",", " ") }} Kč</strong>#}
-                {#</p>#}
+                <p>
+                    {{ "training.price"|trans }}:
+                    <strong>{{ training.getPrice()|number_format }} Kč</strong>
+                </p>
 
-                {#{% if users[training.getUserId()].phone is defined %}#}
-                    {#<p>#}
-                        {#<a href="tel:{{ users[training.getUserId()].phone }}">#}
-                            {#{{ users[training.getUserId()].phone }}#}
-                        {#</a>#}
-                    {#</p>#}
-                {#{% endif %}#}
+                {% if trainer.getPhone() %}
+                    <p>
+                        <a href="tel:{{ trainer.getPhone() }}">
+                            {# @todo separate in groups by 3 #}
+                            {{ trainer.getPhone() }}
+                        </a>
+                    </p>
+                {% endif %}
 
-                {#{% if users[training.getUserId()].email is defined %}#}
-                    {#<p>#}
-                        {#<a href="mailto:{{ users[training.getUserId()].email }}">#}
-                            {#{{ users[training.getUserId()].email }}#}
-                        {#</a>#}
-                    {#</p>#}
-                {#{% endif %}#}
+                {% if trainer.getEmail() %}
+                    <p>
+                        <a href="mailto:{{ trainer.getEmail() }}">
+                            {{ trainer.getEmail() }}
+                        </a>
+                    </p>
+                {% endif %}
 
-                {#{% if training.isActive() %}#}
-                    {#<div class="text-center">#}
-                        {#<a href="{{ training.getFormLink() }}" class="btn btn-success mt-4 mb-5">#}
-                            {#<em class="fa fa-fw fa-handshake-o"></em>#}
-                            {#&nbsp;#}
-                            {#{% if training.isInEnglish() %}Sign Up{% else %}Přihlásit se{% endif %}#}
-                        {#</a>#}
-                    {#</div>#}
-                {#{% endif %}#}
-            {#</div>#}
+                {% if training.isActive() %}
+                    <div class="text-center">
+                        <a href="register-to-training/{{ training.getId() }}" class="btn btn-success mt-4 mb-5">
+                            <em class="fa fa-fw fa-handshake-o"></em>
+                            &nbsp;
+                            {{ "training.register"|trans }}
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
 
-            {#<div class="col-md-8">#}
-                {#{{ training.getContent()|raw }}#}
+            <div class="col-md-8">
+                {{ training.getDescription()|raw }}
 
-                {#{% if training.isInReferences(training_references) %}#}
-                    {#<hr>#}
+                {% if training.hasReferences() %}
+                    <hr>
 
-                    {#<h3>Co o školení říkají účastníci?</h3>#}
+                    <h3>{{ "training.list_of_references"|trans }}</h3>
 
-                    {#<div class="row">#}
-                        {#{% for training_reference in training_references %}#}
-                            {#{% if training_reference.training_id == training.getId() %}#}
-                                {#{% include "_snippets/training/trainingReference.twig" with { "training_reference": training_reference, "active_training": training, "is_training_detail": true } %}#}
-                            {#{% endif %}#}
-                        {#{% endfor %}#}
-                    {#</div>#}
-                {#{% endif %}#}
-            {#</div>#}
-        {#</div>#}
-    {#</div>#}
-    {#<div class="container">#}
-        {#{% if training.getImage() %}#}
-            {#<p class="text-center mt-5 d-none d-sm-block">#}
-                {#<img src="{{ training.getImage() }}" alt="" width="150">#}
-            {#</p>#}
-        {#{% endif %}#}
+                    <div class="row">
+                        {% for reference in training.getReferences() %}
+                            <div class="col-md-6 text-left mb-4">
+                                {% if reference.getUrl() %}
+                                    <a href="{{ reference.getUrl() }}">
+                                {% endif %}
 
-        {#<h1 class="text-center">{{ training.getName() }}</h1>#}
+                                {{ reference.name }}
 
-        {#<div class="row">#}
-            {#<div class="col-md-4">#}
-                {#<div class="row">#}
-                    {#<div class="col-md-4">#}
-                        {#<img width="100" src="/assets/images/people/{{ users[training.getUserId()].photo }}" alt="" class="img-thumbnail mb-3 rounded-circle pull-left mr-3">#}
-                    {#</div>#}
+                                {% if reference.getUrl() %}
+                                    </a>
+                                {% endif %}
 
-                    {#<div class="col-md">#}
-                        {#<strong>{% if training.isInEnglish() %}Lector{% else %}Školí{% endif %}:</strong>#}
+                                <p class="mt-3">
+                                    <em>„{{ reference.getText()|raw }}“</em>
+                                </p>
+                            </div>
 
-                        {#{% if users[training.getUserId()].url is defined %}#}
-                            {#<a href="{{ users[training.getUserId()].url }}">{{ users[training.getUserId()].name }}</a>#}
-                        {#{% endif %}#}
-
-                        {#{% if users[training.getUserId()].bio is defined %}#}
-                            {#<p>„{{ users[training.getUserId()].bio|raw }}“</p>#}
-                        {#{% endif %}#}
-                    {#</div>#}
-                {#</div>#}
-
-                {#<div class="clearfix"></div>#}
-
-                {#{% if training.isActive() %}#}
-                    {#<p>#}
-                    {#{% if training.isInEnglish() %}Next term{% else %}Příští termín{% endif %}:#}
-                    {#<strong>{{ training.getHumanDate() }}</strong>#}
-
-                    {#{% if training.showAddToCalendarLink() %}#}
-                        {#<br>#}
-                        {#<a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Lecture:+{{ training.getName() }}&dates={{ training.getStartInCalendarFormat() }}/{{ training.getEndInCalendarFormat() }}&details=Details:+https://pehapkari.cz/{{ training.getRelativeUrl() }}&ctz=Europe/Prague&location=#}
-    {#{{ places[training.getPlaceId()].google_calendar_place }}&sf=true&output=xml">#}
-                            {#<em class="fa fa-fw fa-calendar"></em>#}
-                            {#{% if training.isInEnglish() %}Add to Calendar{% else %}Přidat do kalendáře{% endif %}#}
-                        {#</a>#}
-                    {#{% endif %}#}
-
-                    {#{% if training.getDeadlineDateTime() %}#}
-                    {#<div class="card border-warning">#}
-                        {#<div class="card-body bg-warning">#}
-                            {#Uzavírka přihlášek:#}
-                            {#<strong>{{ training.getDeadlineDateTime()|date("j. n.") }}</strong>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#{% endif %}#}
-                    {#</p>#}
-                {#{% endif %}#}
-
-                {#<p>#}
-                    {#{% if training.isInEnglish() %}Location{% else %}Místo{% endif %}:#}
-                    {#<strong>#}
-                        {#<a href="{{ places[training.getPlaceId()].google_maps_link }}">#}
-                            {#{{ places[training.getPlaceId()].name }}#}
-                        {#</a>#}
-                    {#</strong>#}
-                {#</p>#}
-                {#<p>#}
-                    {#{% if training.isInEnglish() %}Duration{% else %}Délka{% endif %}:#}
-                    {#<strong>{{ training.getDuration() }}</strong>#}
-                {#</p>#}
-
-                {#<p>#}
-                    {#{% if training.isInEnglish() %}Capacity{% else %}Kapacita{% endif %}:#}
-                    {#<strong>{{ training.getCapacity() }}</strong>#}
-                {#</p>#}
-
-                {#<p>#}
-                    {#{% if training.isInEnglish() %}Price{% else %}Cena{% endif %}:#}
-                    {#<strong>{{ training.getPrice()|number_format(0, ",", " ") }} Kč</strong>#}
-                {#</p>#}
-
-                {#{% if users[training.getUserId()].phone is defined %}#}
-                    {#<p>#}
-                        {#<a href="tel:{{ users[training.getUserId()].phone }}">#}
-                            {#{{ users[training.getUserId()].phone }}#}
-                        {#</a>#}
-                    {#</p>#}
-                {#{% endif %}#}
-
-                {#{% if users[training.getUserId()].email is defined %}#}
-                    {#<p>#}
-                        {#<a href="mailto:{{ users[training.getUserId()].email }}">#}
-                            {#{{ users[training.getUserId()].email }}#}
-                        {#</a>#}
-                    {#</p>#}
-                {#{% endif %}#}
-
-                {#{% if training.isActive() %}#}
-                    {#<div class="text-center">#}
-                        {#<a href="{{ training.getFormLink() }}" class="btn btn-success mt-4 mb-5">#}
-                            {#<em class="fa fa-fw fa-handshake-o"></em>#}
-                            {#&nbsp;#}
-                            {#{% if training.isInEnglish() %}Sign Up{% else %}Přihlásit se{% endif %}#}
-                        {#</a>#}
-                    {#</div>#}
-                {#{% endif %}#}
-            {#</div>#}
-
-            {#<div class="col-md-8">#}
-                {#{{ training.getContent()|raw }}#}
-
-                {#{% if training.isInReferences(training_references) %}#}
-                    {#<hr>#}
-
-                    {#<h3>Co o školení říkají účastníci?</h3>#}
-
-                    {#<div class="row">#}
-                        {#{% for training_reference in training_references %}#}
-                            {#{% if training_reference.training_id == training.getId() %}#}
-                                {#{% include "_snippets/training/trainingReference.twig" with { "training_reference": training_reference, "active_training": training, "is_training_detail": true } %}#}
-                            {#{% endif %}#}
-                        {#{% endfor %}#}
-                    {#</div>#}
-                {#{% endif %}#}
-            {#</div>#}
-        {#</div>#}
-    {#</div>#}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
 

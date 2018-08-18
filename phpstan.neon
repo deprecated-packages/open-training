@@ -1,9 +1,10 @@
 parameters:
     ignoreErrors:
-        - '#Method App\\Repository\\(.*?)Repository::(.*?)\(\) should return array<App\\Entity\\(.*?)> but returns (.*?)<object>#'
+        - '#Method App\\Repository\\(.*?)Repository::(.*?)\(\) should return (.*?) but returns ((.*?)<object>|object\|null)#'
 
         # Doctrine
         - '#Property (.*?)\(Doctrine\\Common\\Collections\\ArrayCollection&iterable<(.*?)>\) does not accept (.*?)#'
+
 
         # false positive
         - '#Cannot call method getDeadlineDateTime\(\) on App\\Entity\\TrainingTerm\|null#'

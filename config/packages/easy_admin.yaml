@@ -9,6 +9,9 @@ easy_admin:
         TrainingTerm:
             label: 'Training Term'
             class: 'App\Entity\TrainingTerm'
+        TrainingReference:
+            label: 'Training References'
+            class: 'App\Entity\TrainingReference'
         Trainer:
             class: 'App\Entity\Trainer'
             form:

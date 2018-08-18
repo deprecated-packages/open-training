@@ -4,3 +4,11 @@ training:
     add_to_calendar: 'Přidat do kalendáře'
     trainer: 'Školí'
     location: 'Místo'
+    register: 'Přihlásit se'
+    traings_without_active_terms: 'Další kurzy, které teď nemají vypsaný termín'
+    duration: 'Délka'
+    capacity: 'Kapacita'
+    hours: 'hodina|hodiny|hodin'
+    price: 'Cena'
+    list_of_references: 'Co o školení říkají účastníci?
+    '

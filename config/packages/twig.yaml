@@ -5,11 +5,12 @@ twig:
         - 'form/layout.html.twig'
         - 'form/fields.html.twig'
 
+    # see https://symfony.com/blog/new-in-symfony-2-7-default-date-and-number-format-configuration
     date:
         format: 'Y-m-d, H:i'
 
     # see https://symfony.com/blog/new-in-symfony-2-7-default-date-and-number-format-configuration
     number_format:
-        decimals: 2
+        decimals: 0
         decimal_point: ','
         thousands_separator: ' '

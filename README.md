@@ -11,7 +11,7 @@ We cover all you need to organize a training, with a trainer and attendees:
 - [ ] let people buy and attend a training
 - [ ] automated invoicing
 - [ ] automated emails to all parties
-- compute provision for the trainer and the organizer
+- [x] compute provision for the trainer and the organizer
 
 ## Instal
 
@@ -32,10 +32,6 @@ bin/console assets:install --env=prod --no-debug
 
 composer adminer-install
 ```
-
-```
-```
-
 
 ## Run
 

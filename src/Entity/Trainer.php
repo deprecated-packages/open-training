@@ -55,6 +55,10 @@ class Trainer
      */
     private $trainings = [];
 
+    // https://symfony.com/doc/master/bundles/EasyAdminBundle/integration/vichuploaderbundle.html
+    // * @todo how to do file?
+    // private $photo;
+
     public function __construct()
     {
         $this->trainings = new ArrayCollection();
@@ -121,20 +125,20 @@ class Trainer
         return $this->trainings;
     }
 
-    public function addTraining(Training $training): void
-    {
-        if (! $this->trainings->contains($training)) {
-            $this->trainings[] = $training;
-            $training->setTrainer($this);
-        }
-    }
-
-    public function removeTraining(Training $training): void
-    {
-        if ($this->trainings->contains($training)) {
-            $this->trainings->removeElement($training);
-        }
-    }
+//    public function addTraining(Training $training): void
+//    {
+//        if (! $this->trainings->contains($training)) {
+//            $this->trainings[] = $training;
+//            $training->setTrainer($this);
+//        }
+//    }
+//
+//    public function removeTraining(Training $training): void
+//    {
+//        if ($this->trainings->contains($training)) {
+//            $this->trainings->removeElement($training);
+//        }
+//    }
 
     public function getWebsite(): ?string
     {

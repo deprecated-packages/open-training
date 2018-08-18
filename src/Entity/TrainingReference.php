@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,62 +24,22 @@ class TrainingReference
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $url;
+
+    /**
      * @ORM\Column(type="text")
      * @var string
      */
-    private $perex;
+    private $text;
 
     /**
-     * @ORM\Column(type="integer")
-     * @var int
+     * @ORM\ManyToOne(targetEntity="App\Entity\Training", inversedBy="trainingReferences")
+     * @var Training
      */
-    private $duration;
-
-    /**
-     * @ORM\Column(type="integer")
-     * @var int
-     */
-    private $capacity;
-
-    /**
-     * @ORM\Column(type="integer")
-     * @var int
-     */
-    private $price;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Place")
-     * @var Place
-     */
-    private $place;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Trainer")
-     * @var Trainer
-     */
-    private $trainer;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\TrainingTerm", mappedBy="training")
-     * @var TrainingTerm[]|ArrayCollection
-     */
-    private $trainingTerms = [];
-
-    public function __toString(): string
-    {
-        return $this->name;
-    }
-
-    public function getNearestTerm(): ?TrainingTerm
-    {
-        foreach ($this->trainingTerms as $trainingTerm) {
-            if ($trainingTerm->isActive()) {
-                return $trainingTerm;
-            }
-        }
-
-        return null;
-    }
+    private $training;
 
     public function getId(): ?int
     {
@@ -92,97 +51,38 @@ class TrainingReference
         return $this->name;
     }
 
-    public function getDuration(): ?int
-    {
-        return $this->duration;
-    }
-
-    public function getCapacity(): ?int
-    {
-        return $this->capacity;
-    }
-
-    public function getPrice(): ?int
-    {
-        return $this->price;
-    }
-
-    public function getPlace(): ?Place
-    {
-        return $this->place;
-    }
-
-    public function getTrainer(): ?Trainer
-    {
-        return $this->trainer;
-    }
-
-    public function isActive(): ?bool
-    {
-        foreach ($this->trainingTerms as $trainingTerm) {
-            if ($trainingTerm->isActive()) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @return TrainingTerm[]|ArrayCollection
-     */
-    public function getTrainingTerms(): iterable
-    {
-        return $this->trainingTerms;
-    }
-
-    public function setTrainer(Trainer $trainer): void
-    {
-        $this->trainer = $trainer;
-    }
-
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    public function setDuration(int $duration): void
+    public function getText(): ?string
     {
-        $this->duration = $duration;
+        return $this->text;
     }
 
-    public function setCapacity(int $capacity): void
+    public function setText(string $text): void
     {
-        $this->capacity = $capacity;
+        $this->text = $text;
     }
 
-    public function setPrice(int $price): void
+    public function getTraining(): ?Training
     {
-        $this->price = $price;
+        return $this->training;
     }
 
-    public function setPlace(Place $place): void
+    public function setTraining(Training $training): void
     {
-        $this->place = $place;
+        $this->training = $training;
     }
 
-    public function getPerex(): ?string
+    public function getUrl(): ?string
     {
-        return $this->perex;
+        return $this->url;
     }
 
-    public function setPerex(string $perex): void
+    public function setUrl(string $url): void
     {
-        $this->perex = $perex;
-    }
-
-    public function getTrainerWebsite(): ?string
-    {
-        return $this->trainer->getWebsite();
-    }
-
-    public function getTrainerName(): ?string
-    {
-        return $this->trainer->getName();
+        $this->url = $url;
     }
 }
