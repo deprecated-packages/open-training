@@ -56,7 +56,7 @@ class TrainingTerm
 
     public function getTrainingName(): string
     {
-        return $this->training->getName();
+        return (string) $this->training->getName();
     }
 
     public function getId(): ?int

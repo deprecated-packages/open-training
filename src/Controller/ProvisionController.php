@@ -6,7 +6,6 @@ use App\Entity\TrainingTerm;
 use App\Repository\TrainingTermRepository;
 use OpenTraining\Provision\ProvisionResolver;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -34,12 +33,10 @@ final class ProvisionController
     public function __construct(
         ProvisionResolver $provisionResolver,
         EngineInterface $templatingEngine,
-        FormFactoryInterface $formFactory,
         TrainingTermRepository $trainingTermRepository
     ) {
         $this->provisionResolver = $provisionResolver;
         $this->templatingEngine = $templatingEngine;
-        $this->formFactory = $formFactory;
         $this->trainingTermRepository = $trainingTermRepository;
     }
 
