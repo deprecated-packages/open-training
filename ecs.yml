@@ -61,7 +61,7 @@ parameters:
     skip:
         ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
             # bugged
-            - 'src/Repository/TrainingTermRepository.php'
+            - '*/Repository/*Repository.php'
 
         ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
             # big entity

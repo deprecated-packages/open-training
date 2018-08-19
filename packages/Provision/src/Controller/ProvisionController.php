@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Controller;
+namespace OpenTraining\Provision\Controller;
 
 use App\Entity\TrainingTerm;
 use App\Repository\TrainingTermRepository;

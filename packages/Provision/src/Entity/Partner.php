@@ -48,14 +48,14 @@ class Partner
      */
     private $expenses = [];
 
-    public function __toString(): string
-    {
-        return $this->name;
-    }
-
     public function __construct()
     {
         $this->expenses = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 
     public function getId(): ?int

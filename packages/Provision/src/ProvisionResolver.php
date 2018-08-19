@@ -6,7 +6,6 @@ use App\Entity\TrainingTerm;
 //use OpenTraining\Provision\Data\PartnerData;
 //use OpenTraining\Provision\Data\ProvisionData;
 use OpenTraining\Provision\Repository\PartnerExpenseRepository;
-use OpenTraining\Provision\Repository\PartnerExpensesRepository;
 use OpenTraining\Provision\Repository\PartnerRepository;
 
 final class ProvisionResolver
@@ -25,18 +24,21 @@ final class ProvisionResolver
      * @var PartnerRepository
      */
     private $partnerRepository;
+
     /**
      * @var PartnerExpenseRepository
      */
     private $partnerExpenseRepository;
 
-    public function __construct(PartnerRepository $partnerRepository, PartnerExpenseRepository $partnerExpenseRepository)
-    {
+    public function __construct(
+        PartnerRepository $partnerRepository,
+        PartnerExpenseRepository $partnerExpenseRepository
+    ) {
         $this->partnerRepository = $partnerRepository;
         $this->partnerExpenseRepository = $partnerExpenseRepository;
     }
 
-    public function resolveForTrainingTerm(TrainingTerm $trainingTerm)
+    public function resolveForTrainingTerm(TrainingTerm $trainingTerm): void
     {
         $income = $trainingTerm->getIncome();
         $expense = $this->partnerExpenseRepository->getExpenseForTrainingTerm($trainingTerm);

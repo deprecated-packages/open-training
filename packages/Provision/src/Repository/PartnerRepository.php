@@ -7,7 +7,6 @@ use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use OpenTraining\Provision\Entity\Partner;
-use OpenTraining\Provision\Entity\PartnerExpense;
 
 final class PartnerRepository
 {
@@ -47,5 +46,4 @@ final class PartnerRepository
         dump($result);
         die;
     }
-
 }
