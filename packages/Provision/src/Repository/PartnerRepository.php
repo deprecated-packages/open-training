@@ -3,21 +3,23 @@
 namespace OpenTraining\Provision\Repository;
 
 use App\Entity\TrainingTerm;
-use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr;
+use Doctrine\ORM\Query\Expr\Join;
 use OpenTraining\Provision\Entity\Partner;
+use OpenTraining\Provision\Entity\PartnerExpense;
 
 final class PartnerRepository
 {
     /**
-     * @var ObjectRepository|EntityRepository
+     * @var EntityRepository
      */
-    private $objectRepository;
+    private $entityRepository;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->objectRepository = $entityManager->getRepository(Partner::class);
+        $this->entityRepository = $entityManager->getRepository(Partner::class);
     }
 
     /**
@@ -25,7 +27,7 @@ final class PartnerRepository
      */
     public function fetchAll(): array
     {
-        return $this->objectRepository->findAll();
+        return $this->entityRepository->findAll();
     }
 
     /**
@@ -35,9 +37,19 @@ final class PartnerRepository
      */
     public function fetchAllWithExpenseForTrainingTerm(TrainingTerm $trainingTerm): array
     {
-        $result = $this->objectRepository->createQueryBuilder('p')
-            ->leftJoin('p.expenses', 'pe')
-            ->select('p.name, SUM(pe.amount) AS expense')
+        $exprBuilder = new Expr();
+
+        $result = $this->entityRepository->createQueryBuilder('p')
+            ->leftJoin(
+                PartnerExpense::class,
+                'pe',
+                Join::WITH,
+                $exprBuilder->andX(
+                    $exprBuilder->eq('pe.trainingTerm', $trainingTerm->getId()),
+                    $exprBuilder->eq('pe.partner', 'p.id')
+                )
+            )
+            ->select('p, SUM(pe.amount) AS expense')
             ->groupBy('p.id')
             ->getQuery()
             ->getResult();

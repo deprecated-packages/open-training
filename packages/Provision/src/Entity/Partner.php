@@ -2,8 +2,6 @@
 
 namespace OpenTraining\Provision\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,17 +39,6 @@ class Partner
      * compared to others, who only pays partially.
      */
     private $isOfficialInvoicer = false;
-
-    /**
-     * @ORM\OneToMany(targetEntity="OpenTraining\Provision\Entity\PartnerExpense", mappedBy="partner")
-     * @var PartnerExpense[]|ArrayCollection
-     */
-    private $expenses = [];
-
-    public function __construct()
-    {
-        $this->expenses = new ArrayCollection();
-    }
 
     public function __toString(): string
     {
@@ -96,21 +83,5 @@ class Partner
     public function setIsOfficialInvoicer(bool $isOfficialInvoicer): void
     {
         $this->isOfficialInvoicer = $isOfficialInvoicer;
-    }
-
-    /**
-     * @return ArrayCollection|PartnerExpense[]
-     */
-    public function getExpenses(): Collection
-    {
-        return $this->expenses;
-    }
-
-    /**
-     * @param PartnerExpense[] $expenses
-     */
-    public function setExpenses(array $expenses): void
-    {
-        $this->expenses = $expenses;
     }
 }

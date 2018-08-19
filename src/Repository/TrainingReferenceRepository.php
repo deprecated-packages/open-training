@@ -3,14 +3,13 @@
 namespace App\Repository;
 
 use App\Entity\TrainingReference;
-use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
 final class TrainingReferenceRepository
 {
     /**
-     * @var EntityRepository|ObjectRepository
+     * @var EntityRepository
      */
     private $entityRepository;
 
