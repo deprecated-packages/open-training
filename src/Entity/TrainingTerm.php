@@ -4,7 +4,10 @@ namespace App\Entity;
 
 use DateTime;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use OpenTraining\Registration\Entity\TrainingRegistration;
 
 /**
  * @ORM\Entity
@@ -44,10 +47,21 @@ class TrainingTerm
     private $training;
 
     /**
+     * @ORM\OneToMany(targetEntity="OpenTraining\Registration\Entity\TrainingRegistration", mappedBy="trainingTerm")
+     * @var TrainingRegistration[]|Collection
+     */
+    private $registrations;
+
+    /**
      * @ORM\Column(type="boolean")
      * @var bool
      */
     private $isProvisionPaid;
+
+    public function __construct()
+    {
+        $this->registrations = new ArrayCollection();
+    }
 
     public function __toString(): string
     {
@@ -127,5 +141,18 @@ class TrainingTerm
     public function setIsProvisionPaid(bool $isProvisionPaid): void
     {
         $this->isProvisionPaid = $isProvisionPaid;
+    }
+
+    public function getIncome(): float
+    {
+        $income = 0.0;
+
+        foreach ($this->registrations as $registration) {
+            if ($registration->isPaid()) {
+                $income += $this->training->getPrice();
+            }
+        }
+
+        return $income;
     }
 }

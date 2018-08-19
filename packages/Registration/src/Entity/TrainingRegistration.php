@@ -2,6 +2,7 @@
 
 namespace OpenTraining\Registration\Entity;
 
+use App\Entity\TrainingTerm;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +41,18 @@ class TrainingRegistration
      * @var string
      */
     private $note;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TrainingTerm", inversedBy="registrations")
+     * @var TrainingTerm
+     */
+    private $trainingTerm;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @var bool
+     */
+    private $isPaid;
 
     public function getId(): int
     {
@@ -89,5 +102,25 @@ class TrainingRegistration
     public function setNote(string $note): void
     {
         $this->note = $note;
+    }
+
+    public function getTrainingTerm(): ?TrainingTerm
+    {
+        return $this->trainingTerm;
+    }
+
+    public function setTrainingTerm(TrainingTerm $trainingTerm): void
+    {
+        $this->trainingTerm = $trainingTerm;
+    }
+
+    public function isPaid(): ?bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid): void
+    {
+        $this->isPaid = $isPaid;
     }
 }

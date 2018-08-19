@@ -2,8 +2,12 @@
 
 namespace OpenTraining\Provision;
 
-use OpenTraining\Provision\Data\PartnerData;
-use OpenTraining\Provision\Data\ProvisionData;
+use App\Entity\TrainingTerm;
+//use OpenTraining\Provision\Data\PartnerData;
+//use OpenTraining\Provision\Data\ProvisionData;
+use OpenTraining\Provision\Repository\PartnerExpenseRepository;
+use OpenTraining\Provision\Repository\PartnerExpensesRepository;
+use OpenTraining\Provision\Repository\PartnerRepository;
 
 final class ProvisionResolver
 {
@@ -17,13 +21,30 @@ final class ProvisionResolver
      */
     private const TAX_BALANCER_LECTOR = 0.11;
 
-    public function resolve(ProvisionData $provisionData): void
-    {
-        $profit = $provisionData->getIncomeAmount();
+    /**
+     * @var PartnerRepository
+     */
+    private $partnerRepository;
+    /**
+     * @var PartnerExpenseRepository
+     */
+    private $partnerExpenseRepository;
 
-        foreach ($provisionData->getPartnerDatas() as $partnerData) {
-            $profit -= $partnerData->getExpenses();
-        }
+    public function __construct(PartnerRepository $partnerRepository, PartnerExpenseRepository $partnerExpenseRepository)
+    {
+        $this->partnerRepository = $partnerRepository;
+        $this->partnerExpenseRepository = $partnerExpenseRepository;
+    }
+
+    public function resolveForTrainingTerm(TrainingTerm $trainingTerm)
+    {
+        $income = $trainingTerm->getIncome();
+        $expense = $this->partnerExpenseRepository->getExpenseForTrainingTerm($trainingTerm);
+        $profit = $income - $expense;
+
+        $partnersWithExpense = $this->partnerRepository->fetchAllWithExpenseForTrainingTerm($trainingTerm);
+        dump($partnersWithExpense);
+        die;
 
         foreach ($provisionData->getPartnerDatas() as $partnerData) {
             $partnerProfit = $this->resolvePartnerProfit($profit, $partnerData);

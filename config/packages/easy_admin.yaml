@@ -16,3 +16,17 @@ easy_admin:
                 exclude_fields: ['trainings']
         Place:
             class: 'App\Entity\Place'
+
+        Registration:
+            label: 'Registrations'
+            class: 'OpenTraining\Registration\Entity\TrainingRegistration'
+
+        Expense:
+            label: 'Expenses'
+            class: 'OpenTraining\Provision\Entity\PartnerExpense'
+
+        Provision:
+            label: 'Provision Partner'
+            class: 'OpenTraining\Provision\Entity\Partner'
+            form:
+                exclude_fields: ['expenses']

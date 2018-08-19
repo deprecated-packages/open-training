@@ -19,7 +19,7 @@ final class PartnerExpense
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="OpenTraining\Provision\Entity\Partner", mappedBy="expenses")
+     * @ORM\ManyToOne(targetEntity="OpenTraining\Provision\Entity\Partner", inversedBy="expenses")
      * @var Partner
      */
     private $partner;

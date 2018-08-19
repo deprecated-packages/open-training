@@ -24,3 +24,8 @@ doctrine:
                 type: 'annotation'
                 dir: '%kernel.project_dir%/packages/Registration/src/Entity'
                 prefix: 'OpenTraining\Registration\Entity'
+
+            OpenTraining\Provision:
+                type: 'annotation'
+                dir: '%kernel.project_dir%/packages/Provision/src/Entity'
+                prefix: 'OpenTraining\Provision\Entity'

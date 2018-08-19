@@ -3,12 +3,13 @@
 namespace OpenTraining\Provision\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  */
-final class Partner
+class Partner
 {
     /**
      * @ORM\Id()
@@ -39,7 +40,7 @@ final class Partner
      * He or she has main tax handicap, as he or she pays taxes for whole amount,
      * compared to others, who only pays partially.
      */
-    private $isOfficialInvoicer;
+    private $isOfficialInvoicer = false;
 
     /**
      * @ORM\OneToMany(targetEntity="OpenTraining\Provision\Entity\PartnerExpense", mappedBy="partner")
@@ -47,7 +48,17 @@ final class Partner
      */
     private $expenses = [];
 
-    public function getId(): int
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+    public function __construct()
+    {
+        $this->expenses = new ArrayCollection();
+    }
+
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -57,7 +68,7 @@ final class Partner
         $this->id = $id;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -67,7 +78,7 @@ final class Partner
         $this->name = $name;
     }
 
-    public function getProvisionRate(): float
+    public function getProvisionRate(): ?float
     {
         return $this->provisionRate;
     }
@@ -90,7 +101,7 @@ final class Partner
     /**
      * @return ArrayCollection|PartnerExpense[]
      */
-    public function getExpenses(): ArrayCollection
+    public function getExpenses(): Collection
     {
         return $this->expenses;
     }

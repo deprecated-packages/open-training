@@ -55,15 +55,11 @@ final class ProvisionController
      */
     public function detail(TrainingTerm $trainingTerm): Response
     {
+        dump($this->provisionResolver->resolveForTrainingTerm($trainingTerm));
+        die;
+
         return $this->templatingEngine->renderResponse('provision/detail.twig', [
             'trainingTerm' => $trainingTerm,
-            // $this->provisionResolver->resolveForTraining(/*$provisionData*/);
         ]);
     }
-
-//         @todo move to database
-//        $partnerDatas[] = new PartnerData('Lector', 0.5, $provisionFormRequest->getOwnerExpenses());
-//        $partnerDatas[] = new PartnerData('Organizer', 0.25, $provisionFormRequest->getOwnerExpenses());
-//        $partnerDatas[] = new PartnerData('Owner', 0.25, $provisionFormRequest->getOwnerExpenses());
-//        return new ProvisionData($provisionFormRequest->getIncomeAmount(), $partnerDatas);
 }
