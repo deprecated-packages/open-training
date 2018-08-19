@@ -2,20 +2,16 @@
 
 namespace App\Controller;
 
-use App\Form\ProvisionFormType;
-use App\Request\ProvisionFormRequest;
-use OpenTraining\Provision\Data\PartnerData;
-use OpenTraining\Provision\Data\ProvisionData;
+use App\Entity\TrainingTerm;
+use App\Repository\TrainingTermRepository;
 use OpenTraining\Provision\ProvisionResolver;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\RouterInterface;
 
 /**
+ * @todo admin only
  * @see https://symfony.com/doc/current/controller/service.html#alternatives-to-base-controller-methods
  */
 final class ProvisionController
@@ -31,87 +27,46 @@ final class ProvisionController
     private $templatingEngine;
 
     /**
-     * @var RouterInterface
+     * @var TrainingTermRepository
      */
-    private $router;
-
-    /**
-     * @var FormFactoryInterface
-     */
-    private $formFactory;
+    private $trainingTermRepository;
 
     public function __construct(
         ProvisionResolver $provisionResolver,
         EngineInterface $templatingEngine,
-        RouterInterface $router,
-        FormFactoryInterface $formFactory
+        FormFactoryInterface $formFactory,
+        TrainingTermRepository $trainingTermRepository
     ) {
         $this->provisionResolver = $provisionResolver;
         $this->templatingEngine = $templatingEngine;
-        $this->router = $router;
         $this->formFactory = $formFactory;
+        $this->trainingTermRepository = $trainingTermRepository;
     }
 
     /**
      * @Route(path="/provision/", name="provision")
-     * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
     public function default(): Response
     {
-        return $this->templatingEngine->renderResponse('provision/default.twig');
-    }
-
-    /**
-     * @Route(path="/provision-result", methods={"POST"}, name="process_provision_form")
-     */
-    public function processProvisionForm(Request $request): Response
-    {
-        $provisionFormRequest = new ProvisionFormRequest();
-
-        $form = $this->createProvisionForm($provisionFormRequest);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $provisionData = $this->createProvisionDataFromProvisionFormRequest($provisionFormRequest);
-
-            $this->provisionResolver->resolve($provisionData);
-
-            return $this->templatingEngine->renderResponse('provision/result.twig', [
-                'provisionData' => $provisionData,
-            ]);
-        }
-
-        return $this->templatingEngine->renderResponse('provision/default.twig');
-    }
-
-    /**
-     * Call in Twig template as:
-     * {{ render(controller('App\\Controller\\ProvisionController::componentProvisionForm()')) }}
-     */
-    public function componentProvisionForm(): Response
-    {
-        return $this->templatingEngine->renderResponse('component/provisionForm.twig', [
-            'form' => $this->createProvisionForm()->createView(),
+        return $this->templatingEngine->renderResponse('provision/default.twig', [
+            'termsToPayProvision' => $this->trainingTermRepository->fetchFinishedWithoutPaidProvision(),
         ]);
     }
 
     /**
-     * @param mixed|null $data
+     * @Route(path="/provision-detail/{trainingTerm}", name="provision-detail")
      */
-    private function createProvisionForm($data = null): FormInterface
+    public function detail(TrainingTerm $trainingTerm): Response
     {
-        return $this->formFactory->create(ProvisionFormType::class, $data, [
-            'action' => $this->router->generate('process_provision_form'),
+        return $this->templatingEngine->renderResponse('provision/detail.twig', [
+            'trainingTerm' => $trainingTerm,
+            // $this->provisionResolver->resolveForTraining(/*$provisionData*/);
         ]);
     }
 
-    private function createProvisionDataFromProvisionFormRequest(
-        ProvisionFormRequest $provisionFormRequest
-    ): ProvisionData {
-        $partnerDatas[] = new PartnerData('Lector', 0.5, $provisionFormRequest->getOwnerExpenses());
-        $partnerDatas[] = new PartnerData('Organizer', 0.25, $provisionFormRequest->getOwnerExpenses());
-        $partnerDatas[] = new PartnerData('Owner', 0.25, $provisionFormRequest->getOwnerExpenses());
-
-        return new ProvisionData($provisionFormRequest->getIncomeAmount(), $partnerDatas);
-    }
+//         @todo move to database
+//        $partnerDatas[] = new PartnerData('Lector', 0.5, $provisionFormRequest->getOwnerExpenses());
+//        $partnerDatas[] = new PartnerData('Organizer', 0.25, $provisionFormRequest->getOwnerExpenses());
+//        $partnerDatas[] = new PartnerData('Owner', 0.25, $provisionFormRequest->getOwnerExpenses());
+//        return new ProvisionData($provisionFormRequest->getIncomeAmount(), $partnerDatas);
 }

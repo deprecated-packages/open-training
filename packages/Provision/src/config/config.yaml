@@ -1,11 +1,7 @@
-parameters:
-    training_max_references_to_show: 3
-
 services:
     _defaults:
         autowire: true
+        public: true
 
     OpenTraining\Provision\:
         resource: '../'
-        exclude:
-            - '../Data'

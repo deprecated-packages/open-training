@@ -43,9 +43,20 @@ class TrainingTerm
      */
     private $training;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @var bool
+     */
+    private $isProvisionPaid;
+
     public function __toString(): string
     {
         return $this->startDateTime->format('Y-m-d H:i');
+    }
+
+    public function getTrainingName(): string
+    {
+        return $this->training->getName();
     }
 
     public function getId(): ?int
@@ -106,5 +117,15 @@ class TrainingTerm
     public function getEndDateTimeInFormat(string $format): string
     {
         return $this->endDateTime->format($format);
+    }
+
+    public function isProvisionPaid(): ?bool
+    {
+        return $this->isProvisionPaid;
+    }
+
+    public function setIsProvisionPaid(bool $isProvisionPaid): void
+    {
+        $this->isProvisionPaid = $isProvisionPaid;
     }
 }

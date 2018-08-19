@@ -8,6 +8,8 @@ use OpenTraining\Provision\Data\ProvisionData;
 final class ProvisionResolver
 {
     /**
+     * @todo reword to database approach
+     *
      * To cover dual tax payments by main invoicing entity
      * 10 000  profit ~= 2000 taxes
      *

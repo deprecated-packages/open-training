@@ -62,8 +62,8 @@ final class TrainingController
             'place' => $this->placeRepository->getMainPlace(),
             'references' => $this->trainingReferenceRepository->fetchAll(),
             'referenceCount' => count($this->trainingReferenceRepository->fetchAll()),
-            'pastTerms' => $this->trainingTermRepository->fetchPast(),
-            'pastTermsCount' => count($this->trainingTermRepository->fetchPast()),
+            'pastTerms' => $this->trainingTermRepository->fetchFinished(),
+            'pastTermsCount' => count($this->trainingTermRepository->fetchFinished()),
         ]);
     }
 

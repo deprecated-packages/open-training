@@ -22,10 +22,22 @@ final class TrainingTermRepository
     /**
      * @return TrainingTerm[]
      */
-    public function fetchPast(): array
+    public function fetchFinished(): array
     {
         return $this->entityRepository->createQueryBuilder('tt')
             ->where('tt.endDateTime < CURRENT_DATE()')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return TrainingTerm[]
+     */
+    public function fetchFinishedWithoutPaidProvision(): array
+    {
+        return $this->entityRepository->createQueryBuilder('tt')
+            ->where('tt.endDateTime < CURRENT_DATE()')
+            ->andWhere('tt.isProvisionPaid = false')
             ->getQuery()
             ->getResult();
     }

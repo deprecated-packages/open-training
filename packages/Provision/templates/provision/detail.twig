@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h2>Computed the Provision</h2>
+
+    {{ trainingTerm.getTrainingName() }}
+    {{ trainingTerm.getStartDateTime()|date("Y-m-d") }}
+
+    {#<table class="table table-bordered">#}
+        {#<thead class="thead-inverse">#}
+            {#<tr>#}
+                {#<th>Who?</th>#}
+                {#<th>How much?</th>#}
+            {#</tr>#}
+        {#</thead>#}
+        {#{% for partnerData in provisionData.getPartnerDatas() %}#}
+            {#<tr>#}
+                {#<td>{{ partnerData.getName() }}</td>#}
+                {#<td>{{ partnerData.getProfit()|number_format }} Kč</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+    {#</table>#}
+{% endblock %}

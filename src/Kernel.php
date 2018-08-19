@@ -41,6 +41,9 @@ final class Kernel extends BaseKernel
 
     protected function configureContainer(ContainerBuilder $containerBuilder, LoaderInterface $loader): void
     {
+        // local packages
+        $loader->load($this->getProjectDir() . '/packages/*/src/config/*' . self::CONFIG_EXTENSIONS, 'glob');
+
         $this->configureContainerFlex($containerBuilder, $loader);
     }
 
@@ -62,9 +65,6 @@ final class Kernel extends BaseKernel
         $containerBuilder->addResource(new FileResource($this->getProjectDir() . '/config/bundles.php'));
         $containerBuilder->setParameter('container.dumper.inline_class_loader', true);
         $confDir = $this->getProjectDir() . '/config';
-
-        // local packages
-        $loader->load($this->getProjectDir() . '/packages/*/src/config/*' . self::CONFIG_EXTENSIONS, 'glob');
 
         $loader->load($confDir . '/{packages}/*' . self::CONFIG_EXTENSIONS, 'glob');
         $loader->load($confDir . '/{packages}/' . $this->environment . '/**/*' . self::CONFIG_EXTENSIONS, 'glob');
