@@ -1,5 +1,18 @@
 easy_admin:
     entities:
-        - App\Entity\Place
-        - App\Entity\Training
-        - App\Entity\Trainer
+        Training:
+            class: 'App\Entity\Training'
+            form:
+                exclude_fields: ['trainingReferences', 'trainingTerms']
+        TrainingTerm:
+            label: 'Training Term'
+            class: 'App\Entity\TrainingTerm'
+        TrainingReference:
+            label: 'Training References'
+            class: 'App\Entity\TrainingReference'
+        Trainer:
+            class: 'App\Entity\Trainer'
+            form:
+                exclude_fields: ['trainings']
+        Place:
+            class: 'App\Entity\Place'

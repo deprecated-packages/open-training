@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace OpenLecture\Provision\Data;
+namespace OpenTraining\Provision\Data;
 
 final class PartnerData
 {

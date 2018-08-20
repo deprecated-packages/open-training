@@ -1,8 +1,11 @@
+parameters:
+    training_max_references_to_show: 3
+
 services:
     _defaults:
         autowire: true
 
-    OpenLecture\Provision\:
+    OpenTraining\Provision\:
         resource: '../'
         exclude:
             - '../Data'

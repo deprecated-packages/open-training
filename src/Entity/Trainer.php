@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TrainerRepository")
+ * @ORM\Entity
  */
 class Trainer
 {
@@ -15,32 +15,58 @@ class Trainer
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $phone;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Training", mappedBy="trainings")
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
-    private $trainins;
+    private $website;
+
+    /**
+     * @ORM\Column(type="text")
+     * @var string
+     */
+    private $bio;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Training", mappedBy="trainer")
+     * @var Training[]|ArrayCollection
+     */
+    private $trainings = [];
+
+    // https://symfony.com/doc/master/bundles/EasyAdminBundle/integration/vichuploaderbundle.html
+    // * @todo how to do file?
+    // private $photo;
 
     public function __construct()
     {
-        $this->trainins = new ArrayCollection();
+        $this->trainings = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -53,23 +79,9 @@ class Trainer
         return $this->name;
     }
 
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
     public function getEmail(): ?string
     {
         return $this->email;
-    }
-
-    public function setEmail(?string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
     }
 
     public function getPhone(): ?string
@@ -77,41 +89,59 @@ class Trainer
         return $this->phone;
     }
 
-    public function setPhone(?string $phone): self
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function setPhone(string $phone): void
     {
         $this->phone = $phone;
+    }
 
-        return $this;
+    /**
+     * @param Training[] $trainings
+     */
+    public function setTrainings(array $trainings): void
+    {
+        $this->trainings = $trainings;
     }
 
     /**
      * @return Collection|Training[]
      */
-    public function getTrainins(): Collection
+    public function getTrainings(): Collection
     {
-        return $this->trainins;
+        return $this->trainings;
     }
 
-    public function addTrainin(Training $training): self
+    public function getWebsite(): ?string
     {
-        if (! $this->trainins->contains($training)) {
-            $this->trainins[] = $training;
-            $training->setTrainings($this);
-        }
-
-        return $this;
+        return $this->website;
     }
 
-    public function removeTrainin(Training $training): self
+    public function setWebsite(string $website): void
     {
-        if ($this->trainins->contains($training)) {
-            $this->trainins->removeElement($training);
-            // set the owning side to null (unless already changed)
-            if ($training->getTrainings() === $this) {
-                $training->setTrainings(null);
-            }
-        }
+        $this->website = $website;
+    }
 
-        return $this;
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function setBio(string $bio): void
+    {
+        $this->bio = $bio;
     }
 }

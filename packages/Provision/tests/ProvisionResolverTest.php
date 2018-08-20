@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace OpenLecture\Provision\Tests;
+namespace OpenTraining\Provision\Tests;
 
 use Iterator;
-use OpenLecture\Provision\Data\PartnerData;
-use OpenLecture\Provision\Data\ProvisionData;
-use OpenLecture\Provision\ProvisionResolver;
+use OpenTraining\Provision\Data\PartnerData;
+use OpenTraining\Provision\Data\ProvisionData;
+use OpenTraining\Provision\ProvisionResolver;
 use PHPUnit\Framework\TestCase;
 
 final class ProvisionResolverTest extends TestCase

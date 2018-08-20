@@ -3,18 +3,27 @@
 namespace App\Repository;
 
 use App\Entity\Trainer;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
 final class TrainerRepository
 {
     /**
-     * @var EntityRepository
+     * @var EntityRepository|ObjectRepository
      */
-    private $repository;
+    private $entityRepository;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->repository = $entityManager->getRepository(Trainer::class);
+        $this->entityRepository = $entityManager->getRepository(Trainer::class);
+    }
+
+    /**
+     * @return Trainer[]
+     */
+    public function fetchAll(): array
+    {
+        return $this->entityRepository->findAll();
     }
 }

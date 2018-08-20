@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace OpenLecture\Provision;
+namespace OpenTraining\Provision;
 
-use OpenLecture\Provision\Data\PartnerData;
-use OpenLecture\Provision\Data\ProvisionData;
+use OpenTraining\Provision\Data\PartnerData;
+use OpenTraining\Provision\Data\ProvisionData;
 
 final class ProvisionResolver
 {

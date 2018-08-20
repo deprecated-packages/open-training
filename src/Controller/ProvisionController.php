@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Form\ProvisionFormType;
 use App\Request\ProvisionFormRequest;
-use OpenLecture\Provision\Data\PartnerData;
-use OpenLecture\Provision\Data\ProvisionData;
-use OpenLecture\Provision\ProvisionResolver;
+use OpenTraining\Provision\Data\PartnerData;
+use OpenTraining\Provision\Data\ProvisionData;
+use OpenTraining\Provision\ProvisionResolver;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;

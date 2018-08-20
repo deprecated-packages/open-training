@@ -1,0 +1,11 @@
+<div class="col-md-6 text-left mb-4">
+    {% if reference.url %}
+        <a href="{{ reference.url }}">{% if reference.name is defined %}{{ reference.name }}{% else %}účastník{% endif %}</a>
+    {% endif %}
+
+    {% if is_training_detail is defined %}{% else %}na školení <a href="/{{ training.getRelativeUrl() }}">{{ training.getTitle() }}</a>:{% endif %}
+
+    <p class="mt-3">
+        <em>„{{ reference.text|raw }}“</em>
+    </p>
+</div>

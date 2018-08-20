@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f480d780a19ba5f1f60bd09796ed0c71",
+    "content-hash": "83134457a6664c38f3e95e467bc9ac9a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -936,16 +936,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.6.2",
+            "version": "2.7.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "d2b4dd71d2a276edd65d0c170375b445f8a4a4a8"
+                "reference": "39609b855f70a87352b4b5e96044b04e73e5d465"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/d2b4dd71d2a276edd65d0c170375b445f8a4a4a8",
-                "reference": "d2b4dd71d2a276edd65d0c170375b445f8a4a4a8",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/39609b855f70a87352b4b5e96044b04e73e5d465",
+                "reference": "39609b855f70a87352b4b5e96044b04e73e5d465",
                 "shasum": ""
             },
             "require": {
@@ -974,7 +974,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6.x-dev"
+                    "dev-master": "2.7.x-dev"
                 }
             },
             "autoload": {
@@ -1014,7 +1014,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2018-07-12T20:47:13+00:00"
+            "time": "2018-08-08T18:07:29+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -1410,33 +1410,34 @@
         },
         {
             "name": "ocramius/proxy-manager",
-            "version": "2.1.1",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ocramius/ProxyManager.git",
-                "reference": "e18ac876b2e4819c76349de8f78ccc8ef1554cd7"
+                "reference": "81d53b2878f1d1c40ad27270e64b51798485dfc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ocramius/ProxyManager/zipball/e18ac876b2e4819c76349de8f78ccc8ef1554cd7",
-                "reference": "e18ac876b2e4819c76349de8f78ccc8ef1554cd7",
+                "url": "https://api.github.com/repos/Ocramius/ProxyManager/zipball/81d53b2878f1d1c40ad27270e64b51798485dfc5",
+                "reference": "81d53b2878f1d1c40ad27270e64b51798485dfc5",
                 "shasum": ""
             },
             "require": {
-                "ocramius/package-versions": "^1.1.1",
-                "php": "^7.1.0",
-                "zendframework/zend-code": "^3.1.0"
+                "ocramius/package-versions": "^1.1.3",
+                "php": "^7.2.0",
+                "zendframework/zend-code": "^3.3.0"
             },
             "require-dev": {
-                "couscous/couscous": "^1.5.2",
+                "couscous/couscous": "^1.6.1",
                 "ext-phar": "*",
-                "humbug/humbug": "dev-master@DEV",
-                "nikic/php-parser": "^3.0.4",
+                "humbug/humbug": "1.0.0-RC.0@RC",
+                "nikic/php-parser": "^3.1.1",
+                "padraic/phpunit-accelerator": "dev-master@DEV",
                 "phpbench/phpbench": "^0.12.2",
-                "phpstan/phpstan": "^0.6.4",
-                "phpunit/phpunit": "^5.6.4",
-                "phpunit/phpunit-mock-objects": "^3.4.1",
-                "squizlabs/php_codesniffer": "^2.7.0"
+                "phpstan/phpstan": "dev-master#856eb10a81c1d27c701a83f167dc870fd8f4236a as 0.9.999",
+                "phpstan/phpstan-phpunit": "dev-master#5629c0a1f4a9c417cb1077cf6693ad9753895761",
+                "phpunit/phpunit": "^6.4.3",
+                "squizlabs/php_codesniffer": "^2.9.1"
             },
             "suggest": {
                 "ocramius/generated-hydrator": "To have very fast object to array to object conversion for ghost objects",
@@ -1475,7 +1476,7 @@
                 "proxy pattern",
                 "service proxies"
             ],
-            "time": "2017-05-04T11:12:50+00:00"
+            "time": "2017-11-16T23:22:31+00:00"
         },
         {
             "name": "pagerfanta/pagerfanta",
@@ -6382,186 +6383,6 @@
             "time": "2018-08-07T06:44:28+00:00"
         },
         {
-            "name": "rector/rector",
-            "version": "v0.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rectorphp/rector.git",
-                "reference": "596d829b1b0175159e9a4f76720ff29040bc039d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/596d829b1b0175159e9a4f76720ff29040bc039d",
-                "reference": "596d829b1b0175159e9a4f76720ff29040bc039d",
-                "shasum": ""
-            },
-            "require": {
-                "jean85/pretty-package-versions": "^1.1",
-                "nette/robot-loader": "^3.0",
-                "nette/utils": "^2.5",
-                "nikic/php-parser": "^4.0.1",
-                "php": "^7.1",
-                "roave/better-reflection": "^3.0",
-                "sebastian/diff": "^3.0",
-                "symfony/console": "^3.4|^4.0",
-                "symfony/dependency-injection": "^3.4|^4.0",
-                "symfony/finder": "^3.4|^4.0",
-                "symplify/better-phpdoc-parser": "^4.3"
-            },
-            "require-dev": {
-                "humbug/php-scoper": "dev-master",
-                "phpstan/phpstan-shim": "^0.9",
-                "phpunit/phpunit": "^7.1",
-                "slam/php-cs-fixer-extensions": "^1.15",
-                "symplify/easy-coding-standard": "^4.3",
-                "tracy/tracy": "^2.4"
-            },
-            "bin": [
-                "bin/rector",
-                "bin/rector_bootstrap.php"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Rector\\": "src",
-                    "Rector\\BetterReflection\\": "packages/BetterReflection/src",
-                    "Rector\\ConsoleDiffer\\": "packages/ConsoleDiffer/src",
-                    "Rector\\BetterPhpDocParser\\": "packages/BetterPhpDocParser/src",
-                    "Rector\\NodeTypeResolver\\": "packages/NodeTypeResolver/src",
-                    "Rector\\NodeTraverserQueue\\": "packages/NodeTraverserQueue/src",
-                    "Rector\\Symfony\\": "packages/Symfony/src",
-                    "Rector\\Sensio\\": "packages/Sensio/src",
-                    "Rector\\Nette\\": "packages/Nette/src",
-                    "Rector\\Sylius\\": "packages/Sylius/src",
-                    "Rector\\PHPUnit\\": "packages/PHPUnit/src",
-                    "Rector\\PhpParser\\": "packages/PhpParser/src",
-                    "Rector\\Doctrine\\": "packages/Doctrine/src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tomas Votruba",
-                    "email": "tomas.vot@gmail.com",
-                    "homepage": "https://tomasvotruba.com"
-                },
-                {
-                    "name": "Rector Contributors",
-                    "homepage": "https://github.com/rectorphp/rector/graphs/contributors"
-                },
-                {
-                    "name": "Gabriel Caruso",
-                    "email": "carusogabriel34@gmail.com",
-                    "homepage": "https://github.com/carusogabriel"
-                }
-            ],
-            "description": "Upgrade your application with CLI without any deprecations knowledge.",
-            "time": "2018-06-02T13:23:23+00:00"
-        },
-        {
-            "name": "roave/better-reflection",
-            "version": "3.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Roave/BetterReflection.git",
-                "reference": "c022c6c998251a5af8a51ca9b8662c323a183bf2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Roave/BetterReflection/zipball/c022c6c998251a5af8a51ca9b8662c323a183bf2",
-                "reference": "c022c6c998251a5af8a51ca9b8662c323a183bf2",
-                "shasum": ""
-            },
-            "require": {
-                "nikic/php-parser": "^4.0.0",
-                "php": ">=7.1.0,<7.3.0",
-                "phpdocumentor/reflection-docblock": "^4.1.1",
-                "phpdocumentor/type-resolver": "^0.4.0",
-                "roave/signature": "^1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.0.0"
-            },
-            "suggest": {
-                "composer/composer": "Required to use the ComposerSourceLocator"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Roave\\BetterReflection\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "James Titcumb",
-                    "email": "james@asgrim.com",
-                    "homepage": "https://github.com/asgrim"
-                },
-                {
-                    "name": "Gary Hockin",
-                    "email": "gary@roave.com",
-                    "homepage": "https://github.com/geeh"
-                },
-                {
-                    "name": "Jaroslav Hanslík",
-                    "email": "kukulich@kukulich.cz",
-                    "homepage": "https://github.com/kukulich"
-                },
-                {
-                    "name": "Marco Pivetta",
-                    "email": "ocramius@gmail.com",
-                    "homepage": "https://ocramius.github.io/"
-                }
-            ],
-            "description": "Better Reflection - an improved code reflection API",
-            "time": "2018-07-31T06:56:38+00:00"
-        },
-        {
-            "name": "roave/signature",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Roave/Signature.git",
-                "reference": "bed4ecbdd7f312ab6bb39561ac191f520bcee386"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Roave/Signature/zipball/bed4ecbdd7f312ab6bb39561ac191f520bcee386",
-                "reference": "bed4ecbdd7f312ab6bb39561ac191f520bcee386",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0|^7.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Roave\\Signature\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Sign and verify stuff",
-            "time": "2017-02-17T13:53:21+00:00"
-        },
-        {
             "name": "sebastian/code-unit-reverse-lookup",
             "version": "1.0.1",
             "source": {
@@ -7123,58 +6944,6 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2016-10-03T07:35:21+00:00"
-        },
-        {
-            "name": "shopsys/http-smoke-testing",
-            "version": "v7.0.0-alpha4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shopsys/http-smoke-testing.git",
-                "reference": "d6bf479352bb63e972c6e962f040c3c465ff2757"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/http-smoke-testing/zipball/d6bf479352bb63e972c6e962f040c3c465ff2757",
-                "reference": "d6bf479352bb63e972c6e962f040c3c465ff2757",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.6|^7.0",
-                "phpunit/phpunit": "^3.7.15|^4.0|^5.0|^6.0|^7.0",
-                "symfony/dependency-injection": "^2.5|^3.0|^4.0",
-                "symfony/framework-bundle": "^2.5|^3.0|^4.0",
-                "symfony/http-foundation": "^2.5|^3.0|^4.0",
-                "symfony/routing": "^2.5|^3.0|^4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.4.3|^6.0|^7.0",
-                "shopsys/coding-standards": "^3.0.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Shopsys\\HttpSmokeTesting\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Shopsys",
-                    "homepage": "https://www.shopsys.com/"
-                }
-            ],
-            "description": "HTTP smoke test case for testing all configured routes in your Symfony project",
-            "keywords": [
-                "phpunit",
-                "routing",
-                "smoke testing",
-                "symfony",
-                "testing"
-            ],
-            "time": "2018-06-05T13:22:06+00:00"
         },
         {
             "name": "sirbrillig/phpcs-import-detection",
@@ -8429,14 +8198,14 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "rector/rector": 20,
-        "shopsys/http-smoke-testing": 20
+        "doctrine/orm": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.1",
-        "ext-pdo_sqlite": "*",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
         "ext-intl": "*"
     },
     "platform-dev": []

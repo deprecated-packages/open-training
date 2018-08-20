@@ -1,7 +1,8 @@
 # Open Trainings
-========================
 
 Open and free platform for organizing trainings. 
+
+## Setup
 
 We cover all you need to organize a training, with a trainer and attendees:
 
@@ -10,14 +11,24 @@ We cover all you need to organize a training, with a trainer and attendees:
 - [ ] let people buy and attend a training
 - [ ] automated invoicing
 - [ ] automated emails to all parties
-- compute provision for the trainer and the organizer
+- [x] compute provision for the trainer and the organizer
 
 ## Instal
 
 ```bash
-git remote add origin ...
-git pull
+git clone ...
+cd open-trainings
 composer update
+```
+
+Then rename `.env.dist` to `.env` and complete variables:
+
+```bash
+# create database
+bin/console doctrine:schema:create 
+
+# dump css and js from all bundles
+bin/console assets:install --env=prod --no-debug
 
 composer adminer-install
 ```
