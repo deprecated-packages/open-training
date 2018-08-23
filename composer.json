@@ -76,7 +76,5 @@
         "symfony": {
             "allow-contrib": true
         }
-    },
-    "prefer-stable": true,
-    "minimum-stability": "dev"
+    }
 }
